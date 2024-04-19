@@ -1,0 +1,48 @@
+/* Main Background and General Styling */
+.root {
+    -fx-background-color: #ffffff; /* White background */
+}
+
+/* Simplifying Title Bar */
+.title-bar {
+    -fx-background-color: #0078D7; /* Professional blue */
+    -fx-text-fill: white; /* White text for contrast */
+}
+
+/* ListView and ListCell for a Cleaner Look */
+.list-view, .list-cell {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: transparent; /* Remove borders */
+}
+
+.list-cell:hover {
+    -fx-background-color: #e1f5fe; /* Light blue on hover */
+}
+
+.list-cell:selected {
+    -fx-background-color: #b3e5fc; /* Lighter selection color */
+}
+
+/* ScrollBar Styling */
+.scroll-bar {
+    -fx-background-color: #f0f0f0; /* Lighter track */
+}
+
+.scroll-bar > .thumb {
+    -fx-background-color: #b3d4fc; /* Soft blue thumb */
+}
+
+/* Text Field and Button Simplification */
+.text-field, .button {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #d3d3d3; /* Light gray border */
+}
+
+.text-field:focused, .button:hover {
+    -fx-border-color: #90caf9; /* Soft blue border */
+}
+
+.button {
+    -fx-text-fill: #1976d2; /* Blue text */
+    -fx-background-radius: 4px; /* Softened corners */
+}
