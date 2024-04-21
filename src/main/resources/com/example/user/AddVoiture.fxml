@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="445.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.AddVoiture">
+    <children>
+        <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #DBC2AD;">
+            <children>
+                <ImageView fx:id="brandingImageView" fitHeight="120.0" fitWidth="69.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/logo-django.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="93.0" layoutY="25.0" text="Ajouter Voiture" textFill="WHITE">
+                    <font>
+                        <Font size="21.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <Label layoutX="65.0" layoutY="97.0" text="Matricule">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="65.0" layoutY="162.0" text="Marque">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="65.0" layoutY="219.0" text="Puissance">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="65.0" layoutY="280.0" text="Prix">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="marqueTextField" layoutX="92.0" layoutY="187.0" prefHeight="25.0" prefWidth="300.0" promptText="Marque" />
+        <TextField fx:id="MatriculeTextField" layoutX="92.0" layoutY="126.0" prefHeight="25.0" prefWidth="300.0" promptText="XXXX-TUNIS-XXXX" />
+        <TextField fx:id="puissanceTextField" layoutX="92.0" layoutY="245.0" prefHeight="25.0" prefWidth="300.0" promptText="Puissance" />
+        <Button fx:id="confirmerButton" layoutX="413.0" layoutY="397.0" mnemonicParsing="false" onAction="#insertOne" style="-fx-background-color: #2A914D;" text="Confirmer" textFill="WHITE" />
+        <Button fx:id="cancelButton" layoutX="14.0" layoutY="397.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
+        <Label layoutX="65.0" layoutY="337.0" text="Email">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+      <TextField fx:id="prixTextField" layoutX="92.0" layoutY="299.0" prefHeight="25.0" prefWidth="300.0" promptText="Prix" />
+      <ComboBox fx:id="emailVoitureTextField" layoutX="93.0" layoutY="356.0" prefHeight="26.0" prefWidth="300.0" />
+    </children>
+</AnchorPane>

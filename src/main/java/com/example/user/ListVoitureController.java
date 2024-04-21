@@ -1,0 +1,327 @@
+package com.example.user;
+
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import models.User;
+import models.Voiture;
+import services.ServiceVoiture;
+import utils.SessionManager;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+import static utils.SessionManager.clearSession;
+
+public class ListVoitureController implements Initializable {
+
+    @FXML
+    private Button ajouterButton;
+
+    @FXML
+    private Button cancelButton;
+
+    @FXML
+    private TableColumn<Voiture, String> emailCol;
+
+    @FXML
+    private TableColumn<Voiture, String> marqueCol;
+
+    @FXML
+    private TableColumn<Voiture, String> matriculeCol;
+
+    @FXML
+    private TableColumn<User, String> nomCol;
+
+    @FXML
+    private TableColumn<User, String> prenomCol;
+
+    @FXML
+    private TableColumn<Voiture, Float> prixCol;
+
+    @FXML
+    private TableColumn<Voiture, Integer> puissanceCol;
+
+    @FXML
+    private Button supprimerButton;
+
+    @FXML
+    private AnchorPane tuteur_AP;
+
+    @FXML
+    private TableView<Voiture> voitureTableView;
+
+    @FXML
+    private Label loginLabel;
+
+    @FXML
+    private Button logoutButton;
+
+    @FXML
+    private Button userButton;
+
+
+    User currentUser;
+
+    @FXML
+    void cancelButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+
+            this.currentUser = SessionManager.getSession().getUser();
+
+            loginLabel.setText(this.currentUser.getNom_user());
+            populateTableView();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void populateTableView() throws SQLException {
+        // Retrieve data from the database
+        ServiceVoiture serviceVoiture = new ServiceVoiture();
+        List<Voiture> voitureList = serviceVoiture.selectAll();
+
+        // Clear existing items in the TableView
+        voitureTableView.getItems().clear();
+
+        // Set cell value factories for each column
+        matriculeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMatricule()));
+        marqueCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMarque()));
+        puissanceCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPuissance()).asObject());
+        prixCol.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getPrix_voiture()).asObject());
+        emailCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUser().getEmail()));
+
+        // Add the retrieved data to the TableView
+        voitureTableView.getItems().addAll(voitureList);
+
+        voitureTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Double-click detected
+                Voiture selectedVoiture = voitureTableView.getSelectionModel().getSelectedItem();
+                if (selectedVoiture != null) {
+                    // Navigate to UpdateUser.fxml
+                    navigateToUpdateVoiture(selectedVoiture );
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void deleteOne(ActionEvent event) {
+        // Get the selected voiture from the table view
+        Voiture selectedVoiture = voitureTableView.getSelectionModel().getSelectedItem();
+        if (selectedVoiture != null) {
+            // Show a confirmation dialog
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirmation Dialog");
+            confirmAlert.setHeaderText("Supprimer User");
+            confirmAlert.setContentText("Êtes-vous sûr de vouloir supprimer cet utilisateur ?");
+
+            // Use lambda expression for handling user's choice
+            confirmAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    // User confirmed, proceed with deletion
+                    try {
+                        // Call the deleteOne method with the selected user
+                        ServiceVoiture serviceVoiture = new ServiceVoiture();
+                        serviceVoiture.deleteOne(selectedVoiture);
+                        // Show a success message
+                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                        successAlert.setTitle("Delete Success");
+                        successAlert.setHeaderText(null);
+                        successAlert.setContentText("Voiture deleted successfully.");
+                        successAlert.showAndWait();
+                        // Refresh the table view after deletion
+                        populateTableView();
+                    } catch (SQLException ex) {
+                        // Show an error message if deletion fails
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Delete Error");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("Error deleting user: " + ex.getMessage());
+                        errorAlert.showAndWait();
+                    }
+                }
+            });
+        } else {
+            // Show an alert if no user is selected
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Non Selection");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une voiture à supprimer.");
+            alert.showAndWait();
+        }
+    }
+    private void navigateToUpdateVoiture(Voiture voiture) {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateVoiture.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            UpdateVoiture controller = loader.getController();
+            controller.initData(voiture);
+            controller.setListVoitureController(this);
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void navigateToAddVoiture() {
+        try {
+            // Load the AddVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddVoiture.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Show the scene containing the AddVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // Refresh the table view after adding a new voiture
+            populateTableView();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void ajouterButtonOnAction(ActionEvent event) {
+        navigateToAddVoiture();
+    }
+
+
+
+    @FXML
+    void logoutButtonOnAction(ActionEvent event) {
+        // Create a confirmation dialog
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmation");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Êtes-vous sûr de vouloir vous déconnecter?");
+
+        // Show the confirmation dialog
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // User confirmed, clear the session and navigate to the login window
+                clearSession();
+                // Close the current window
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.close();
+                // Navigate to the login window
+                navigateToLogin();
+            }
+        });
+    }
+
+
+    private void navigateToLogin() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            LoginController controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    void userButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) userButton.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToUser();    }
+    private void navigateToUser() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ListUser.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            ListUserController controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshList() {
+        try {
+            populateTableView();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void showCategoryStatistics(ActionEvent event) {
+        // Get the list of all posts from the table
+        List<Voiture> allPosts = voitureTableView.getItems();
+
+        // Count occurrences of each category
+        Map<String, Long> categoryCounts = allPosts.stream()
+                .collect(Collectors.groupingBy(Voiture::getMarque, Collectors.counting()));
+
+        // Create a PieChart Data list
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (Map.Entry<String, Long> entry : categoryCounts.entrySet()) {
+            pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }
+
+        // Create a PieChart
+        PieChart pieChart = new PieChart(pieChartData);
+        pieChart.setTitle("Category Statistics");
+
+        // Create a new alert dialog with PieChart as the content
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Category Statistics");
+        alert.setHeaderText(null);
+        alert.getDialogPane().setContent(pieChart);
+        alert.showAndWait();
+    }
+
+}

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1019.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ListVoitureController">
+    <children>
+        <AnchorPane fx:id="tuteur_AP" layoutX="246.0" prefHeight="600.0" prefWidth="777.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="-3.6000000000000227" AnchorPane.topAnchor="0.0">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="radius" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <TableView fx:id="voitureTableView" layoutX="40.0" layoutY="117.0" prefHeight="199.0" prefWidth="700.0">
+                    <columns>
+                        <TableColumn fx:id="matriculeCol" maxWidth="153.60004425048828" prefWidth="153.60004425048828" text="Matricule" />
+                        <TableColumn fx:id="marqueCol" maxWidth="202.39996337890625" prefWidth="138.39996337890625" text="Marque" />
+                        <TableColumn fx:id="puissanceCol" maxWidth="237.5999755859375" prefWidth="115.199951171875" text="Puissance" />
+                        <TableColumn fx:id="prixCol" maxWidth="209.60000610351562" prefWidth="111.99996948242188" text="prix" />
+                        <TableColumn fx:id="emailCol" maxWidth="322.3999938964844" prefWidth="184.0" text="Email" />
+                    </columns>
+                </TableView>
+                <Button fx:id="statisticsButton" layoutX="320.0" layoutY="537.0" onAction="#showCategoryStatistics" style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 14px;" text="Statistics" />
+                <Button fx:id="supprimerButton" layoutX="535.0" layoutY="341.0" mnemonicParsing="false" onAction="#deleteOne" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #E96151;" text="Supprimer" textFill="WHITE" />
+                <Button fx:id="ajouterButton" layoutX="135.0" layoutY="341.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #2A914D;" text="Ajouter" textFill="WHITE" />
+                <Text layoutX="324.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voitures">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            <ImageView fx:id="profile" fitHeight="51.0" fitWidth="59.0" layoutX="707.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/profile-icon-png-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="loginLabel" layoutX="714.0" layoutY="59.0" text="Admin" />
+            </children>
+        </AnchorPane>
+        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="245.0" style="-fx-background-color: #DBC2AD;">
+            <children>
+                <ImageView fitHeight="176.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/logo-django.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="40.0" />
+                    </VBox.margin>
+                </ImageView>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="246.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Home" textFill="WHITE">
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="userButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="38.0" prefWidth="246.0" style="-fx-background-color: #DBC2AD #DBC2AD;" stylesheets="" text="Users" textFill="WHITE">
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="246.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Sinistres" textFill="WHITE">
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="247.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Voitures" textFill="WHITE">
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="247.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Devis" textFill="WHITE">
+
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="247.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Contrats" textFill="WHITE">
+
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="247.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Reparations" textFill="WHITE">
+
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="36.0" prefWidth="247.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Deconnexion" textFill="WHITE">
+
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #DBC2AD;" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
