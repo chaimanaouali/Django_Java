@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="54.0" prefWidth="792.0" style="-fx-background-color: green; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assurance.itemDevis">
+   <children>
+      <Label fx:id="nomCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="67.0" text="Nom">
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="prenomCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="70.0" text="Prénom">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="emailCol" alignment="CENTER" prefHeight="54.0" prefWidth="107.0" text="Email">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="adresseCol" alignment="CENTER" prefHeight="54.0" prefWidth="79.0" text="Adresse">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="datenaissCol" alignment="CENTER" prefHeight="54.0" prefWidth="101.0" text="Date Naissance">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="modeleCol1" alignment="CENTER" prefHeight="54.0" prefWidth="74.0" text="Model" />
+      <Label fx:id="puissanceCol11" alignment="CENTER" prefHeight="54.0" prefWidth="75.0" text="Puissance">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="prixCol111" alignment="CENTER" prefHeight="54.0" prefWidth="71.0" text="Prix">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="numtelCol1111" alignment="CENTER" prefHeight="54.0" prefWidth="82.0" text="Num Tel">
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin></Label>
+      <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="19.0" style="-fx-background-color: red;" />
+   </children>
+</HBox>
