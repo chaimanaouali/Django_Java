@@ -71,26 +71,19 @@ public class updateDevis implements Initializable {
     private TextField tfid;
 
     @FXML
-        void cancelButtonOnAction(ActionEvent event) {
-        int id = Integer.parseInt(tfid.getText());
-        ServiceDevis st = new ServiceDevis();
-        try {
-            st.deleteOne(id);
-            System.out.println("devis deleted successfully.");
-            Parent root = FXMLLoader.load(getClass().getResource("afficherDevis.fxml"));
-            Stage pStage= new Stage();
-            pStage.initStyle(StageStyle.UNDECORATED);
-            pStage.setScene(new Scene(root, 667,556));
-            pStage.show();
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Failed to delete devis: " + e.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        }
+        void cancelButtonOnAction(ActionEvent event) throws IOException, SQLException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("test.fxml"));
+        Parent root = loader.load();
+        GestionDevis controller = loader.getController();
+
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
+    }
+    public Button getBt(){
+        return boutonAjouter;
+    }
     private Devis selecteddevis;
     public void initData(Devis devis) {
         selecteddevis = devis;
@@ -107,7 +100,7 @@ public class updateDevis implements Initializable {
         tfid.setText(String.valueOf(selecteddevis.getId())); // Converting int to String
     }
 @FXML
-    void updateOne1(ActionEvent Event)throws SQLException{
+    void updateOne1(ActionEvent Event) throws SQLException, IOException {
     String selectedNom = tfNom.getText();
     String selectedPrenom = tfPrenom.getText();
     String selectedAdresse = tfAdresse.getText();
@@ -124,18 +117,12 @@ public class updateDevis implements Initializable {
     try {
         st.updateOne(d);
         System.out.println("devis updated successfully.");
-        Parent root = FXMLLoader.load(getClass().getResource("afficherDevis.fxml"));
-        Stage pStage= new Stage();
-        pStage.initStyle(StageStyle.UNDECORATED);
-        pStage.setScene(new Scene(root, 667,556));
-        pStage.show();
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+
+
+
     } catch (SQLException e) {
         e.printStackTrace();
         System.err.println("Failed to update devis: " + e.getMessage());
-    } catch (IOException e) {
-        throw new RuntimeException(e);
     }
 }
     @Override

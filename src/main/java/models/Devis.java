@@ -14,7 +14,7 @@ public class Devis {
     private LocalDate date_naiss;
     private int num_tel;
     private String modele, puissance;
-
+;
     private double prix;
 
 

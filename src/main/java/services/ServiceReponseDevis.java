@@ -71,7 +71,7 @@ public class ServiceReponseDevis implements  CRUDReponse<ReponseDevis>  {
     @Override
     public List<ReponseDevis> selectAll() throws SQLException {
         List<ReponseDevis> devisList = new ArrayList<>();
-        String query = "SELECT * FROM reponse_devis";
+        String query = "SELECT r.* ,d.email FROM reponse_devis as r , devis as d where r.email_id= d.id ";
         Statement statement = cnx.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         while (resultSet.next()) {
@@ -83,9 +83,11 @@ public class ServiceReponseDevis implements  CRUDReponse<ReponseDevis>  {
             LocalDate date_reglement = resultSet.getDate("date_reglement").toLocalDate();
             int email_id = resultSet.getInt("email_id");
             String documents = resultSet.getString("documents");
+            String email = resultSet.getString("email");
 
 
             ReponseDevis devis = new ReponseDevis(id,email_id ,etat, decision, delai, dureeRep, documents, date_reglement);
+           devis.setEmail(email);
             devisList.add(devis);
         }
         return devisList;

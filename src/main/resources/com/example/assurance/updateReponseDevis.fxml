@@ -38,7 +38,7 @@
         <Label layoutX="294.0" layoutY="236.0" text="Duree Validite" />
         <TextField id="tfModele" fx:id="tfModele" layoutX="285.0" layoutY="195.0" />
         <TextField id="tfPuissance" fx:id="tfPuissance" layoutX="294.0" layoutY="271.0" />
-        <Button id="retourbutton" fx:id="cancelButton" layoutX="559.0" layoutY="503.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #FF0000;" text="Delete" textFill="WHITE" />
+        <Button id="retourbutton" fx:id="cancelButton" layoutX="559.0" layoutY="503.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #FF0000;" text="retour" textFill="WHITE" />
       <TextField id="tfModele" fx:id="tfid" layoutX="420.0" layoutY="160.0" visible="false" />
       <TextField id="tfPuissance" fx:id="tfEmail" layoutX="511.0" layoutY="195.0" visible="false" />
     </children>

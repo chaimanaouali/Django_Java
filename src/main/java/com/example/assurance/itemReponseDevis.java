@@ -5,18 +5,13 @@
 package com.example.assurance;
 
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import models.Devis;
+import models.ReponseDevis;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,37 +21,34 @@ import java.util.ResourceBundle;
  *
  * @author chaima
  */
-public class itemDevis implements Initializable {
+public class itemReponseDevis implements Initializable {
     @FXML
-    private Label adresseCol;
+    private Label decisionCol;
 
     @FXML
-    private Label datenaissCol;
+    private Label delaiCol;
+
+    @FXML
+    private Button deleteB;
+
+    @FXML
+    private Label documentCol;
+
+    @FXML
+    private Label dureeCol;
 
     @FXML
     private Label emailCol;
 
     @FXML
-    private Label modeleCol1;
+    private Label etatCol;
 
-    @FXML
-    private Label nomCol;
-
-    @FXML
-    private Label numtelCol1111;
-
-    @FXML
-    private Label prenomCol;
-
-    @FXML
-    private Label prixCol111;
-
-    @FXML
-    private Label puissanceCol11;
     @FXML
     private Label idCol;
+
     @FXML
-    private Button deleteB;
+    private Label reglementCol;
+
     public Button getDeleteButton(){
         return deleteB;
     }
@@ -69,17 +61,16 @@ public class itemDevis implements Initializable {
       
         }
 
-    public void afficher (Devis d) {
+    public void afficher (ReponseDevis d) {
 
-        this.nomCol.setText(d.getNom());
-        this.prenomCol.setText(d.getPrenom());
-        this.modeleCol1.setText(d.getModele());
-        this.puissanceCol11.setText(d.getPuissance());
-        this.prixCol111.setText(Double.toString(d.getPrix()));
-        this.numtelCol1111.setText(Integer.toString(d.getNum_tel()));
+        this.etatCol.setText(d.getEtat());
+        this.decisionCol.setText(d.getDecision());
         this.emailCol.setText(d.getEmail());
-        this.datenaissCol.setText(d.getDate_naiss().toString());
-        this.adresseCol.setText(d.getAdresse());
+        this.dureeCol.setText(d.getDuree_validite());
+
+        this.delaiCol.setText(d.getDelai_reparation());
+        this.reglementCol.setText(d.getDate_reglement().toString());
+        this.documentCol.setText(d.getDocuments());
         this.idCol.setText(Integer.toString(d.getId()));
 
     }

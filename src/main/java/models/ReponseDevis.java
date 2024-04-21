@@ -5,10 +5,18 @@ import java.time.LocalDate;
 public class ReponseDevis {
     private int id;
     private int email_id;
-
+private String email;
     private String etat, decision;
     private String delai_reparation, duree_validite,documents;
     private LocalDate date_reglement;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public int getId() {
         return id;

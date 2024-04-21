@@ -8,8 +8,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,7 +21,7 @@
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
             <children>
-                <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #BF3C3C;">
+                <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
                     <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                         <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Home">
@@ -76,34 +74,72 @@
                     <tabs>
                         <Tab text="consulter ">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0" style="-fx-background-color: #FFF;">
                                     <children>
-                                        <HBox alignment="CENTER_LEFT" layoutY="7.0" prefHeight="105.0" prefWidth="778.0" spacing="60.0">
-                                            <children>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                                    <children>
-                                                        <Label fx:id="nbt" textFill="#2a73ff">
-                                                            <font>
-                                                                <Font name="System Bold" size="26.0" />
-                                                            </font>
-                                                        </Label>
-                                                        <Label text="Devis">
-                                                            <font>
-                                                                <Font size="14.0" />
-                                                            </font>
-                                                        </Label>
-                                                    </children>
-                                                </VBox>
-                                                <Label />
-                                            </children>
-                                            <padding>
-                                                <Insets left="40.0" />
-                                            </padding>
-                                        </HBox>
-                                        <ScrollPane layoutX="39.0" layoutY="113.0" prefHeight="363.0" prefWidth="825.0" style="-fx-background-color: #FFF;">
+                                        <ScrollPane hbarPolicy="NEVER" layoutX="10.0" layoutY="94.0" maxWidth="798.0" minWidth="798.0" prefHeight="354.0" prefWidth="798.0" style="-fx-background-color: #FFF;" vbarPolicy="NEVER">
                                  <content>
-                                    <VBox fx:id="vboxDevis" prefHeight="362.0" prefWidth="792.0" spacing="5.0" />
+                                    <VBox fx:id="vboxDevis" spacing="5.0" style="-fx-background-color: #FFF;" />
                                  </content></ScrollPane>
+                              <HBox layoutX="12.0" layoutY="31.0" prefHeight="54.0" prefWidth="792.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;">
+                                 <children>
+                                    <Label fx:id="nomCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="67.0" text="Nom" textFill="#dfdfdf">
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="prenomCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="70.0" text="Prénom" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="emailCol" alignment="CENTER" prefHeight="54.0" prefWidth="107.0" text="Email" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="adresseCol" alignment="CENTER" prefHeight="54.0" prefWidth="79.0" text="Adresse" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="datenaissCol" alignment="CENTER" prefHeight="54.0" prefWidth="106.0" text="Date Naissance" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="modeleCol1" alignment="CENTER" prefHeight="54.0" prefWidth="74.0" text="Model" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="puissanceCol11" alignment="CENTER" prefHeight="54.0" prefWidth="75.0" text="Puissance" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="prixCol111" alignment="CENTER" prefHeight="54.0" prefWidth="71.0" text="Prix" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="numtelCol1111" alignment="CENTER" prefHeight="54.0" prefWidth="82.0" text="Num Tel" textFill="#dfdfdf">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="numtelCol11111" alignment="CENTER" prefHeight="54.0" prefWidth="48.0" text="Delete" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -112,25 +148,55 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
                            <children>
-                              <TextField id="tfNom" fx:id="tfNom" layoutX="18.0" layoutY="102.0" prefHeight="26.0" prefWidth="150.0" />
-                              <Label layoutX="18.0" layoutY="69.0" prefHeight="18.0" prefWidth="118.0" text="Nom" />
-                              <Label layoutX="17.0" layoutY="145.0" prefHeight="18.0" prefWidth="66.0" text="Prenom" />
-                              <TextField id="tfPrenom" fx:id="tfPrenom" layoutX="18.0" layoutY="179.0" prefHeight="26.0" prefWidth="150.0" />
-                              <Label layoutX="22.0" layoutY="220.0" text="Adresse" />
-                              <TextField id="tfAdresse" fx:id="tfAdresse" layoutX="21.0" layoutY="250.0" />
-                              <Label layoutX="22.0" layoutY="289.0" text="Email" />
-                              <TextField id="tfEmail" fx:id="tfEmail" layoutX="19.0" layoutY="322.0" />
-                              <Label layoutX="22.0" layoutY="363.0" text="Date de naissance" />
-                              <DatePicker id="tfDate" fx:id="tfDate" layoutX="15.0" layoutY="395.0" prefHeight="26.0" prefWidth="158.0" />
-                              <Label layoutX="331.0" layoutY="313.0" text="Numero de telephone" />
-                              <TextField id="tfNumtel" fx:id="tfNumtel" layoutX="335.0" layoutY="346.0" />
-                              <Label layoutX="335.0" layoutY="106.0" text="Modele" />
-                              <Label layoutX="335.0" layoutY="241.0" text="Prix" />
-                              <Label layoutX="335.0" layoutY="170.0" text="Puissance" />
-                              <TextField id="tfModele" fx:id="tfModele" layoutX="331.0" layoutY="141.0" />
-                              <TextField id="tfPuissance" fx:id="tfPuissance" layoutX="335.0" layoutY="207.0" />
-                              <TextField id="tfPrix" fx:id="tfPrix" layoutX="335.0" layoutY="276.0" />
-                              <Button fx:id="boutonAjouter" layoutX="663.0" layoutY="441.0" mnemonicParsing="false" onAction="#insertOne" text="Ajouter" />
+                              <TextField id="tfNom" fx:id="tfNom" layoutX="180.0" layoutY="126.0" prefHeight="26.0" prefWidth="150.0" />
+                              <Label layoutX="180.0" layoutY="93.0" prefHeight="18.0" prefWidth="118.0" text="Nom">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="177.0" layoutY="164.0" prefHeight="18.0" prefWidth="66.0" text="Prenom">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <TextField id="tfPrenom" fx:id="tfPrenom" layoutX="180.0" layoutY="194.0" prefHeight="26.0" prefWidth="150.0" />
+                              <Label layoutX="184.0" layoutY="229.0" text="Adresse">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <TextField id="tfAdresse" fx:id="tfAdresse" layoutX="181.0" layoutY="264.0" />
+                              <Label layoutX="184.0" layoutY="301.0" text="Email">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <TextField id="tfEmail" fx:id="tfEmail" layoutX="180.0" layoutY="334.0" />
+                              <Label layoutX="184.0" layoutY="378.0" text="Date de naissance">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <DatePicker id="tfDate" fx:id="tfDate" layoutX="176.0" layoutY="409.0" prefHeight="26.0" prefWidth="158.0" />
+                              <Label layoutX="442.0" layoutY="301.0" text="Numero de telephone">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <TextField id="tfNumtel" fx:id="tfNumtel" layoutX="446.0" layoutY="334.0" />
+                              <Label layoutX="446.0" layoutY="94.0" text="Modele">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="446.0" layoutY="229.0" text="Prix">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="446.0" layoutY="164.0" text="Puissance">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <TextField id="tfModele" fx:id="tfModele" layoutX="442.0" layoutY="129.0" />
+                              <TextField id="tfPuissance" fx:id="tfPuissance" layoutX="446.0" layoutY="195.0" />
+                              <TextField id="tfPrix" fx:id="tfPrix" layoutX="446.0" layoutY="264.0" />
+                              <Button fx:id="boutonAjouter" layoutX="467.0" layoutY="405.0" mnemonicParsing="false" onAction="#insertOne" prefHeight="33.0" prefWidth="94.0" text="Ajouter">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
                            </children>
                         </AnchorPane>
                      </content></Tab>
@@ -145,43 +211,62 @@
                             </content></Tab>
                         <Tab text="consulter">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0" style="-fx-background-color: #FFF;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" layoutY="7.0" prefHeight="105.0" prefWidth="778.0" spacing="60.0">
+                              <ScrollPane hbarPolicy="NEVER" layoutX="10.0" layoutY="94.0" maxWidth="798.0" minWidth="798.0" prefHeight="354.0" prefWidth="798.0" style="-fx-background-color: #FFF;" vbarPolicy="NEVER">
+                                 <content>
+                                    <VBox fx:id="vboxDevis1" spacing="5.0" style="-fx-background-color: #FFF;" />
+                                 </content>
+                              </ScrollPane>
+                              <HBox layoutX="12.0" layoutY="31.0" prefHeight="54.0" prefWidth="792.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label fx:id="nbt1" textFill="#2a73ff">
-                                             <font>
-                                                <Font name="System Bold" size="26.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Reponse">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <Label />
+                                    <Label fx:id="etatCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="85.0" text="Etat" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="decisionCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="82.0" text="Décision" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="emailCol1" alignment="CENTER" prefHeight="54.0" prefWidth="156.0" text="Email" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="dureeCol" alignment="CENTER" prefHeight="54.0" prefWidth="97.0" text="Durée Validité" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="delaiCol" alignment="CENTER" prefHeight="54.0" prefWidth="101.0" text="Délai reparation" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reglementCol" alignment="CENTER" prefHeight="54.0" prefWidth="96.0" text="Date Réglement" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="documentCol" alignment="CENTER" prefHeight="54.0" prefWidth="134.0" text="Document" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="idCol" alignment="CENTER" contentDisplay="CENTER" maxHeight="54.0" maxWidth="0.0" minHeight="54.0" minWidth="0.0" prefHeight="54.0" prefWidth="0.0" text="id" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="documentCol1" alignment="CENTER" prefHeight="54.0" prefWidth="58.0" text="Delete" textFill="#dfdfdf">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
-                                 <padding>
-                                    <Insets left="40.0" />
-                                 </padding>
                               </HBox>
-                              <ScrollPane layoutX="39.0" layoutY="113.0" prefHeight="363.0" prefWidth="702.0" style="-fx-background-color: #FFF;" />
-                              <TableView fx:id="devisTableView1" layoutX="39.0" layoutY="114.0" prefHeight="360.0" prefWidth="700.0">
-                                 <columns>
-                                    <TableColumn fx:id="idCol1" prefWidth="50.39999234676361" text="ID" visible="false" />
-                                    <TableColumn fx:id="etatCol" maxWidth="100.0" prefWidth="67.99999845027924" text="ETAT" />
-                                    <TableColumn fx:id="decisionCol" maxWidth="154.39996337890625" prefWidth="79.19995880126953" text="DECISION" />
-                                    <TableColumn fx:id="emailCol1" maxWidth="262.4000244140625" prefWidth="111.199951171875" text="EMAIL" />
-                                    <TableColumn fx:id="date_reglementCol" maxWidth="312.7999572753906" prefWidth="103.20001220703125" text="Date Reglement" />
-                                    <TableColumn fx:id="delaiCol" maxWidth="342.4000549316406" prefWidth="108.00006103515625" text="Delai Reparation" />
-                                    <TableColumn fx:id="dureeCol" maxWidth="342.4000549316406" minWidth="0.0" prefWidth="94.39993286132812" text="Duree Validite" />
-                                    <TableColumn fx:id="documentsCol" maxWidth="342.4000549316406" prefWidth="128.79998779296875" text="Documents" />
-                                 </columns>
-                              </TableView>
                            </children>
                         </AnchorPane>
                      </content></Tab>
@@ -210,23 +295,23 @@
                   </Tab>
                     </tabs>
                 </TabPane>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf3c3c" height="82.0" layoutX="220.0" stroke="#bf3c3c" strokeType="INSIDE" width="717.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="82.0" layoutX="220.0" stroke="#37619b" strokeType="INSIDE" width="717.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="880.0" layoutY="-14.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="16.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="913.0" layoutY="-24.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="42.0" />
 
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf3c3c" height="20.0" layoutX="210.0" layoutY="74.0" stroke="#bf3c3c" strokeType="INSIDE" width="27.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="20.0" layoutX="210.0" layoutY="74.0" stroke="#37619b" strokeType="INSIDE" width="27.0" />
                 <Circle fill="WHITE" layoutX="236.0" layoutY="96.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" />
-                <Label layoutX="409.0" layoutY="15.0" text="Devis /Reponse" textFill="WHITE">
+                <Label layoutX="409.0" layoutY="15.0" text="Devis /Reponse" textFill="#dfdfdf">
                     <font>
                         <Font name="System Bold" size="36.0" />
                     </font>
                 </Label>
-                <Label layoutX="302.0" layoutY="82.0" text="Devis" textFill="#bf3c3c">
+                <Label layoutX="302.0" layoutY="82.0" text="Devis" textFill="#37619b">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="669.0" layoutY="83.0" text="Reponse" textFill="#bf3c3c">
+                <Label layoutX="715.0" layoutY="83.0" text="Reponse" textFill="#37619b">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>

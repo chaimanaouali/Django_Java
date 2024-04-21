@@ -64,26 +64,16 @@ public class updateReponseDevis implements Initializable {
     private TextField tfid;
 
     @FXML
-        void cancelButtonOnAction(ActionEvent event) {
-        int id = Integer.parseInt(tfid.getText());
-        ServiceReponseDevis st = new ServiceReponseDevis();
-        try {
-            st.deleteOne(id);
-            System.out.println("devis deleted successfully.");
-            Parent root = FXMLLoader.load(getClass().getResource("afficherReponseDevis.fxml"));
-            Stage pStage= new Stage();
-            pStage.initStyle(StageStyle.UNDECORATED);
-            pStage.setScene(new Scene(root, 667,556));
-            pStage.show();
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Failed to delete devis: " + e.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        void cancelButtonOnAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("test.fxml"));
+        Parent root = loader.load();
+        GestionDevis controller = loader.getController();
+
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
         }
-        }
+
     private ReponseDevis selecteddevis;
     public void initData(ReponseDevis devis) throws SQLException {
         selecteddevis = devis;
@@ -119,18 +109,10 @@ public class updateReponseDevis implements Initializable {
     try {
         st.updateOne(d);
         System.out.println("Reponse devis updated successfully.");
-        Parent root = FXMLLoader.load(getClass().getResource("afficherReponseDevis.fxml"));
-        Stage pStage= new Stage();
-        pStage.initStyle(StageStyle.UNDECORATED);
-        pStage.setScene(new Scene(root, 667,556));
-        pStage.show();
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+
     } catch (SQLException e) {
         e.printStackTrace();
         System.err.println("Failed to update Reponse devis: " + e.getMessage());
-    } catch (IOException e) {
-        throw new RuntimeException(e);
     }
 }
     @Override
