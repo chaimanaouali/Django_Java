@@ -9,7 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import models.Devis;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import models.ReponseDevis;
 
 import java.net.URL;
@@ -30,6 +31,8 @@ public class itemReponseDevis implements Initializable {
 
     @FXML
     private Button deleteB;
+    @FXML
+    private Button btqr;
 
     @FXML
     private Label documentCol;
@@ -38,13 +41,15 @@ public class itemReponseDevis implements Initializable {
     private Label dureeCol;
 
     @FXML
-    private Label emailCol;
+    private ImageView emailCol;
 
     @FXML
     private Label etatCol;
 
     @FXML
     private Label idCol;
+    @FXML
+    private Label idmail;
 
     @FXML
     private Label reglementCol;
@@ -52,9 +57,16 @@ public class itemReponseDevis implements Initializable {
     public Button getDeleteButton(){
         return deleteB;
     }
+    public Button getbtqr(){
+        return btqr;
+    }
     public int getId(){
         System.out.println(Integer.valueOf(idCol.getText()));
         return Integer.valueOf(idCol.getText());
+    }
+    public int getEmailId(){
+        System.out.println(Integer.valueOf(idmail.getText()));
+        return Integer.valueOf(idmail.getText());
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -65,14 +77,16 @@ public class itemReponseDevis implements Initializable {
 
         this.etatCol.setText(d.getEtat());
         this.decisionCol.setText(d.getDecision());
-        this.emailCol.setText(d.getEmail());
-        this.dureeCol.setText(d.getDuree_validite());
 
+        this.dureeCol.setText(d.getDuree_validite());
+        Image brandingImage = new Image(getClass().getResource("/screenshotqr/screenshot.png").toString());
+
+this.emailCol.setImage(brandingImage);
         this.delaiCol.setText(d.getDelai_reparation());
         this.reglementCol.setText(d.getDate_reglement().toString());
         this.documentCol.setText(d.getDocuments());
         this.idCol.setText(Integer.toString(d.getId()));
-
+this.idmail.setText(Integer.toString(d.getEmail_id()));
     }
 
 

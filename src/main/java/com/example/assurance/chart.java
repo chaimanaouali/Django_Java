@@ -111,27 +111,10 @@ public class chart implements Initializable {
 
     @FXML
     void goBack(ActionEvent ev) {
-        try {
-            // Load the UpdateUser.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("afficherDevis.fxml"));
-            Parent root = loader.load();
+        // Load the UpdateUser.fxml file
 
-            // Access the controller and pass the selected user to it
-            afficherDevis controller = loader.getController();
-
-
-            // Show the scene containing the UpdateUser.fxml file
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setOnCloseRequest(event -> {
-
-            });
-            stage.show();
-            Stage gg= (Stage)barChart.getScene().getWindow();
-            gg.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage gg= (Stage)barChart.getScene().getWindow();
+        gg.close();
     }
 
 }

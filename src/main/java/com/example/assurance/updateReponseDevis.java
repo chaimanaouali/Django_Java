@@ -1,32 +1,25 @@
 package com.example.assurance;
 
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import models.Devis;
 import models.ReponseDevis;
-import services.ServiceDevis;
 import services.ServiceReponseDevis;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class updateReponseDevis implements Initializable {
@@ -109,10 +102,13 @@ public class updateReponseDevis implements Initializable {
     try {
         st.updateOne(d);
         System.out.println("Reponse devis updated successfully.");
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Reponse Devis changé!");
+        alert.setContentText("Reponse Devis changé avec succes");
+        alert.show();
     } catch (SQLException e) {
         e.printStackTrace();
-        System.err.println("Failed to update Reponse devis: " + e.getMessage());
+        System.err.println("Failed to update Reponse Reponse devis: " + e.getMessage());
     }
 }
     @Override

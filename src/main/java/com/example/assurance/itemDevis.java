@@ -5,18 +5,12 @@
 package com.example.assurance;
 
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import models.Devis;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -61,6 +55,10 @@ public class itemDevis implements Initializable {
         return deleteB;
     }
     public int getId(){
+        System.out.println(Integer.valueOf(idCol.getText()));
+        return Integer.valueOf(idCol.getText());
+    }
+    public int getEmailId(){
         System.out.println(Integer.valueOf(idCol.getText()));
         return Integer.valueOf(idCol.getText());
     }

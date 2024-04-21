@@ -12,4 +12,5 @@ public interface CRUD<T> {
     void deleteOne(Integer t) throws SQLException;
     List<T> selectAll() throws SQLException;
     List<T> rechercheF(String vari) throws SQLException;
+    Devis rechercheId(int idd) throws SQLException;
 }

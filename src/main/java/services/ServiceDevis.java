@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceDevis implements  CRUD<Devis>  {
+public class ServiceDevis implements  CRUD<Devis> {
 
     private Connection cnx;
 
@@ -94,11 +94,12 @@ public class ServiceDevis implements  CRUD<Devis>  {
         }
         return devisList;
     }
+
     @Override
     public List<Devis> rechercheF(String vari) throws SQLException {
         List<Devis> devisList = new ArrayList<>();
         System.out.println(vari);
-        String query = "SELECT * FROM devis where nom LIKE '"+vari+"%' OR prenom LIKE '"+vari+"%' OR adresse LIKE '"+vari+"%' OR email LIKE '"+vari+"%' OR modele LIKE '"+vari+"%'";
+        String query = "SELECT * FROM devis where nom LIKE '" + vari + "%' OR prenom LIKE '" + vari + "%' OR adresse LIKE '" + vari + "%' OR email LIKE '" + vari + "%' OR modele LIKE '" + vari + "%'";
         System.out.println(query);
         Statement statement = cnx.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -118,5 +119,31 @@ public class ServiceDevis implements  CRUD<Devis>  {
             devisList.add(devis);
         }
         return devisList;
+    }
+
+    @Override
+    public Devis rechercheId(int idd) throws SQLException {
+        List<Devis> devisList = new ArrayList<>();
+        String query = "SELECT * FROM devis where id = " + idd;
+        Statement statement = cnx.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        Devis devis = null;
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String nom = resultSet.getString("nom");
+            String prenom = resultSet.getString("prenom");
+            String adresse = resultSet.getString("adresse");
+            String email = resultSet.getString("email");
+            LocalDate date_naiss = resultSet.getDate("date_naiss").toLocalDate();
+            int num_tel = resultSet.getInt("num_tel");
+            String modele = resultSet.getString("modele");
+            String puissance = resultSet.getString("puissance");
+            double prix = resultSet.getDouble("prix");
+
+            devis = new Devis(id, nom, prenom, adresse, email, date_naiss, num_tel, modele, puissance, prix);
+
+
+        }
+        return devis;
     }
 }

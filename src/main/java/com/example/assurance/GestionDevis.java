@@ -3,42 +3,42 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.example.assurance;
-
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Devis;
 import models.ReponseDevis;
 import services.ServiceDevis;
+import services.ServiceReponseDevis;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import services.ServiceReponseDevis;
 
 /**
  * FXML Controller class
@@ -105,12 +105,18 @@ public class GestionDevis implements Initializable {
 
     @FXML
     private TextField tfPrix;
+    @FXML
+    private TextField recherchee;
 
     @FXML
     private TextField tfPuissance;
 
     @FXML
     private TextField tfPuissance1;
+    @FXML
+    private VBox vboxDevis;
+    @FXML
+    private VBox vboxDevis1;
     @FXML
     void insertOne(ActionEvent event) {
         if (tfNom.getText().isEmpty() || tfPrenom.getText().isEmpty() || tfAdresse.getText().isEmpty() ||
@@ -202,7 +208,11 @@ public class GestionDevis implements Initializable {
         }
     }
 
-
+    @FXML
+    void out(ActionEvent event){
+        Stage stage = (Stage) tfNom.getScene().getWindow();
+        stage.close();
+    }
     private boolean isValidEmail(String email) {
         // Expression régulière pour valider l'e-mail
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
@@ -220,7 +230,85 @@ public class GestionDevis implements Initializable {
         int age = currentDate.minusYears(18).compareTo(birthDate);
         return age >= 0; // Renvoie vrai si l'âge est de 18 ans ou plus
     }
+    @FXML
+    void recherche(KeyEvent event) {
+        System.out.println("dd");
+        vboxDevis.getChildren().clear();
+        String charr = recherchee.getText();
+        System.out.println(charr);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        // Retrieve data from the database
+        ServiceDevis serviceDevis = new ServiceDevis(); // Creating an instance of ServiceDevis
+        List<Devis> deviss = null; // Calling selectAll() on the instance
+        try {
+            deviss = serviceDevis.rechercheF(charr);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        vboxDevis.getChildren().clear();
+        ServiceDevis sd = new ServiceDevis();
 
+        HBox hb[]= new HBox[deviss.size()];
+        for (Devis d: deviss
+        ) {
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("itemDevis.fxml"));
+                Parent root = loader.load();
+                itemDevis otherController = loader.getController();
+                HBox hbox = (HBox) loader.getRoot();
+                vboxDevis.getChildren().add(hbox);
+
+
+                otherController.afficher(d);
+                hbox.setOnMouseClicked(mouseEvent -> {
+                    if (mouseEvent.getClickCount() == 2) { // Double-click detected
+                        Devis selectedDevis = d;
+                        if (selectedDevis != null) {
+                            // Navigate to UpdateUser.fxml
+                            navigateToUpdateDevis(selectedDevis);
+                            afficherDevis();
+                        }
+                    }
+                });
+
+                Button deleteButton = otherController.getDeleteButton();
+                int id = otherController.getId();
+                deleteButton.setOnAction(eve -> {
+                    // Remove the HBox from the VBox when the button is clicked
+                    deleteDevis(id);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    @FXML
+    void chart(ActionEvent ev) {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            chart controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(event -> {
+                // Refresh the TableView when the PopUp stage is closed
+                afficherDevis();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     void insertOne1(ActionEvent event) {
         if (tfNom1.getText().isEmpty() || tfPrenom1.getText().isEmpty() || tfAdresse1.getText().isEmpty() ||
@@ -298,10 +386,7 @@ public class GestionDevis implements Initializable {
         }
     }
 
-    @FXML
-    private VBox vboxDevis;
-    @FXML
-    private VBox vboxDevis1;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -418,6 +503,7 @@ public void afficherDevis(){
 
 
                     otherController.afficher(d);
+
                     hbox.setOnMouseClicked(mouseEvent -> {
                         if (mouseEvent.getClickCount() == 2) { // Double-click detected
                             ReponseDevis selectedDevis = d;
@@ -435,9 +521,28 @@ public void afficherDevis(){
 
                     Button deleteButton = otherController.getDeleteButton();
                     int id = otherController.getId();
+                    int ide = otherController.getEmailId();
+                    ServiceDevis dd =new ServiceDevis();
+
                     deleteButton.setOnAction(event -> {
                         // Remove the HBox from the VBox when the button is clicked
                         deleteReponseDevis(id);
+                    });
+                    Button btqr = otherController.getbtqr();
+
+                    btqr.setOnAction(event -> {
+                        Devis dee = null;
+                        try {
+                            System.out.println(ide);
+                            dee = dd.rechercheId(ide);
+                            System.out.println(dee);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        // Remove the HBox from the VBox when the button is clicked
+                        String AllInfo = "Nom: " + dee.getNom() + "\nprénom:"+dee.getPrenom()+"\nadresse: " + dee.getAdresse() + "\nemail: " + dee.getEmail() + "\ndate de naissance: " + dee.getDate_naiss()
+                                + "\nmodele: " + dee.getModele() + "\npuissance: " + dee.getPuissance() + "\nprix: " + dee.getPuissance() + "\nnuméro téléphone: " + dee.getNum_tel() ;
+                        qr(AllInfo);
                     });
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -448,6 +553,57 @@ public void afficherDevis(){
         }
 
     }
+
+    private void qr(String AllInfo) {
+        // Generate the information for the QR code
+
+
+
+
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+
+        int width = 300;
+        int height = 300;
+
+        BufferedImage bufferedImage = null;
+        try {
+            BitMatrix byteMatrix = qrCodeWriter.encode(AllInfo, BarcodeFormat.QR_CODE, width, height);
+            bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    bufferedImage.setRGB(x, y, byteMatrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF);
+                }
+            }
+
+            System.out.println("QR created successfully....");
+
+        } catch (WriterException ex) {
+            ex.printStackTrace();
+            return; // Exit the method if an exception occurs
+        }
+
+        ImageView qr = new ImageView();
+        qr.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+
+        StackPane obj = new StackPane();
+        obj.getChildren().add(qr);
+        Scene scene = new Scene(obj, 300, 250);
+        Stage p1 = new Stage();
+        p1.setTitle("QRCode");
+        p1.setScene(scene);
+        p1.show();
+
+        // Save the QR code as an image file
+        File imageFile = new File("/resources/screenshotqr/screenshot.png");
+        try {
+            ImageIO.write(bufferedImage, "png", imageFile);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
     private void navigateToUpdateDevis(Devis devis) {
         try {
             // Load the UpdateUser.fxml file
@@ -463,12 +619,14 @@ public void afficherDevis(){
             });
 
             Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(event -> {
                 // Refresh the TableView when the PopUp stage is closed
 
                 Stage gg= (Stage)tfNom.getScene().getWindow();
                 gg.close();
+
             });
             stage.show();
 
@@ -489,6 +647,7 @@ public void afficherDevis(){
 
 
             Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(event -> {
                 // Refresh the TableView when the PopUp stage is closed
