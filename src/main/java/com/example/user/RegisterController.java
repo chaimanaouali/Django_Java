@@ -78,7 +78,6 @@ public class RegisterController implements Initializable {
 
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
-            redirectToFrontPage();
         }
         } catch (SQLException e) {
             e.printStackTrace();

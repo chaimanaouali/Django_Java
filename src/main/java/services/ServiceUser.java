@@ -135,4 +135,14 @@ public class ServiceUser implements CRUD<User> {
 
         return user;
     }
+
+
+    public void updatePassword(User t, String email) throws SQLException {
+        String query = "UPDATE user SET password = ? WHERE email = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(query)) {
+            ps.setString(1, t.getPassword());
+            ps.setString(2, email);
+            ps.executeUpdate();
+        }
+    }
 }

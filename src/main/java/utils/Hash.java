@@ -22,6 +22,7 @@ public class Hash {
             e.printStackTrace();
             return null;
         }
+
     }
     // Verify if the provided string matches the given hash
     public static boolean verifyHash(String input, String hash) {

@@ -46,6 +46,7 @@
                 <Button fx:id="cancelButton" layoutX="13.0" layoutY="392.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
                 <PasswordField fx:id="entrerPasswordField" layoutX="46.0" layoutY="238.0" prefHeight="26.0" prefWidth="231.0" promptText="Mot De Passe" />
             <Hyperlink fx:id="signupLink" layoutX="17.0" layoutY="283.0" onAction="#signupLinkOnAction" text="S'inscrire" />
+            <Hyperlink fx:id="ForgetPassword_btn" layoutX="168.0" layoutY="283.0" onAction="#ForgetPassword_btn" text="Mot de passe oublier" />
             </children>
         </AnchorPane>
     </right>

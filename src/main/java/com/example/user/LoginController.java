@@ -19,165 +19,146 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+public class LoginController implements Initializable {
 
+    @FXML
+    private TextField emailUserTextField;
 
-    public class LoginController implements Initializable {
+    @FXML
+    private PasswordField entrerPasswordField;
 
-        @FXML
-        private TextField emailUserTextField;
+    @FXML
+    private Label loginMessagelabel;
 
-        @FXML
-        private PasswordField entrerPasswordField;
+    @FXML
+    private Button cancelButton;
 
-        @FXML
-        private Label loginMessagelabel;
+    @FXML
+    private Button loginButton;
 
-        @FXML
-        private Button cancelButton;
+    @FXML
+    private ImageView brandingImageView;
 
-        @FXML
-        private Button loginButton;
+    @FXML
+    private ImageView lockImageView;
 
-        @FXML
-        private ImageView brandingImageView;
+    @FXML
+    private Hyperlink signupLink;
 
-        @FXML
-        private ImageView lockImageView;
+    ServiceUser serviceUser = new ServiceUser();
 
-        @FXML
-        private Hyperlink  signupLink;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            Image brandingImage = new Image(getClass().getResource("/images/logo-django.png").toString());
+            brandingImageView.setImage(brandingImage);
 
-        ServiceUser serviceUser = new ServiceUser();
-
-        @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
-            try {
-                Image brandingImage = new Image(getClass().getResource("/images/logo-django.png").toString());
-                brandingImageView.setImage(brandingImage);
-
-
-                Image lockImage = new Image(getClass().getResource("/images/lock-removebg-preview.png").toString());
-                lockImageView.setImage(lockImage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Image lockImage = new Image(getClass().getResource("/images/lock-removebg-preview.png").toString());
+            lockImageView.setImage(lockImage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
+    @FXML
+    void cancelButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
+    }
 
-        @FXML
-        void cancelButtonOnAction(ActionEvent event) {
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
-        }
+    public void LOGINUPTF(ActionEvent actionEvent) {
+        String email = emailUserTextField.getText();
+        String password = entrerPasswordField.getText();
 
+        User user = serviceUser.getByEmail(email);
 
-
-        public void LOGINUPTF(ActionEvent actionEvent) {
-            String email = emailUserTextField.getText();
-            String password = entrerPasswordField.getText();
-
-
-            User user = serviceUser.getByEmail(email);
-
-            boolean isLogged = Hash.verifyHash(password,user.getPassword());
-            if (user != null && user.getPassword() != null && isLogged) {
+        if (user != null) {
+            boolean isLogged = Hash.verifyHash(password, user.getPassword());
+            if (isLogged) {
                 // Successful login
                 SessionManager.startSession(user);
-
-
-                    showAlert("Login Successful", "Welcome, " + user.getEmail() + "!");
-
-                    if ("[\"ROLE_ADMIN\"]".equals(user.getRoles())) {
-                        // Redirect to Admin page (ListUser)
-                        redirectToAdminPage();
-                    } else {
-                        try {
-                            // Load the FrontUser.fxml file
-                            Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));
-
-                            // Create a new stage and set the scene
-                            Stage stage = new Stage();
-                            stage.setTitle("Front User");
-                            stage.setScene(new Scene(root));
-                            stage.show();
-
-
-                            // Close the login stage
-                            ((Stage) emailUserTextField.getScene().getWindow()).close();
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-
-                    }
-                    // Set the current user in the session
-                    // SessionManager.setCurrentUser(user);
-
-
+                showAlert("Login Successful", "Welcome, " + user.getEmail() + "!");
+                if ("[\"ROLE_ADMIN\"]".equals(user.getRoles())) {
+                    // Redirect to Admin page (ListUser)
+                    redirectToAdminPage();
+                } else {
+                    redirectToFrontPage();
+                }
             } else {
-                // Display an error message or handle unsuccessful login
-                showAlert("Login Failed", "Invalid email or mot de passe.");
+                // Password verification failed
+                showAlert("Login Failed", "Invalid email or password.");
             }
+        } else {
+            // User not found
+            showAlert("Login Failed", "No user found with the provided email.");
         }
-
-        private void showAlert(String title, String content) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(title);
-            alert.setHeaderText(null);
-            alert.setContentText(content);
-            alert.showAndWait();
-        }
-
-        private void redirectToAdminPage() {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("ListUser.fxml"));
-
-
-                Stage stage = new Stage();
-                stage.setTitle("Admin - User List");
-                stage.setScene(new Scene(root));
-                stage.show();
-
-                // Close the login stage
-                ((Stage) emailUserTextField.getScene().getWindow()).close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-
-        }
-
-        private void navigateToSignUp() {
-            try {
-                // Load the UpdateUser.fxml file
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
-                javafx.scene.Parent root = loader.load();
-
-                // Access the controller and pass the selected user to it
-                RegisterController controller = loader.getController();
-
-
-                // Show the scene containing the UpdateUser.fxml file
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-
-
-        @FXML
-        void signupLinkOnAction(ActionEvent event){
-
-            Stage stage = (Stage) signupLink.getScene().getWindow();
-            stage.close();
-            // Navigate to the login window
-            navigateToSignUp();    }
-
-
-
-
     }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private void redirectToAdminPage() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("ListUser.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Admin - User List");
+            stage.setScene(new Scene(root));
+            stage.show();
+            // Close the login stage
+            ((Stage) emailUserTextField.getScene().getWindow()).close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void redirectToFrontPage() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Front User");
+            stage.setScene(new Scene(root));
+            stage.show();
+            // Close the login stage
+            ((Stage) emailUserTextField.getScene().getWindow()).close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void navigateToSignUp() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+            Parent root = loader.load();
+            RegisterController controller = loader.getController();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void signupLinkOnAction(ActionEvent event) {
+        Stage stage = (Stage) signupLink.getScene().getWindow();
+        stage.close();
+        navigateToSignUp();
+    }
+
+    public void ForgetPassword_btn(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgetPasswordForm.fxml"));
+            Parent root = loader.load();
+
+            emailUserTextField.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}

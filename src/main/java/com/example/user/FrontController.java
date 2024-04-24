@@ -26,6 +26,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import services.ServiceVoiture;
 import utils.SessionManager;
@@ -253,16 +254,28 @@ public class FrontController implements Initializable {
     void deleteButtonClicked(ActionEvent event) {
         // Check if a voiture is selected
         if (selectedVoiture != null) {
-            try {
-                // Call the delete method from your ServiceVoiture class to delete the selected voiture
-                ServiceVoiture serviceVoiture = new ServiceVoiture();
-                serviceVoiture.deleteOne(selectedVoiture);
+            // Create a confirmation dialog
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Deletion");
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setContentText("Are you sure you want to delete the selected vehicle?");
 
-                // Optionally, refresh the list after deletion
-                refreshList();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                // Handle any potential exceptions here
+            // Show the confirmation dialog and wait for user response
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+            // If the user confirms deletion, proceed with deletion
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                try {
+                    // Call the delete method from your ServiceVoiture class to delete the selected voiture
+                    ServiceVoiture serviceVoiture = new ServiceVoiture();
+                    serviceVoiture.deleteOne(selectedVoiture);
+
+                    // Optionally, refresh the list after deletion
+                    refreshList();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    // Handle any potential exceptions here
+                }
             }
         } else {
             // Alert the user to select a vehicle first
@@ -273,6 +286,7 @@ public class FrontController implements Initializable {
             alert.showAndWait();
         }
     }
+
 
     @FXML
     void logoutButtonOnAction(ActionEvent event) {
