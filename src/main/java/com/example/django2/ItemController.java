@@ -1,3 +1,4 @@
+/*
 package com.example.django2;
 
 import javafx.fxml.FXML;
@@ -45,4 +46,4 @@ public class ItemController {
     }
 
 
-}
+}*/

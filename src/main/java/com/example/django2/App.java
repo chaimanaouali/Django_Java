@@ -14,13 +14,13 @@ public class App extends Application {
     public  void start(Stage primaryStage) throws  Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("ajouterPost.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("updatePost.fxml"));
-     Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));
      //  Parent root = FXMLLoader.load(getClass().getResource("ajouterCommnentaire.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("AfficherCommentaire.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("updateCommentaire.fxml"));
-      // Parent root = FXMLLoader.load(getClass().getResource("AfficherPostFront.fxml"));
+     //Parent root = FXMLLoader.load(getClass().getResource("afficherPost.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root, 1315,800));
+        primaryStage.setScene(new Scene(root, 1500,800));
         primaryStage.show();
     }
 

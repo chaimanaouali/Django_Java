@@ -138,5 +138,49 @@ public class ServiceCommentaire implements CRUD<Commentaire> {
                 throw new IllegalArgumentException("Post not found for title: " + postTitle);
         }
 
+        public List<Commentaire> selectByPostId(long postId) throws SQLException {
+                List<Commentaire> commentaires = new ArrayList<>();
+
+                String req = "SELECT * FROM commentaire WHERE post_id = ?";
+                try (PreparedStatement ps = cnx.prepareStatement(req)) {
+                        ps.setLong(1, postId);
+                        try (ResultSet rs = ps.executeQuery()) {
+                                while (rs.next()) {
+                                        Commentaire commentaire = new Commentaire();
+                                        commentaire.setId(rs.getInt("id"));
+                                        commentaire.setContenu(rs.getString("contenu"));
+                                        commentaire.setDate_creation(rs.getTimestamp("date_creation"));
+                                        commentaire.setAuteur(rs.getString("auteur"));
+                                        commentaires.add(commentaire);
+                                }
+                        }
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                        // Handle database exception
+                }
+
+                // Log the SQL query and comments retrieved
+                System.out.println("SQL Query: " + req);
+                System.out.println("Comments for post ID " + postId + ":");
+                for (Commentaire commentaire : commentaires) {
+                        System.out.println(commentaire.getContenu());
+                }
+
+                return commentaires;
+        }
+
+        public int getCountByPostId(long postId) throws SQLException {
+                String sql = "SELECT COUNT(*) AS count FROM commentaire WHERE post_id = ?";
+                try (PreparedStatement statement = cnx.prepareStatement(sql)) {
+                        statement.setLong(1, postId);
+                        try (ResultSet resultSet = statement.executeQuery()) {
+                                if (resultSet.next()) {
+                                        return resultSet.getInt("count");
+                                }
+                        }
+                }
+                return 0; // Default return value if no comments found
+        }
+
 
 }

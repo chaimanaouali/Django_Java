@@ -36,7 +36,8 @@ public class AfficherPostFront {
                 ImageView profilePic = new ImageView(new Image("file:///C:/Users/garal/IdeaProjects/Django2/src/main/resources/image/profile-removebg-preview.png"));
                 profilePic.setFitWidth(50);
                 profilePic.setFitHeight(50);
-
+               String id= String.valueOf(post.getId());
+                Label idlabel = new Label(id);
                 Label titleLabel = new Label(post.getTitre());
                 Label descriptionLabel = new Label(post.getDescription());
 

@@ -1,10 +1,11 @@
 package models;
 
 public enum Reaction {
-    NON(0,"Like","/images/like1.png"),
-    Like(1,"Like","/images/like1.png"),
-    LOVE(2,"Love","/images/love.png"),
-    HATE(3,"Hate","/images/no-fight.png");
+    NON(0,"Like","/image/thumb-up.png"),
+    Like(1,"Like","/image/thumb-up.png"),
+    LOVE(2,"Love","/image/like.png"),
+    HATE(3,"Hate","/image/dislike.png"),
+    NONE;
     private int id;
     private String name;
     private String imgSrc;
@@ -13,6 +14,9 @@ public enum Reaction {
         this.id = id;
         this.name = name;
         this.imgSrc = imgSrc;
+    }
+
+    Reaction() {
     }
 
     public int getId() {
@@ -29,6 +33,15 @@ public enum Reaction {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Reaction{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", imgSrc='" + imgSrc + '\'' +
+                '}';
     }
 
     public void setImgSrc(String imgSrc) {

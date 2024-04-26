@@ -64,6 +64,7 @@ public class FrontController implements Initializable {
     }
 
     private void setChosenFruit(Post post) {
+
         titreLabel.setText(post.getTitre());
         desriptionLable.setText(post.getDescription());
         categorieLable.setText(post.getCategorie());
@@ -99,10 +100,10 @@ public class FrontController implements Initializable {
         try {
             for (int i = 0; i < postList.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("Item.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("post.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                ItemController itemController = fxmlLoader.getController();
+                itemPost itemController = fxmlLoader.getController();
                 itemController.setData(postList.get(i), myListener);
 
                 if (column == 3) {
@@ -173,10 +174,10 @@ public class FrontController implements Initializable {
             // Iterate through the updated PostList
             for (int i = 0; i < postList.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("Item.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("post.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                ItemController itemController = fxmlLoader.getController();
+                itemPost itemController = fxmlLoader.getController();
                 itemController.setData(postList.get(i), myListener);
 
                 // Check if the column exceeds the limit

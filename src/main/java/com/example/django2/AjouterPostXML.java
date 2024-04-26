@@ -15,10 +15,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Post;
 import service.ServicePost;
+import utils.data;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -107,18 +110,28 @@ public class AjouterPostXML implements Initializable {
 
 
     public void imageIm(ActionEvent actionEvent) {
-
         Post p = new Post();
         FileChooser openFile = new FileChooser();
-        openFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Open Image File","*png","*jpg"));
+        openFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Open Image File", "*png", "*jpg"));
         File file = openFile.showOpenDialog(mainForm.getScene().getWindow());
-        if(file != null)
-        {
+        if (file != null) {
             data.path = file.getAbsolutePath();
-            image = new Image(file.toURI().toString(), 125,130,false , true);
+            image = new Image(file.toURI().toString(), 125, 130, false, true);
             imageP.setImage(image);
+
+            // Save the uploaded file to the uploads directory
+            File destination = new File("C:\\Users\\garal\\IdeaProjects\\Django2\\src\\main\\resources\\uploads", file.getName());
+            try {
+                Files.copy(file.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Image saved to: " + destination.getAbsolutePath());
+                data.path = destination.getAbsolutePath();
+            } catch (IOException e) {
+                System.err.println("Failed to save image: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
+
 
     @FXML
     private void retourToAfficher(ActionEvent event) {

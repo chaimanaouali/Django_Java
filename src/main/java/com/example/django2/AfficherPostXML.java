@@ -17,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Post;
 import service.ServicePost;
+import utils.ExportPDF;
+import utils.exportExcelle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,6 +64,9 @@ public class AfficherPostXML implements Initializable {
     private TableColumn<Post, String> image;
 
     @FXML
+    private TableColumn<Post, String> id;
+
+    @FXML
     private AnchorPane mainForm;
 
     @FXML
@@ -91,8 +96,9 @@ public class AfficherPostXML implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        categories.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+        categories.setCellValueFactory(new PropertyValueFactory< >("categorie"));
         image.setCellValueFactory(new PropertyValueFactory<>("image_name"));
+       // id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         pagination.setPageFactory(this::createPage);
 
@@ -129,7 +135,7 @@ public class AfficherPostXML implements Initializable {
                     .filter(post -> post.getTitre().toLowerCase().contains(searchTerm) ||
                             post.getDescription().toLowerCase().contains(searchTerm) ||
                             post.getCategorie().toLowerCase().contains(searchTerm))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList() );
 
             // Clear the TableView and add the filtered posts
             table.getItems().clear();

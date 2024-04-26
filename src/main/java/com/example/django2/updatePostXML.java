@@ -15,8 +15,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Post;
 import service.ServicePost;
+import utils.data;
 
-import java.awt.*;
 import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
@@ -106,12 +106,17 @@ public class updatePostXML implements Initializable {
         tfCategories.setText(selectedPost.getCategorie());
         tfDescription.setText(selectedPost.getDescription());
     }
-
     @FXML
     void updateOne(ActionEvent event) {
         String selectedTitre = tfTitre.getText();
         String selectedCategories = tfCategories.getText();
         String selectedDescription = tfDescription.getText();
+
+        // Validate required fields
+        if (selectedTitre.isEmpty() || selectedCategories.isEmpty() || selectedDescription.isEmpty()) {
+            showAlert("Error", "Please fill in all fields.");
+            return;
+        }
 
         // Modify the existing Post object with the updated values
         selectedPost.setTitre(selectedTitre);
@@ -125,17 +130,23 @@ public class updatePostXML implements Initializable {
         try {
             sp.updateOne(selectedPost); // Pass the modified Post object
             System.out.println("Post updated successfully.");
+            showAlert("Success", "Post updated successfully.");
+
+            // Refresh the list of posts in the main view
             if (afficherPostXML != null) {
                 afficherPostXML.refreshList();
             }
 
+            // Close the update post window
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("Failed to update post: " + e.getMessage());
+            showAlert("Error", "Failed to update post: " + e.getMessage());
         }
     }
+
 
 
 
