@@ -1,223 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.FrontController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ListVoitureController">
     <children>
-        <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <left>
-                <VBox prefHeight="737.0" prefWidth="276.0" style="-fx-background-color: #DBC2AD;" styleClass="right-bar" BorderPane.alignment="CENTER">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
+            <children>
+                <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="34.0" prefWidth="435.0" />
-                        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="247.0" VBox.vgrow="NEVER">
-                            <VBox.margin>
-                                <Insets left="30.0" right="30.0" />
-                            </VBox.margin>
-                            <styleClass>
-                                <String fx:value="search-box" />
-                                <String fx:value="shadow" />
-                            </styleClass>
-                        </HBox>
-                        <Pane prefHeight="131.0" prefWidth="259.0" VBox.vgrow="ALWAYS">
-                            <padding>
-                                <Insets bottom="10.0" top="10.0" />
-                            </padding></Pane>
-                        <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="540.0" prefWidth="199.0" spacing="10.0" style="-fx-border-color: black; -fx-border-radius: 15;">
-                            <VBox.margin>
-                                <Insets left="50.0" right="50.0" />
-                            </VBox.margin>
-                            <children>
-                                <Label prefHeight="50.0" prefWidth="210.0" text="Voiture" textFill="WHITE">
-                                    <font>
-                                        <Font name="Cambria Bold" size="40.0" />
-                                    </font>
-                                </Label>
-                        <Label fx:id="matriculeLabel" prefHeight="48.0" prefWidth="200.0" text="matricule" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="marqueLable" prefHeight="57.0" prefWidth="171.0" text="marque" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="puissanceLable" prefHeight="57.0" prefWidth="171.0" text="Puissance" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="priceLable" prefHeight="57.0" prefWidth="171.0" text="prix" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria" size="18.0" />
-                           </font>
-                        </Label>
-                                <VBox alignment="CENTER" prefHeight="94.0" prefWidth="207.0" spacing="23.0">
-                                    <children>
-                                        <ImageView fx:id="img" fitHeight="137.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../../images/voiture-removebg-preview.png" />
-                                            </image>
-                                            <VBox.margin>
-                                                <Insets top="20.0" />
-                                            </VBox.margin>
-                                        </ImageView>
-                                        <Button mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="39.0" prefWidth="147.0" styleClass="add-btn" text="Modifer" textFill="#828282">
-                                            <VBox.margin>
-                                                <Insets bottom="20.0" top="30.0" />
-                                            </VBox.margin>
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Button>
-                                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #E96151;" styleClass="add-btn" text="Supprimer" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Button>
-                                    </children>
-                                </VBox>
-                            </children>
-                            <styleClass>
-                                <String fx:value="chosen-fruit-card" />
-                                <String fx:value="shadow" />
-                            </styleClass>
-                            <padding>
-                                <Insets bottom="7.0" top="5.0" />
-                            </padding>
-                        </VBox>
-                        <Pane prefHeight="255.0" prefWidth="435.0" style="-fx-background-color: #DBC2AD;" VBox.vgrow="ALWAYS" />
-                    </children>
-                </VBox>
-            </left>
-            <center>
-                <VBox prefHeight="200.0" prefWidth="622.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" spacing="15.0">
-                            <VBox.margin>
-                                <Insets left="20.0" right="20.0" />
-                            </VBox.margin>
-                            <children>
-                                <Pane prefHeight="65.0" prefWidth="393.0" HBox.hgrow="ALWAYS" />
-                                <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-
-                                </ImageView>
-                                <Button mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #2A914D;" text="+" textFill="WHITE">
-                                    <font>
-                                        <Font size="22.0" />
-                                    </font>
-                                </Button>
-                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="408.0" prefWidth="880.0" VBox.vgrow="ALWAYS">
-                            <children>
-                                <ScrollPane fx:id="scroll" prefHeight="638.0" prefWidth="880.0" styleClass="transparent">
-                                    <content>
-                                        <GridPane fx:id="grid" prefHeight="626.0" prefWidth="878.0">
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                            </rowConstraints>
-                                        </GridPane>
-                                    </content>
-                                    <HBox.margin>
-                                        <Insets top="10.0" />
-                                    </HBox.margin>
-                                </ScrollPane>
-                            </children>
-                        </HBox>
-                    </children>
-                </VBox>
-            </center>
-            <top>
-                <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1138.0" style="-fx-border-color: #DBC2AD; -fx-border-style: Bold; -fx-background-color: #DBC2AD;" BorderPane.alignment="CENTER">
-                    <children>
-                  <ImageView fx:id="brandingImageView" fitHeight="132.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/logo-django.png" />
-                     </image>
-                  </ImageView>
-                        <Pane prefHeight="75.0" prefWidth="201.0">
-                            <children>
-                                <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="42.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../../images/home-removebg-preview.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="104.0" layoutY="51.0" prefHeight="47.0" prefWidth="89.0" text="Home" textFill="WHITE">
-                                    <font>
-                                        <Font name="Caladea Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                            </children>
+                     </image></ImageView>
+                  <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
+                  <Button fx:id="userButton" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Users" textFill="WHITE" />
+                  <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false"  prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Voitures" textFill="WHITE" />
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" styleClass="button1" text="Deconnexion" textFill="WHITE">
+                            <graphic>
+
+                            </graphic>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
                             <padding>
-                                <Insets left="10.0" />
+                                <Insets left="35.0" />
                             </padding>
-                        </Pane>
-                        <Pane prefHeight="74.0" prefWidth="198.0">
-                            <children>
-                                <ImageView fitHeight="45.0" fitWidth="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-
-                                </ImageView>
-                                <Label layoutX="109.0" layoutY="52.0" prefHeight="41.0" prefWidth="85.0" text="Contract" textFill="WHITE">
-                                    <font>
-                                        <Font name="Caladea Bold" size="18.0" />
-                                    </font>
-                                </Label>
-                        <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="52.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/contactpng-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                            </children>
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="74.0" prefWidth="210.0">
-                            <children>
-                                <ImageView fitHeight="50.0" fitWidth="41.0" layoutX="-6.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-
-                                </ImageView>
-                            </children>
-                        </Pane>
-                        <Pane prefHeight="74.0" prefWidth="275.0" style="-fx-background-color: #DBC2AD;">
-                     <children>
-                        <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="127.0" layoutY="46.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="36.0" prefWidth="139.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Deconnexion" textFill="WHITE">
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
+                            <VBox.margin>
+                                <Insets top="280.0" />
+                            </VBox.margin>
                         </Button>
-                     </children></Pane>
-                        <Pane layoutX="1000.8" layoutY="1.8" prefHeight="74.0" prefWidth="144.0" style="-fx-background-color: #DBC2AD;">
-                            <children>
-                        <ImageView fx:id="profile" fitHeight="51.0" fitWidth="59.0" layoutX="48.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/profile-icon-png-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="loginLabel" layoutX="55.0" layoutY="79.0" text="Admin" />
-                            </children>
-                        </Pane>
                     </children>
-                </HBox>
-            </top>
-        </BorderPane>
+                </VBox>
+                <Label layoutX="248.0" layoutY="24.0" text="Tournois">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="82.0" layoutX="220.0" stroke="#37619b" strokeType="INSIDE" width="717.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="880.0" layoutY="-14.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="16.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="913.0" layoutY="-24.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="42.0" />
+
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="20.0" layoutX="210.0" layoutY="74.0" stroke="#37619b" strokeType="INSIDE" width="27.0" />
+                <Circle fill="WHITE" layoutX="236.0" layoutY="96.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" />
+                <Label layoutX="449.0" layoutY="15.0" text="Voitures" textFill="#dfdfdf">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Label>
+            <ImageView fx:id="profile" fitHeight="51.0" fitWidth="59.0" layoutX="1038.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/profile-icon-png-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="loginLabel" layoutX="1045.0" layoutY="60.0" text="Admin" />
+            <TableView fx:id="voitureTableView" layoutX="329.0" layoutY="187.0" prefHeight="199.0" prefWidth="700.0">
+               <columns>
+                  <TableColumn fx:id="matriculeCol" maxWidth="153.60004425048828" prefWidth="153.60004425048828" text="Matricule" />
+                  <TableColumn fx:id="marqueCol" maxWidth="202.39996337890625" prefWidth="138.39996337890625" text="Marque" />
+                  <TableColumn fx:id="puissanceCol" maxWidth="237.5999755859375" prefWidth="115.199951171875" text="Puissance" />
+                  <TableColumn fx:id="prixCol" maxWidth="209.60000610351562" prefWidth="111.99996948242188" text="prix" />
+                  <TableColumn fx:id="emailCol" maxWidth="322.3999938964844" prefWidth="184.0" text="Email" />
+               </columns>
+            </TableView>
+            <Button fx:id="statisticsButton" layoutX="642.0" layoutY="557.0" onAction="#showCategoryStatistics" style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 14px;" text="Statistics" />
+            <Button fx:id="supprimerButton" layoutX="822.0" layoutY="469.0" mnemonicParsing="false" onAction="#deleteOne" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #E96151;" text="Supprimer" textFill="WHITE" />
+            <Button fx:id="ajouterButton" layoutX="414.0" layoutY="469.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #2A914D;" text="Ajouter" textFill="WHITE" />
+            <Pagination fx:id="pagination" layoutX="329.0" layoutY="386.0" prefHeight="59.0" prefWidth="700.0" />
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

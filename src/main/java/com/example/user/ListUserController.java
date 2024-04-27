@@ -96,6 +96,14 @@ public class ListUserController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                filterUsers(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void populateTableView() throws SQLException {
@@ -394,6 +402,20 @@ public class ListUserController implements Initializable {
         return new AnchorPane(); // Return a placeholder node for now
     }
 
+    private void filterUsers(String searchTerm) throws SQLException {
+        // Clear existing items in the TableView
+        userTableView.getItems().clear();
+
+        // Filter the list of users based on the search criteria
+        List<User> filteredUsers = allUsers.stream()
+                .filter(user -> user.getNom_user().toLowerCase().contains(searchTerm.toLowerCase()) ||
+                        user.getPrenom_user().toLowerCase().contains(searchTerm.toLowerCase()) ||
+                        user.getEmail().toLowerCase().contains(searchTerm.toLowerCase()))
+                .collect(Collectors.toList());
+
+        // Add the filtered users to the TableView
+        userTableView.getItems().addAll(filteredUsers);
+    }
 
     }
 

@@ -84,6 +84,8 @@ public class ListVoitureController implements Initializable {
     private ObservableList<Voiture> currentPageUsers;
     private List<Voiture> allVoitures;
     private ServiceVoiture serviceVoiture = new ServiceVoiture();
+    @FXML
+    private TextField searchField; // Added TextField for searching
 
 
     User currentUser;
@@ -108,6 +110,15 @@ public class ListVoitureController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // Listener for the search field to trigger filtering
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                filterVoitures(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void populateTableView() throws SQLException {
@@ -353,6 +364,21 @@ public class ListVoitureController implements Initializable {
         voitureTableView.setItems(currentPageUsers);
 
         return new AnchorPane(); // Return a placeholder node for now
+    }
+    private void filterVoitures(String query) throws SQLException {
+        List<Voiture> filteredList = allVoitures.stream()
+                .filter(voiture -> {
+                    String searchString = query.toLowerCase();
+                    return voiture.getMatricule().toLowerCase().contains(searchString) ||
+                            voiture.getMarque().toLowerCase().contains(searchString) ||
+                            String.valueOf(voiture.getPuissance()).contains(query) ||
+                            String.valueOf(voiture.getPrix_voiture()).contains(query) ||
+                            voiture.getUser().getEmail().toLowerCase().contains(searchString);
+                })
+                .collect(Collectors.toList());
+
+        voitureTableView.getItems().clear();
+        voitureTableView.getItems().addAll(filteredList);
     }
 
 }

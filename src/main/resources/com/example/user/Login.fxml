@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.LoginController">
     <left>
-        <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #DBC2AD;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #37619b;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fx:id="brandingImageView" fitHeight="407.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
                <image>
