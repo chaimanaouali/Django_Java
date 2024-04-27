@@ -2,12 +2,16 @@ package com.example.user;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.User;
 import services.ServiceUser;
@@ -66,6 +70,13 @@ public class ListUserController implements Initializable {
 
     @FXML
     private TextField searchField;
+    @FXML
+    private Pagination pagination;
+    private static final int ROWS_PER_PAGE = 10; // Number of rows per page
+    private ObservableList<User> currentPageUsers;
+    private List<User> allUsers;
+    private final ServiceUser serviceUser = new ServiceUser();
+
 
 
     User currentUser;
@@ -74,8 +85,12 @@ public class ListUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+
             this.currentUser = SessionManager.getSession().getUser();
             loginLabel.setText(this.currentUser.getNom_user());
+            pagination.setPageFactory(this::createPage);
+
+            allUsers = serviceUser.selectAll();
 
             populateTableView();
         } catch (SQLException e) {
@@ -88,8 +103,13 @@ public class ListUserController implements Initializable {
         ServiceUser serviceUser = new ServiceUser();
         List<User> userList = serviceUser.selectAll();
 
-        // Clear existing items in the TableView
+    // Clear existing items in the TableView
         userTableView.getItems().clear();
+
+        int pageCount = (int) Math.ceil((double) allUsers.size() / ROWS_PER_PAGE);
+        pagination.setPageCount(pageCount);
+        pagination.setCurrentPageIndex(0);
+        createPage(0);
 
         // Set cell value factories for each column
         nomCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom_user()));
@@ -360,6 +380,18 @@ public class ListUserController implements Initializable {
                 userTableView.getItems().addAll(filteredUsers);
             }
         });
+    }
+
+    private Node createPage(int pageIndex) {
+        int fromIndex = pageIndex * ROWS_PER_PAGE;
+        int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, allUsers.size());
+        currentPageUsers = FXCollections.observableArrayList(allUsers.subList(fromIndex, toIndex));
+
+        // Populate your table with currentPageUsers here
+        // For example, if you have a TableView called table:
+        userTableView.setItems(currentPageUsers);
+
+        return new AnchorPane(); // Return a placeholder node for now
     }
 
 

@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
@@ -19,6 +20,8 @@ import models.Voiture;
 import services.ServiceVoiture;
 import utils.SessionManager;
 
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -75,6 +78,13 @@ public class ListVoitureController implements Initializable {
     @FXML
     private Button userButton;
 
+    @FXML
+    private Pagination pagination;
+    private static final int ROWS_PER_PAGE = 10; // Number of rows per page
+    private ObservableList<Voiture> currentPageUsers;
+    private List<Voiture> allVoitures;
+    private ServiceVoiture serviceVoiture = new ServiceVoiture();
+
 
     User currentUser;
 
@@ -89,8 +99,11 @@ public class ListVoitureController implements Initializable {
         try {
 
             this.currentUser = SessionManager.getSession().getUser();
-
             loginLabel.setText(this.currentUser.getNom_user());
+
+            pagination.setPageFactory(this::createPage);
+
+            allVoitures = serviceVoiture.selectAll();
             populateTableView();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,6 +117,11 @@ public class ListVoitureController implements Initializable {
 
         // Clear existing items in the TableView
         voitureTableView.getItems().clear();
+
+        int pageCount = (int) Math.ceil((double) allVoitures.size() / ROWS_PER_PAGE);
+        pagination.setPageCount(pageCount);
+        pagination.setCurrentPageIndex(0);
+        createPage(0);
 
         // Set cell value factories for each column
         matriculeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMatricule()));
@@ -322,6 +340,19 @@ public class ListVoitureController implements Initializable {
         alert.setHeaderText(null);
         alert.getDialogPane().setContent(pieChart);
         alert.showAndWait();
+    }
+
+
+    private Node createPage(int pageIndex) {
+        int fromIndex = pageIndex * ROWS_PER_PAGE;
+        int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, allVoitures.size());
+        currentPageUsers = FXCollections.observableArrayList(allVoitures.subList(fromIndex, toIndex));
+
+        // Populate your table with currentPageUsers here
+        // For example, if you have a TableView called table:
+        voitureTableView.setItems(currentPageUsers);
+
+        return new AnchorPane(); // Return a placeholder node for now
     }
 
 }

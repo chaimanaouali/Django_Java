@@ -4,6 +4,9 @@ module com.example.user {
     requires java.sql;
     requires java.desktop;
     requires java.mail;
+    requires layout;
+    requires kernel;
+    requires io;
 
 
     opens com.example.user to javafx.fxml;
