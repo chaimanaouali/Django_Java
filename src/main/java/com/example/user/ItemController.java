@@ -42,7 +42,7 @@ public class ItemController {
         //priceLable.setText(String.valueOf(voiture.getPrix_voiture()));
        // puissanceLable.setText(String.valueOf(voiture.getPuissance()));
 
-        Image image = new Image(getClass().getResource("/images/voiture.png").toString());
+        Image image = new Image(getClass().getResource("/images/car.png").toString());
         img.setImage(image);
     }
 

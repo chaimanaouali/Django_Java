@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import services.ServiceVoiture;
+import utils.DBconnection;
 import utils.SessionManager;
 
 import static utils.SessionManager.clearSession;
@@ -71,8 +72,8 @@ public class FrontController implements Initializable {
 
     private List<Voiture> getData() throws SQLException {
         ServiceVoiture serviceVoiture = new ServiceVoiture();
-        List<Voiture> voitureList = serviceVoiture.selectAll();
-
+        List<Voiture> voitureList = serviceVoiture.selectVoitureByUser(SessionManager.getSession().getUser());
+        //List<Voiture> voitureList = serviceVoiture.selectAll();
         return voitureList;
     }
 
@@ -81,7 +82,7 @@ public class FrontController implements Initializable {
         marqueLable.setText(voiture.getMarque());
         priceLable.setText(String.valueOf(voiture.getPrix_voiture()));
         puissanceLable.setText(String.valueOf(voiture.getPuissance()));
-        Image image = new Image(getClass().getResource("/images/voiture.png").toString());
+        Image image = new Image(getClass().getResource("/images/car.png").toString());
         img.setImage(image);
 
     }

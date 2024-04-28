@@ -20,7 +20,7 @@
     <children>
         <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <VBox prefHeight="737.0" prefWidth="276.0" style="-fx-background-color: #DBC2AD;" styleClass="right-bar" BorderPane.alignment="CENTER">
+                <VBox prefHeight="737.0" prefWidth="276.0" style="-fx-background-color: #37619B;" styleClass="right-bar" BorderPane.alignment="CENTER">
                     <children>
                         <HBox alignment="CENTER" prefHeight="34.0" prefWidth="435.0" />
                         <HBox alignment="CENTER" prefHeight="42.0" prefWidth="247.0" VBox.vgrow="NEVER">
@@ -41,27 +41,27 @@
                                 <Insets left="50.0" right="50.0" />
                             </VBox.margin>
                             <children>
-                                <Label prefHeight="50.0" prefWidth="210.0" text="Voiture" textFill="WHITE">
+                                <Label prefHeight="50.0" prefWidth="210.0" text=" Voiture" textFill="WHITE">
                                     <font>
                                         <Font name="Cambria Bold" size="40.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="matriculeLabel" prefHeight="48.0" prefWidth="200.0" text="matricule" textFill="WHITE">
+                                <Label fx:id="matriculeLabel" prefHeight="48.0" prefWidth="200.0" text=" matricule" textFill="WHITE">
                                     <font>
                                         <Font name="Cambria" size="18.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="marqueLable" prefHeight="57.0" prefWidth="171.0" text="marque" textFill="WHITE">
+                                <Label fx:id="marqueLable" prefHeight="57.0" prefWidth="171.0" text=" marque" textFill="WHITE">
                                     <font>
                                         <Font name="Cambria" size="18.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="puissanceLable" prefHeight="57.0" prefWidth="171.0" text="Puissance" textFill="WHITE">
+                                <Label fx:id="puissanceLable" prefHeight="57.0" prefWidth="171.0" text=" Puissance" textFill="WHITE">
                                     <font>
                                         <Font name="Cambria" size="18.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="priceLable" prefHeight="57.0" prefWidth="171.0" text="prix" textFill="WHITE">
+                                <Label fx:id="priceLable" prefHeight="57.0" prefWidth="171.0" text=" prix" textFill="WHITE">
                                     <font>
                                         <Font name="Cambria" size="18.0" />
                                     </font>
@@ -70,21 +70,24 @@
                                     <children>
                                         <ImageView fx:id="img" fitHeight="137.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../../images/voiture-removebg-preview.png" />
+                                                <Image url="@../../../images/car.png" />
                                             </image>
                                             <VBox.margin>
                                                 <Insets top="20.0" />
                                             </VBox.margin>
                                         </ImageView>
-                                        <Button mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="39.0" prefWidth="147.0" styleClass="add-btn" text="Modifer" textFill="#828282">
+                                        <Button mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #37619B;" styleClass="add-btn" text="Modifer" textFill="WHITE">
                                             <VBox.margin>
                                                 <Insets bottom="20.0" top="30.0" />
                                             </VBox.margin>
                                             <font>
                                                 <Font name="System Bold" size="18.0" />
                                             </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                                         </Button>
-                                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #E96151;" styleClass="add-btn" text="Supprimer" textFill="WHITE">
+                                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #37619B;" styleClass="add-btn" text="Supprimer" textFill="WHITE">
                                             <font>
                                                 <Font name="System Bold" size="18.0" />
                                             </font>
@@ -100,7 +103,7 @@
                                 <Insets bottom="7.0" top="5.0" />
                             </padding>
                         </VBox>
-                        <Pane prefHeight="255.0" prefWidth="435.0" style="-fx-background-color: #DBC2AD;" VBox.vgrow="ALWAYS" />
+                        <Pane prefHeight="255.0" prefWidth="435.0" style="-fx-background-color: #37619B;" VBox.vgrow="ALWAYS" />
                     </children>
                 </VBox>
             </left>
@@ -143,7 +146,7 @@
                 </VBox>
             </center>
             <top>
-                <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1138.0" style="-fx-border-color: #DBC2AD; -fx-background-color: #DBC2AD;" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1138.0" style="-fx-border-color: #37619B; -fx-background-color: #37619B;" BorderPane.alignment="CENTER">
                     <children>
                         <ImageView fx:id="brandingImageView" fitHeight="132.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -194,9 +197,9 @@
                                 </ImageView>
                             </children>
                         </Pane>
-                        <Pane prefHeight="74.0" prefWidth="275.0" style="-fx-background-color: #DBC2AD;">
+                        <Pane prefHeight="74.0" prefWidth="275.0" style="-fx-background-color: #37619B;">
                      <children>
-                        <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="123.0" layoutY="55.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="36.0" prefWidth="139.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Deconnexion" textFill="WHITE">
+                        <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="123.0" layoutY="55.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="36.0" prefWidth="139.0" style="-fx-background-color: #37619B;" stylesheets="" text="Deconnexion" textFill="WHITE">
                            <padding>
                               <Insets left="50.0" />
                            </padding>
@@ -205,7 +208,7 @@
                            </font>
                         </Button>
                      </children></Pane>
-                        <Pane layoutX="1000.8" layoutY="1.8" prefHeight="74.0" prefWidth="144.0" style="-fx-background-color: #DBC2AD;">
+                        <Pane layoutX="1000.8" layoutY="1.8" prefHeight="74.0" prefWidth="144.0" style="-fx-background-color: #37619B;">
                             <children>
                                 <ImageView fx:id="profile" fitHeight="51.0" fitWidth="59.0" layoutX="48.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

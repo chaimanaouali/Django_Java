@@ -109,4 +109,38 @@ public class ServiceVoiture implements CRUD<Voiture> {
         return voitureList;
     }
 
+    public List<Voiture> selectVoitureByUser(User u) throws SQLException {
+        List<Voiture> voitureList = new ArrayList<>();
+
+        String req = "SELECT v.id as id_voiture, v.matricule, v.marque, v.prix_voiture, v.puissance, u.id as id_user, u.email, u.roles, u.nom_user, u.prenom_user FROM `voiture` as v JOIN `user` as u ON u.id = v.email_id WHERE v.email_id = "+ u.getId();
+        System.out.println(req);
+        Statement st = cnx.createStatement();
+
+        ResultSet rs = st.executeQuery(req);
+
+        while (rs.next()) {
+            Voiture v = new Voiture();
+
+            v.setId(rs.getInt("id_voiture"));
+            v.setPuissance(rs.getInt("puissance"));
+            v.setMartricule(rs.getString("matricule"));
+            v.setMarque(rs.getString("marque"));
+            v.setPrix_voiture(rs.getFloat("prix_voiture"));
+
+            User user = new User();
+            user.setId(rs.getInt("id_user"));
+            user.setEmail(rs.getString("email"));
+            user.setRoles(rs.getString("roles"));
+            user.setNom_user(rs.getString("nom_user"));
+            user.setPrenom_user(rs.getString("prenom_user"));
+
+            v.setUser(user);
+
+            voitureList.add(v);
+        }
+
+        return voitureList;
+    }
+
+
 }

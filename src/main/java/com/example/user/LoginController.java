@@ -14,6 +14,9 @@ import models.User;
 import services.ServiceUser;
 import utils.Hash;
 import utils.SessionManager;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,6 +49,13 @@ public class LoginController implements Initializable {
     private Hyperlink signupLink;
 
     ServiceUser serviceUser = new ServiceUser();
+
+    public static final String ACCOUNT_SID = "ACf325dc22c7955b9d8d9188c765e88749";
+    public static final String AUTH_TOKEN = "1340a2d962fc5aa0f6c8ff758173dee7";
+
+    static {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,8 +91,14 @@ public class LoginController implements Initializable {
                 if ("[\"ROLE_ADMIN\"]".equals(user.getRoles())) {
                     // Redirect to Admin page (ListUser)
                     redirectToAdminPage();
+                    String recipientPhoneNumber = "+21658287224";
+                    String messageBody = "You logged in !!";
+                    sendSMS(recipientPhoneNumber, messageBody);
                 } else {
                     redirectToFrontPage();
+                    String recipientPhoneNumber = "+21658287224";
+                    String messageBody = "You logged in !!";
+                    sendSMS(recipientPhoneNumber, messageBody);
                 }
             } else {
                 // Password verification failed
@@ -160,5 +176,24 @@ public class LoginController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public static void sendSMS(String recipientPhoneNumber, String messageBody) {
+        String twilioPhoneNumber = "+16812011783";
+
+        Message message = Message.creator(
+                        new PhoneNumber(recipientPhoneNumber),
+                        new PhoneNumber(twilioPhoneNumber),
+                        messageBody)
+                .create();
+
+        System.out.println("SMS sent successfully. SID: " + message.getSid());
+    }
+//
+//   @FXML
+//    private void sendSMS(ActionEvent event) {
+//        String recipientPhoneNumber = "+21658287224";
+//        String messageBody = "You logged in !!";
+//        sendSMS(recipientPhoneNumber, messageBody);
+//    }
 
 }

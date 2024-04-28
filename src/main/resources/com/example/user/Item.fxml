@@ -33,7 +33,7 @@
                 </HBox>
                 <ImageView fx:id="img" fitHeight="115.0" fitWidth="208.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../images/voiture-removebg-preview.png" />
+                        <Image url="@../../../images/car.png" />
                     </image>
                 </ImageView>
                 <Label fx:id="montantLable" prefHeight="23.0" prefWidth="108.0" text="montant" textAlignment="CENTER" visible="false">

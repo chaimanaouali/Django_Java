@@ -3,82 +3,65 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Pagination?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ListVoitureController">
+<HBox maxWidth="796.0" minWidth="796.0" prefHeight="54.0" prefWidth="796.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assurance.itemDevis">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
-            <children>
-                <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
-                    <children>
-                        <ImageView fitHeight="150.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/logo-django.png" />
-                     </image></ImageView>
-                  <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
-                  <Button fx:id="userButton" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Users" textFill="WHITE" />
-                  <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false"  prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Voitures" textFill="WHITE" />
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" styleClass="button1" text="Deconnexion" textFill="WHITE">
-                            <graphic>
-
-                            </graphic>
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <padding>
-                                <Insets left="35.0" />
-                            </padding>
-                            <VBox.margin>
-                                <Insets top="280.0" />
-                            </VBox.margin>
-                        </Button>
-                    </children>
-                </VBox>
-                <Label layoutX="248.0" layoutY="24.0" text="Tournois">
-                    <font>
-                        <Font size="36.0" />
-                    </font>
-                </Label>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="82.0" layoutX="220.0" stroke="#37619b" strokeType="INSIDE" width="717.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="880.0" layoutY="-14.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="16.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="913.0" layoutY="-24.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="42.0" />
-
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="20.0" layoutX="210.0" layoutY="74.0" stroke="#37619b" strokeType="INSIDE" width="27.0" />
-                <Circle fill="WHITE" layoutX="236.0" layoutY="96.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" />
-                <Label layoutX="449.0" layoutY="15.0" text="Voitures" textFill="#dfdfdf">
-                    <font>
-                        <Font name="System Bold" size="36.0" />
-                    </font>
-                </Label>
-            <ImageView fx:id="profile" fitHeight="51.0" fitWidth="59.0" layoutX="1038.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/profile-icon-png-removebg-preview.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="loginLabel" layoutX="1045.0" layoutY="60.0" text="Admin" />
-            <TableView fx:id="voitureTableView" layoutX="329.0" layoutY="187.0" prefHeight="199.0" prefWidth="700.0">
-               <columns>
-                  <TableColumn fx:id="matriculeCol" maxWidth="153.60004425048828" prefWidth="153.60004425048828" text="Matricule" />
-                  <TableColumn fx:id="marqueCol" maxWidth="202.39996337890625" prefWidth="138.39996337890625" text="Marque" />
-                  <TableColumn fx:id="puissanceCol" maxWidth="237.5999755859375" prefWidth="115.199951171875" text="Puissance" />
-                  <TableColumn fx:id="prixCol" maxWidth="209.60000610351562" prefWidth="111.99996948242188" text="prix" />
-                  <TableColumn fx:id="emailCol" maxWidth="322.3999938964844" prefWidth="184.0" text="Email" />
-               </columns>
-            </TableView>
-            <Button fx:id="statisticsButton" layoutX="642.0" layoutY="557.0" onAction="#showCategoryStatistics" style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 14px;" text="Statistics" />
-            <Button fx:id="supprimerButton" layoutX="822.0" layoutY="469.0" mnemonicParsing="false" onAction="#deleteOne" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #E96151;" text="Supprimer" textFill="WHITE" />
-            <Button fx:id="ajouterButton" layoutX="414.0" layoutY="469.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #2A914D;" text="Ajouter" textFill="WHITE" />
-            <Pagination fx:id="pagination" layoutX="329.0" layoutY="386.0" prefHeight="59.0" prefWidth="700.0" />
-            </children>
-        </AnchorPane>
+        <Label fx:id="nomCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="67.0" text="Nom" textFill="#dfdfdf">
+            <HBox.margin>
+                <Insets left="5.0" />
+            </HBox.margin>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label fx:id="prenomCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="70.0" text="Prénom" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label fx:id="emailCol" alignment="CENTER" prefHeight="54.0" prefWidth="107.0" text="Email" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label fx:id="adresseCol" alignment="CENTER" prefHeight="54.0" prefWidth="79.0" text="Adresse" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label fx:id="datenaissCol" alignment="CENTER" prefHeight="54.0" prefWidth="101.0" text="Date Naissance" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label fx:id="modeleCol1" alignment="CENTER" prefHeight="54.0" prefWidth="74.0" text="Model" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label fx:id="puissanceCol11" alignment="CENTER" prefHeight="54.0" prefWidth="75.0" text="Puissance" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label fx:id="prixCol111" alignment="CENTER" prefHeight="54.0" prefWidth="71.0" text="Prix" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label fx:id="numtelCol1111" alignment="CENTER" prefHeight="54.0" prefWidth="82.0" text="Num Tel" textFill="#dfdfdf">
+            <HBox.margin>
+                <Insets right="20.0" />
+            </HBox.margin>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Button fx:id="deleteB" ellipsisString="" mnemonicParsing="false" prefHeight="40.0" prefWidth="10.0" style="-fx-background-color: red;" text="id">
+            <HBox.margin>
+                <Insets bottom="7.0" top="7.0" />
+            </HBox.margin>
+            <font>
+                <Font />
+            </font></Button>
+        <Label fx:id="idCol" alignment="CENTER" contentDisplay="CENTER" maxHeight="54.0" maxWidth="0.0" minHeight="54.0" minWidth="0.0" prefHeight="54.0" prefWidth="0.0" text="id" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
     </children>
-</AnchorPane>
+</HBox>
