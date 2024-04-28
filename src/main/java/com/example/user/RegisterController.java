@@ -17,6 +17,7 @@ import models.User;
 import services.ServiceUser;
 import utils.Hash;
 import utils.InputValidation;
+import utils.SessionManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -76,8 +77,7 @@ public class RegisterController implements Initializable {
             st.insertOne(user);
             System.out.println("User added successfully.");
 
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
+            redirectToFrontPage(user);
         }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,16 +133,16 @@ public class RegisterController implements Initializable {
         navigateToLogin();    }
 
 
-    private void redirectToFrontPage() {
+    private void redirectToFrontPage(User user) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));
 
+            SessionManager.startSession(user);
+            Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));
 
             Stage stage = new Stage();
             stage.setTitle("Admin - User List");
             stage.setScene(new Scene(root));
             stage.show();
-
             // Close the login stage
             ((Stage) emailUserTextField.getScene().getWindow()).close();
         } catch (IOException e) {
