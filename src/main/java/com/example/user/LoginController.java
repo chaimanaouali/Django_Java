@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import jdk.internal.access.JavaNetUriAccess;
 import models.User;
 import services.ServiceUser;
 import utils.Hash;
@@ -17,6 +18,7 @@ import utils.SessionManager;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,6 +59,8 @@ public class LoginController implements Initializable {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     }
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -94,11 +98,13 @@ public class LoginController implements Initializable {
                     String recipientPhoneNumber = "+21658287224";
                     String messageBody = "You logged in !!";
                     sendSMS(recipientPhoneNumber, messageBody);
+                    showNotification("Success", "You Logged In !!");
                 } else {
                     redirectToFrontPage();
                     String recipientPhoneNumber = "+21658287224";
                     String messageBody = "You logged in !!";
                     sendSMS(recipientPhoneNumber, messageBody);
+                    showNotification("Success", "You Logged In !!");
                 }
             } else {
                 // Password verification failed
@@ -188,12 +194,13 @@ public class LoginController implements Initializable {
 
         System.out.println("SMS sent successfully. SID: " + message.getSid());
     }
-//
-//   @FXML
-//    private void sendSMS(ActionEvent event) {
-//        String recipientPhoneNumber = "+21658287224";
-//        String messageBody = "You logged in !!";
-//        sendSMS(recipientPhoneNumber, messageBody);
-//    }
+
+    private void showNotification(String title, String content) {
+        Notifications.create()
+                .title(title)
+                .text(content)
+                .showInformation();
+    }
+
 
 }

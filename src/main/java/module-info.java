@@ -8,6 +8,7 @@ module com.example.user {
     requires kernel;
     requires io;
     requires twilio;
+    requires org.controlsfx.controls;
 
 
     opens com.example.user to javafx.fxml;
