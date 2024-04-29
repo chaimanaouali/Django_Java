@@ -5,6 +5,8 @@ module com.example.djangoassurancejava {
     requires org.apache.pdfbox;
     requires java.datatransfer;
     requires java.desktop;
+    requires com.google.zxing;
+    requires javafx.swing;
 
     opens com.example.djangoassurancejava to javafx.fxml;
     exports com.example.djangoassurancejava;

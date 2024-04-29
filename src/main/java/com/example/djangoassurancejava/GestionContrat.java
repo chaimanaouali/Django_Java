@@ -1,0 +1,733 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
+package com.example.djangoassurancejava;
+import javafx.embed.swing.SwingFXUtils;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
+import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import models.Contrat;
+
+import models.Type;
+import services.ServiceContrat;
+
+import services.ServiceType;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+/**
+ * FXML Controller class
+ *
+ * @author chaima
+ */
+public class GestionContrat implements Initializable {
+
+    @FXML
+    private TextField adresseTextField;
+
+    @FXML
+    private Button boutonAjouter;
+
+    @FXML
+    private Button boutonAjouter1;
+
+    @FXML
+    private DatePicker datedebutDatePicker;
+
+    @FXML
+    private DatePicker datefinDatePicker;
+
+    @FXML
+    private Label decisionCol;
+
+    @FXML
+    private TextField descriptionTextField;
+
+    @FXML
+    private Label documentCol1;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private Label etatCol;
+
+    @FXML
+    private Label idCol;
+
+    @FXML
+    private TextField nomTextField;
+
+    @FXML
+    private TextField numeroTextField;
+
+    @FXML
+    private Label numtelCol11111;
+
+    @FXML
+    private TextField prenomTextField;
+
+    @FXML
+    private TextField recherchee;
+
+    @FXML
+    private ComboBox<String> typedecouvertureChoiceBox;
+
+    @FXML
+    private TextField typedecouvertureTextField;
+
+    @FXML
+    private VBox vboxDevis;
+
+    @FXML
+    private VBox vboxDevis1;
+    @FXML
+    private Label nomCol;
+
+    @FXML
+    private Label numtelCol1111;
+
+
+
+    @FXML
+    private Label prenomCol;
+
+    @FXML
+    private Label prixCol111;
+
+    @FXML
+    private Label puissanceCol11;
+
+    @FXML
+    private TextField tfAdresse;
+
+    @FXML
+    private TextField tfAdresse1;
+
+    @FXML
+    private DatePicker tfDate;
+
+    @FXML
+    private DatePicker tfDate1;
+
+    @FXML
+    private TextField tfEmail;
+
+    @FXML
+    private ComboBox<String> tfEmail1;
+
+    @FXML
+    private TextField tfModele;
+
+    @FXML
+    private TextField tfModele1;
+
+    @FXML
+    private TextField tfNom;
+
+    @FXML
+    private TextField tfNom1;
+
+    @FXML
+    private TextField tfNumtel;
+
+    @FXML
+    private TextField tfPrenom;
+
+    @FXML
+    private TextField tfPrenom1;
+
+    @FXML
+    private TextField tfPrix;
+    private List<Popup> currentPopups = new ArrayList<>();
+
+    @FXML
+    private TextField tfPuissance;
+
+    @FXML
+    private TextField tfPuissance1;
+
+    @FXML
+    public void insertOne(ActionEvent event) throws SQLException {
+        LocalDate dated = datedebutDatePicker.getValue();
+        LocalDate datef = datefinDatePicker.getValue();
+        String adress_assur = adresseTextField.getText();
+        String numero = numeroTextField.getText();
+        String nom = nomTextField.getText();
+        String prenom = prenomTextField.getText();
+        String email = emailTextField.getText();
+        String selecteddescription = (String) typedecouvertureChoiceBox.getValue();
+
+        // Retrieve and find the corresponding type ID
+        ServiceType sty = new ServiceType();
+        List<Type> tt = sty.recuperer();
+        int selectedDesc = 1;
+
+
+        clearPopups();  // Clear any existing popups
+
+        // Validation regex patterns
+        String nameRegex = "^[A-Z][a-z]+$";
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        String phoneRegex = "^[529][0-9]{7}$";
+
+        try {
+            // Check for required fields
+            boolean valid = true;
+            if (dated == null || datef == null || adress_assur.isEmpty() || numero.isEmpty() ||
+                    nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || selecteddescription == null) {
+                showAlert(Alert.AlertType.ERROR, "Erreur", "Tous les champs sont obligatoires.");
+                return;
+            }
+
+            // Validate name and surname
+            if (!nom.matches(nameRegex)) {
+                showErrorPopup(nomTextField, "Le nom doit commencer par une majuscule et contenir uniquement des lettres.");
+                valid = false;
+            }
+            if (!prenom.matches(nameRegex)) {
+                showErrorPopup(prenomTextField, "Le prénom doit commencer par une majuscule et contenir uniquement des lettres.");
+                valid = false;
+            }
+
+            // Validate email
+            if (!email.matches(emailRegex)) {
+                showErrorPopup(emailTextField, "L'adresse email n'est pas valide.");
+                valid = false;
+            }
+
+            // Validate phone number
+            if (!numero.matches(phoneRegex)) {
+                showErrorPopup(numeroTextField, "Le numéro de téléphone doit commencer par 5, 2 ou 9 et contenir exactement 8 chiffres.");
+                valid = false;
+            }
+
+            // Check date order
+            if (datef.isBefore(dated)) {
+                showErrorPopup(datefinDatePicker, "La date de fin doit être après la date de début.");
+                valid = false;
+            }
+
+            if (!valid) {
+                return;
+            }
+
+            // Proceed with creating a contract object and adding to the database
+            Contrat contrat = new Contrat(selectedDesc, dated, datef, adress_assur, numero, nom, prenom, email);
+            ServiceContrat st = new ServiceContrat();
+            st.ajouter(contrat);
+            afficherDevis();
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Contrat ajouté avec succès.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Échec de l'ajout du contrat : " + e.getMessage());
+        }
+    }
+    @FXML
+    void out(ActionEvent event){
+        Stage stage = (Stage) tfNom.getScene().getWindow();
+        stage.close();
+    }
+    private boolean isValidEmail(String email) {
+        // Expression régulière pour valider l'e-mail
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailRegex);
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        // Vérifie si la longueur du numéro de téléphone est de 8 chiffres
+        return phoneNumber.matches("\\d{8}");
+    }
+
+    private boolean isValidAge(LocalDate birthDate) {
+        // Calcul de l'âge à partir de la date de naissance
+        LocalDate currentDate = LocalDate.now();
+        int age = currentDate.minusYears(18).compareTo(birthDate);
+        return age >= 0; // Renvoie vrai si l'âge est de 18 ans ou plus
+    }
+    @FXML
+    void recherche(KeyEvent event) {
+        System.out.println("dd");
+        vboxDevis.getChildren().clear();
+        String charr = recherchee.getText();
+        System.out.println(charr);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        // Retrieve data from the database
+        ServiceContrat serviceDevis = new ServiceContrat(); // Creating an instance of ServiceDevis
+        List<Contrat> deviss = null; // Calling selectAll() on the instance
+        try {
+            deviss = serviceDevis.recherche(charr);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        vboxDevis.getChildren().clear();
+        ServiceContrat sd = new ServiceContrat();
+
+        HBox hb[]= new HBox[deviss.size()];
+        for (Contrat d: deviss
+        ) {
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("itemContrat.fxml"));
+                Parent root = loader.load();
+                itemContrat otherController = loader.getController();
+                HBox hbox = (HBox) loader.getRoot();
+                vboxDevis.getChildren().add(hbox);
+
+
+                otherController.afficher(d);
+                hbox.setOnMouseClicked(mouseEvent -> {
+                    if (mouseEvent.getClickCount() == 2) { // Double-click detected
+                        Contrat selectedDevis = d;
+                        if (selectedDevis != null) {
+                            // Navigate to UpdateUser.fxml
+                            try {
+                                navigateToUpdateReponseDevis(selectedDevis);
+                            } catch (SQLException e) {
+
+                            }
+                            afficherDevis();
+                        }
+                    }
+                });
+
+                Button deleteButton = otherController.getDeleteButton();
+                int id = otherController.getId();
+                Button btqr = otherController.getbtqr();
+                int ide = otherController.getEmailId();
+                btqr.setOnAction(evt -> {
+                    Type dee = null;
+                    try {
+                        System.out.println(ide);
+                        dee = sd.rechercheId(ide);
+                        System.out.println(ide);
+                        System.out.println(dee);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    // Remove the HBox from the VBox when the button is clicked
+                    String AllInfo = "Type Couverture: " + dee.getType_couverture() + "\nDescription:"+ dee.getDescription() ;
+                    qr(AllInfo);
+                });
+                deleteButton.setOnAction(eve -> {
+                    // Remove the HBox from the VBox when the button is clicked
+                    deleteDevis(id);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    @FXML
+    void chart(ActionEvent ev) {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            chart controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(event -> {
+                // Refresh the TableView when the PopUp stage is closed
+                afficherDevis();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void insertOne1(ActionEvent event) {
+        String selectedtypedecouverture = typedecouvertureTextField.getText();
+        String selecteddescription = descriptionTextField.getText();
+
+        // Regex to match only letters (and spaces to allow multi-word entries)
+        String regex = "^[A-Za-z ]+$";
+
+        // Check if any field is empty
+        if (selectedtypedecouverture.isEmpty() || selecteddescription.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Tous les champs sont obligatoires.");
+            return;
+        }
+
+        // Check if the fields contain only letters (and spaces)
+        if (!selectedtypedecouverture.matches(regex) || !selecteddescription.matches(regex)) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Les champs ne doivent contenir que des lettres.");
+            return;
+        }
+
+        // Create a new Type object with retrieved values
+        Type type = new Type(selecteddescription, selectedtypedecouverture);
+        ServiceType st = new ServiceType();
+
+        try {
+            st.ajouter(type);
+            System.out.println("Type added successfully.");
+            afficherReponseDevis();
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Type ajouté avec succès.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Failed to add type: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Échec de l'ajout du type : " + e.getMessage());
+        }
+    }
+
+    private void showErrorPopup(Control field, String message) {
+        Popup popup = new Popup();
+        popup.setAutoHide(true);
+        Label label = new Label(message);
+        label.setStyle("-fx-background-color: white; -fx-text-fill: red; -fx-padding: 5px; -fx-border-color: red; -fx-border-width: 2px;");
+        popup.getContent().add(label);
+        Bounds bounds = field.localToScreen(field.getBoundsInLocal());
+        popup.show(field, bounds.getMinX() - 5, bounds.getMaxY());
+        currentPopups.add(popup);
+    }
+
+    private void clearPopups() {
+        for (Popup popup : currentPopups) {
+            if (popup.isShowing()) {
+                popup.hide();
+            }
+        }
+        currentPopups.clear();
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        ServiceType sc = new ServiceType();
+        List<Type> t = null;
+        try {
+            t = sc.recuperer();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        List<String> desc = new ArrayList<>();
+        for (Type type: t
+        ) {
+            desc.add(type.getDescription());
+        }
+        for (String e:desc
+        ) {
+            typedecouvertureChoiceBox.getItems().add(e);
+        }
+        typedecouvertureChoiceBox.getSelectionModel().selectFirst();
+
+        afficherDevis();
+        afficherReponseDevis();
+        ServiceContrat ds = new ServiceContrat();
+        List<Contrat> dd = null;
+        try {
+            dd = ds.recuperer();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        List<String> Emails = new ArrayList<>();
+        for (Contrat d: dd
+        ) {
+          //  Emails.add(d);
+
+        }
+        System.out.println(Emails);
+        for (String e: Emails
+        ) {
+            System.out.println("dddd");
+        //    tfEmail1.getItems().add(e);
+        }
+      //  tfEmail1.getSelectionModel().selectFirst();
+    }
+
+
+   public void deleteDevis(int id){
+
+        ServiceContrat st = new ServiceContrat();
+        try {
+            st.supprimer(id);
+            System.out.println("Contrat deleted successfully.");
+            afficherDevis();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Failed to delete Contrat: " + e.getMessage());
+        }
+    }
+    public void deleteReponseDevis(int id){
+
+        ServiceType st = new ServiceType();
+        try {
+            st.supprimer(id);
+            System.out.println("Type deleted successfully.");
+            afficherReponseDevis();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Failed to delete type: " + e.getMessage());
+        }
+    }
+public void afficherReponseDevis(){
+        vboxDevis1.getChildren().clear();
+    ServiceType sd = new ServiceType();
+    try {
+        List<Type>deviss = sd.recuperer();
+        HBox hb[]= new HBox[deviss.size()];
+        for (Type d: deviss
+        ) {
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("itemType.fxml"));
+                Parent root = loader.load();
+                itemType otherController = loader.getController();
+                HBox hbox = (HBox) loader.getRoot();
+                vboxDevis1.getChildren().add(hbox);
+
+
+                otherController.afficher(d);
+                hbox.setOnMouseClicked(mouseEvent -> {
+                    if (mouseEvent.getClickCount() == 2) { // Double-click detected
+                        Type selectedDevis = d;
+                        if (selectedDevis != null) {
+                            // Navigate to UpdateUser.fxml
+                            navigateToUpdateDevis(selectedDevis);
+                            afficherDevis();
+                        }
+                    }
+                });
+
+                Button deleteButton = otherController.getDeleteButton();
+                int id = otherController.getId();
+                deleteButton.setOnAction(event -> {
+                    // Remove the HBox from the VBox when the button is clicked
+                    deleteReponseDevis(id);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
+}
+
+    public void afficherDevis(){
+        vboxDevis.getChildren().clear();
+        ServiceContrat sd = new ServiceContrat();
+        try {
+            List<Contrat>deviss = sd.recuperer();
+            HBox hb[]= new HBox[deviss.size()];
+            for (Contrat d: deviss
+            ) {
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("itemContrat.fxml"));
+                    Parent root = loader.load();
+                    itemContrat otherController = loader.getController();
+                    HBox hbox = (HBox) loader.getRoot();
+                    vboxDevis.getChildren().add(hbox);
+
+
+                    otherController.afficher(d);
+
+                    hbox.setOnMouseClicked(mouseEvent -> {
+                        if (mouseEvent.getClickCount() == 2) { // Double-click detected
+                            Contrat selectedDevis = d;
+                            if (selectedDevis != null) {
+                                // Navigate to UpdateUser.fxml
+                                try {
+                                    navigateToUpdateReponseDevis(selectedDevis);
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                afficherDevis();
+                            }
+                        }
+                    });
+
+                    Button deleteButton = otherController.getDeleteButton();
+                    int id = otherController.getId();
+
+                    ServiceType dd =new ServiceType();
+                    Button btqr = otherController.getbtqr();
+                    int ide = otherController.getEmailId();
+                    btqr.setOnAction(event -> {
+                        Type dee = null;
+                        try {
+                            System.out.println(ide);
+                            dee = dd.rechercheId(ide );
+                            System.out.println(ide);
+                            System.out.println(dee);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        // Remove the HBox from the VBox when the button is clicked
+                           String AllInfo = "Type Couverture: " + dee.getType_couverture() + "\nDescription:"+ dee.getDescription() ;
+                           qr(AllInfo);
+                    });
+                    deleteButton.setOnAction(event -> {
+                        // Remove the HBox from the VBox when the button is clicked
+                        deleteDevis(id);
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private void qr(String AllInfo) {
+        // Generate the information for the QR code
+
+
+
+
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+
+        int width = 300;
+        int height = 300;
+
+        BufferedImage bufferedImage = null;
+        try {
+            BitMatrix byteMatrix = qrCodeWriter.encode(AllInfo, BarcodeFormat.QR_CODE, width, height);
+            bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    bufferedImage.setRGB(x, y, byteMatrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF);
+                }
+            }
+
+            System.out.println("QR created successfully....");
+
+        } catch (WriterException ex) {
+            ex.printStackTrace();
+            return; // Exit the method if an exception occurs
+        }
+
+        ImageView qr = new ImageView();
+       qr.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+
+        StackPane obj = new StackPane();
+        obj.getChildren().add(qr);
+        Scene scene = new Scene(obj, 300, 250);
+        Stage p1 = new Stage();
+        p1.setTitle("QRCode");
+        p1.setScene(scene);
+        p1.show();
+
+        // Save the QR code as an image file
+        File imageFile = new File("/resources/screenshotqr/screenshot.png");
+        try {
+            ImageIO.write(bufferedImage, "png", imageFile);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    private void navigateToUpdateDevis(Type devis) {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateType.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            UpdateType controller = loader.getController();
+            controller.initData(devis);
+
+
+
+
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(event -> {
+                // Refresh the TableView when the PopUp stage is closed
+
+                Stage gg= (Stage)tfNom.getScene().getWindow();
+                gg.close();
+
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void navigateToUpdateReponseDevis(Contrat devis) throws SQLException {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateContrat.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            UpdateContrat controller = loader.getController();
+            controller.initData(devis);
+
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(event -> {
+                // Refresh the TableView when the PopUp stage is closed
+
+                Stage gg= (Stage)tfNom.getScene().getWindow();
+                gg.close();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}

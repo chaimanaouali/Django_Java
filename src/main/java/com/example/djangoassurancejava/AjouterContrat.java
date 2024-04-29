@@ -93,12 +93,8 @@ public class AjouterContrat implements Initializable {
         ServiceType sty = new ServiceType();
         List<Type> tt = sty.recuperer();
         int selectedDesc = 1;
-        for (Type t : tt) {
-            if (t.getDescription().equals(selecteddescription)) {
-                selectedDesc = t.getId();
-                break;
-            }
-        }
+
+
 
         clearPopups();  // Clear any existing popups
 

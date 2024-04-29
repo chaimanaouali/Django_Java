@@ -4,7 +4,6 @@ import models.Contrat;
 import models.Type;
 import utils.DBconnection;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +76,53 @@ public class ServiceContrat implements CRUD<Contrat> {
                 contrat.setPrenom(rs.getString("prenom"));
                 contrat.setEmail(rs.getString("email"));
                 contrat.setType_couverture(rs.getString("type_couverture"));
+                contrats.add(contrat);
+            }
+        } // Try-with-resources ensures that Statement and ResultSet are closed after use
+        return contrats;
+    }
+
+    @Override
+    public Type rechercheId(int id) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public int rechercheId(String desc) throws SQLException {
+        List<Contrat> contrats = new ArrayList<>();
+        String req = "SELECT id FROM `type` WHERE description = '" + desc +"'";
+        System.out.println(req);
+        Type contrat = null;
+        try (Statement st = cnx.createStatement(); ResultSet rs = st.executeQuery(req)) {
+            while (rs.next()) {
+                contrat = new Type();
+                contrat.setId(rs.getInt("id"));
+
+            }
+        } // Try-with-resources ensures that Statement and ResultSet are closed after use
+        return contrat.getId();
+
+
+    }
+
+    @Override
+    public List<Contrat> recherche(String desc) throws SQLException {
+        String req = "SELECT * FROM contrat where nom LIKE '" + desc + "%' OR prenom LIKE '" + desc + "%' OR adresse_assur LIKE '" + desc + "%' OR email LIKE '" + desc + "%' ";
+        Contrat contrat = null;
+        List<Contrat> contrats = new ArrayList<>();
+        try (Statement st = cnx.createStatement(); ResultSet rs = st.executeQuery(req)) {
+            while (rs.next()) {
+                contrat = new Contrat();
+                contrat.setId(rs.getInt("id"));
+                contrat.setType_couverture_id(rs.getInt("type_couverture_id"));
+                contrat.setDate_debut_contrat(rs.getDate("date_debut_contrat").toLocalDate());
+                contrat.setDatefin_contrat(rs.getDate("datefin_contrat").toLocalDate());
+                contrat.setAdresse_assur(rs.getString("adresse_assur"));
+                contrat.setNumero_assur(rs.getString("numero_assur"));
+                contrat.setNom(rs.getString("nom"));
+                contrat.setPrenom(rs.getString("prenom"));
+                contrat.setEmail(rs.getString("email"));
+                //contrat.setType_couverture(rs.getString("type_couverture"));
                 contrats.add(contrat);
             }
         } // Try-with-resources ensures that Statement and ResultSet are closed after use

@@ -132,8 +132,11 @@ public class ListContrat {
             if (event.getClickCount() == 2) { // Double-click detected
                 Contrat selectedType = TypeTableView.getSelectionModel().getSelectedItem();
                 if (selectedType != null) {
-                    navigateToUpdateType(selectedType);
-
+                    try {
+                        navigateToUpdateType(selectedType);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
 
 
                 }
@@ -141,7 +144,7 @@ public class ListContrat {
         });
     }
 
-    private void navigateToUpdateType(Contrat contrat) {
+    private void navigateToUpdateType(Contrat contrat) throws SQLException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateContrat.fxml"));
             Parent root = loader.load();

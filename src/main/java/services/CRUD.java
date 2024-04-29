@@ -1,5 +1,8 @@
 package services;
 
+import models.Contrat;
+import models.Type;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,4 +12,7 @@ public interface CRUD<T> {
     void modifier(T t) throws SQLException;
     void supprimer(int id) throws SQLException;
     List<T> recuperer() throws SQLException;
+    Type rechercheId(int id) throws SQLException;
+    int rechercheId(String desc) throws SQLException;
+    List<Contrat> recherche(String desc) throws SQLException;
 }

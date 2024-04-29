@@ -1,5 +1,6 @@
 package services;
 
+import models.Contrat;
 import models.Type;
 import utils.DBconnection;
 import java.sql.*;
@@ -79,5 +80,31 @@ public class ServiceType implements CRUD<Type> {
         } // Try-with-resources ensures that Statement and ResultSet are closed after use
         return types;
     }
+    public Type rechercheId(int id) throws SQLException {
+
+        String req = "SELECT * FROM type where id =" + id;
+        Type type = null;
+        try (Statement st = cnx.createStatement(); ResultSet rs = st.executeQuery(req)) {
+            while (rs.next()) {
+                type = new Type();
+                type.setId(rs.getInt("id"));
+                type.setDescription(rs.getString("description"));
+                type.setType_couverture(rs.getString("type_couverture"));
+
+            }
+        } // Try-with-resources ensures that Statement and ResultSet are closed after use
+        return type;
+    }
+
+    @Override
+    public int rechercheId(String desc) throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public List<Contrat> recherche(String desc) throws SQLException {
+        return null;
+    }
+
 
 }

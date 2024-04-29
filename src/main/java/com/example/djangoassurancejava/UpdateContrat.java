@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UpdateContrat implements Initializable {
@@ -59,7 +61,7 @@ public class UpdateContrat implements Initializable {
     private TextField idupdate;
 
     @FXML
-    private ComboBox typedecouvertureChoiceBox;
+    private ComboBox<String> typedecouvertureChoiceBox;
     @FXML
     private Contrat selectedcontrat;
 
@@ -69,7 +71,21 @@ public class UpdateContrat implements Initializable {
         stage.close();
     }
 
-    public void initData(Contrat contrat) {
+    public void initData(Contrat contrat) throws SQLException {
+        ServiceType sc = new ServiceType();
+        List<Type> t = sc.recuperer();
+        List<String> desc = new ArrayList<>();
+        for (Type type: t
+        ) {
+            desc.add(type.getDescription());
+        }
+        for (String e:desc
+        ) {
+            typedecouvertureChoiceBox.getItems().add(e);
+        }
+        typedecouvertureChoiceBox.getSelectionModel().selectFirst();
+
+
         selectedcontrat = contrat;
         // Populate the fields in the UI with the data from selectedUser
         nomTextField.setText(selectedcontrat.getNom());
@@ -78,7 +94,7 @@ public class UpdateContrat implements Initializable {
         numeroTextField.setText(selectedcontrat.getNumero_assur());
         idupdate.setText(String.valueOf(selectedcontrat.getId()));
         adresseTextField.setText(selectedcontrat.getAdresse_assur());
-        //typedecouvertureChoiceBox.setText(selectedcontrat.getDescription());
+
         datedebutDatePicker.setValue(selectedcontrat.getDate_debut_contrat());
         datefinDatePicker.setValue(selectedcontrat.getDatefin_contrat());
 
@@ -102,14 +118,15 @@ public class UpdateContrat implements Initializable {
         String selectedemail = (String) emailTextField.getText();
         String selectednumero = (String) numeroTextField.getText();
         String selectedadresse = (String) adresseTextField.getText();
-        //String selectedtypec = (String) typedecouvertureChoiceBox.getValue();
-        int selectedtypec = selectedcontrat.getType_couverture_id();
+        String selectedtypec = (String) typedecouvertureChoiceBox.getValue();
+        ServiceContrat scc = new ServiceContrat();
+        int selectedtypecid =  scc.rechercheId(selectedtypec);
         LocalDate selecteddated = datedebutDatePicker.getValue();
         LocalDate selecteddatef =  datefinDatePicker.getValue();
 
 
 // Create a new Transport object with retrieved values
-        Contrat contrat = new Contrat(selectedid,selectedtypec, selecteddated,selecteddatef,selectedadresse,selectednumero,selectednom,selectedprenom,selectedemail);
+        Contrat contrat = new Contrat(selectedid,selectedtypecid, selecteddated,selecteddatef,selectedadresse,selectednumero,selectednom,selectedprenom,selectedemail);
         System.out.println(contrat);
         ServiceContrat sc = new ServiceContrat();
 
