@@ -24,8 +24,8 @@
                                 <Image url="@../../../uploads/logo-removebg-preview.png" />
                             </image></ImageView>
                         <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
-                        <Button fx:id="PostButton" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#PostButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Post" textFill="WHITE" />
-                        <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="commentaire" textFill="WHITE" />
+                        <Button layoutX="10.0" layoutY="253.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Commentaire" textFill="WHITE" />
+                        <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#PostButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Post" textFill="WHITE" />
                         <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" styleClass="button1" text="Deconnexion" textFill="WHITE">
                             <graphic>
 
@@ -64,14 +64,14 @@
                     </image>
                 </ImageView>
                 <Label fx:id="loginLabel" layoutX="1045.0" layoutY="60.0" text="Admin" />
-                <TableView fx:id="table" layoutX="374.0" layoutY="179.0" prefHeight="324.0" prefWidth="566.0">
-                    <columns>
-                        <TableColumn fx:id="auteur" prefWidth="296.0" text="auteur" />
-                        <TableColumn fx:id="contenu" prefWidth="269.0" text="contenu " />
-                    </columns>
-                </TableView>
-                <Button fx:id="supprimerButton" layoutX="739.0" layoutY="529.0" mnemonicParsing="false" onAction="#deleteOne" style="-fx-background-color: #ff6347; -fx-text-fill: white; -fx-font-size: 14px;" text="Supprimer" />
-                <Button fx:id="btajouterCommentaire" layoutX="887.0" layoutY="529.0" onAction="#ajouterButtonOnAction" style="-fx-background-color: #2A914D; -fx-text-fill: white; -fx-font-size: 14px;" text="Ajouter Commentaire" />
+            <TableView fx:id="table" layoutX="374.0" layoutY="179.0" prefHeight="324.0" prefWidth="566.0">
+               <columns>
+                  <TableColumn fx:id="auteur" prefWidth="296.0" text="auteur" />
+                  <TableColumn fx:id="contenu" prefWidth="269.0" text="contenu " />
+               </columns>
+            </TableView>
+            <Button fx:id="supprimerButton" layoutX="739.0" layoutY="529.0" mnemonicParsing="false" onAction="#deleteOne" style="-fx-background-color: #ff6347; -fx-text-fill: white; -fx-font-size: 14px;" text="Supprimer" />
+            <Button fx:id="btajouterCommentaire" layoutX="887.0" layoutY="529.0" onAction="#ajouterButtonOnAction" style="-fx-background-color: #2A914D; -fx-text-fill: white; -fx-font-size: 14px;" text="Ajouter Commentaire" />
             </children>
         </AnchorPane>
     </children>

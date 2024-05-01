@@ -180,4 +180,23 @@ public class ServicePost implements CRUD<Post> {
 
         return post;
     }*/
+
+
+
+    public void updateEnable(int postId, int enableValue) throws SQLException {
+        String req = "UPDATE post SET enable = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(req)) {
+            preparedStatement.setInt(1, enableValue);
+            preparedStatement.setInt(2, postId);
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Post enable value updated successfully!");
+            } else {
+                System.out.println("No post enable value updated.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error updating post enable value: " + e.getMessage());
+        }
+    }
 }

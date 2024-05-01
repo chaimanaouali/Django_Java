@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -63,16 +64,7 @@ public class FrontController implements Initializable {
         return PostList;
     }
 
-    private void setChosenFruit(Post post) {
 
-        titreLabel.setText(post.getTitre());
-        desriptionLable.setText(post.getDescription());
-        categorieLable.setText(post.getCategorie());
-
-        Image image = new Image(getClass().getResource("/image/logo-removebg-preview.png").toString());
-        img.setImage(image);
-
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,14 +76,14 @@ public class FrontController implements Initializable {
         myListener = new MyListener() {
             @Override
             public void onClickListener(Post post) {
-                setChosenFruit(post);
+
                 selectedPost = post;
                 System.out.println(selectedPost);
             }
         };
 
         if (postList.size() > 0) {
-            setChosenFruit(postList.get(0));
+
             System.out.println(postList.size());
         }
 
@@ -261,5 +253,25 @@ public class FrontController implements Initializable {
         }
     }
 
+
+    @FXML
+    void openChatbotPopup(ActionEvent event) {
+        try {
+            // Load the FXML file for the chatbot popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatbotPopup.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the chatbot popup
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Chatbot");
+            stage.setScene(new Scene(root));
+
+            // Show the chatbot popup
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

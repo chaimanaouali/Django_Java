@@ -20,7 +20,7 @@
     <children>
         <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <VBox prefHeight="737.0" prefWidth="276.0" style="-fx-background-color: #DBC2AD;" styleClass="right-bar" BorderPane.alignment="CENTER">
+                <VBox prefHeight="676.0" prefWidth="166.0" style="-fx-background-color: #37619B;" styleClass="right-bar" BorderPane.alignment="CENTER">
                     <children>
                         <HBox alignment="CENTER" prefHeight="34.0" prefWidth="435.0" />
                         <HBox alignment="CENTER" prefHeight="42.0" prefWidth="247.0" VBox.vgrow="NEVER">
@@ -32,64 +32,6 @@
                                 <String fx:value="shadow" />
                             </styleClass>
                         </HBox>
-                        <Pane prefHeight="131.0" prefWidth="259.0" VBox.vgrow="ALWAYS">
-                            <padding>
-                                <Insets bottom="10.0" top="10.0" />
-                            </padding></Pane>
-                        <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="540.0" prefWidth="199.0" spacing="10.0" style="-fx-border-color: black; -fx-border-radius: 15;">
-                            <VBox.margin>
-                                <Insets left="50.0" right="50.0" />
-                            </VBox.margin>
-                            <children>
-                                <Label prefHeight="50.0" prefWidth="210.0" text="Posts" textFill="WHITE">
-                                    <font>
-                                        <Font name="Cambria Bold" size="40.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="titreLabel" prefHeight="23.0" prefWidth="150.0" text="titre">
-                                    <font>
-                                        <Font name="Cambria" size="18.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="desriptionLable" prefHeight="57.0" prefWidth="171.0" text="description">
-                                    <font>
-                                        <Font name="Cambria" size="18.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="categorieLable" prefHeight="57.0" prefWidth="171.0" text="categorie">
-                                    <font>
-                                        <Font name="Cambria" size="18.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fx:id="img" fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../../image/profile-removebg-preview.png" />
-                                    </image>
-                                </ImageView>
-                                <VBox alignment="CENTER" prefHeight="94.0" prefWidth="207.0" spacing="23.0">
-                                    <children>
-                                        <Button mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="50.0" prefWidth="270.0" styleClass="add-btn" text="Modifer" textFill="#828282">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Button>
-                                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="50.0" prefWidth="270.0" style="-fx-background-color: #E96151;" styleClass="add-btn" text="Supprimer" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Button>
-                                    </children>
-                                </VBox>
-                            </children>
-                            <styleClass>
-                                <String fx:value="chosen-fruit-card" />
-                                <String fx:value="shadow" />
-                            </styleClass>
-                            <padding>
-                                <Insets bottom="7.0" top="5.0" />
-                            </padding>
-                        </VBox>
-                        <Pane prefHeight="255.0" prefWidth="435.0" style="-fx-background-color: #DBC2AD;" VBox.vgrow="ALWAYS" />
                     </children>
                 </VBox>
             </left>
@@ -116,7 +58,7 @@
                 </VBox>
             </center>
             <top>
-                <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1138.0" style="-fx-border-color: #DBC2AD; -fx-background-color: #DBC2AD;" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1138.0" style="-fx-border-color: #37619B; -fx-background-color: #37619B;" BorderPane.alignment="CENTER">
                     <children>
                         <ImageView fx:id="brandingImageView" fitHeight="132.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -167,9 +109,9 @@
                                 </ImageView>
                             </children>
                         </Pane>
-                        <Pane prefHeight="74.0" prefWidth="275.0" style="-fx-background-color: #DBC2AD;">
+                        <Pane prefHeight="74.0" prefWidth="275.0" style="-fx-background-color: #37619B;">
                             <children>
-                                <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="123.0" layoutY="55.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="139.0" style="-fx-background-color: #DBC2AD;" stylesheets="" text="Deconnexion" textFill="WHITE">
+                                <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="123.0" layoutY="55.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="139.0" style="-fx-background-color: #37619B;" stylesheets="" text="Deconnexion" textFill="WHITE">
                                     <padding>
                                         <Insets left="50.0" />
                                     </padding>
@@ -177,8 +119,9 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Button>
+                                <Button fx:id="chatbotButton" text="Chat with Chatbot" onAction="#openChatbotPopup" />
                             </children></Pane>
-                        <Pane layoutX="1000.8" layoutY="1.8" prefHeight="74.0" prefWidth="144.0" style="-fx-background-color: #DBC2AD;">
+                        <Pane layoutX="1000.8" layoutY="1.8" prefHeight="74.0" prefWidth="144.0" style="-fx-background-color: #37619B;">
                             <children>
                                 <Label fx:id="loginLabel" layoutX="55.0" layoutY="66.0" text="Admin" />
                             </children>

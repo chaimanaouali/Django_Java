@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import models.Post;
 import service.ServicePost;
 import utils.data;
-
+import org.controlsfx.control.Notifications;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -82,9 +82,8 @@ public class AjouterPostXML implements Initializable {
                 des.setText("You should fill the label");
             } else if (tfCategories.getText().isEmpty()) {
                 cate.setText("You should fill the label");
-
             } else if (data.path == null || data.path.isEmpty()) {
-                showAlert("Erreur", "Veuillez sélectionner une image.");
+                showNotification("Erreur", "Veuillez sélectionner une image.");
                 return;
             } else {
                 String titre = tfTitre.getText();
@@ -94,6 +93,7 @@ public class AjouterPostXML implements Initializable {
                 Post post = new Post(titre, description, data.path, categorie);
                 try {
                     sp.insertOne(post);
+                    showNotification("Success", "Post added successfully!");
                 } catch (SQLException e) {
                     System.err.println("Error inserting post: " + e.getMessage());
                 }
@@ -153,7 +153,12 @@ public class AjouterPostXML implements Initializable {
         }
     }
 
-
+    private void showNotification(String title, String content) {
+        Notifications.create()
+                .title(title)
+                .text(content)
+                .showInformation();
+    }
     @Override
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -163,4 +168,5 @@ public class AjouterPostXML implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }}
+
 }

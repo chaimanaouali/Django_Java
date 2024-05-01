@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -127,7 +128,8 @@ public class itemPost {
 
 
 
-    public void setData(Post post, MyListener myListener) {
+
+    public void setData(Post post, MyListener myListener ) {
         this.post = post;
         this.postId = post.getId();
         this.myListener = myListener;
@@ -135,6 +137,7 @@ public class itemPost {
         desriptionLable.setText(post.getDescription());
         categorieLable.setText(post.getCategorie());
         nbrreaction.setText(String.valueOf(post.getLike_count()));
+
 
         // Load the image using the full path
         String imagePath = post.getImage_name();
@@ -282,6 +285,7 @@ public class itemPost {
         } else if (reaction == Reaction.HATE) {
             post.setDislike_count(post.getDislike_count() + 1);
         }
+
 
         try {
             servicePost.updateLikeCount(postId, post); // Update the database

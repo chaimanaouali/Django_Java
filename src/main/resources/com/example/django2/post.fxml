@@ -73,7 +73,7 @@
                       <Font size="15.0" />
                   </font>
               </Label>
-              <ImageView fx:id="dynamicImageView" fitHeight="535.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true" />
+              <ImageView fx:id="dynamicImageView" fitHeight="348.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true" />
               <StackPane alignment="CENTER_LEFT">
                   <children>
                       <HBox alignment="CENTER" prefHeight="35.0" prefWidth="566.0" spacing="10.0">
@@ -160,7 +160,7 @@
                       </HBox>
                       <HBox fx:id="shareContainer" alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
                           <children>
-                              <ImageView fx:id="share" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showSharePopup">
+                              <ImageView fx:id="share" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#showSharePopup" pickOnBounds="true" preserveRatio="true">
                                   <image>
                                       <Image url="@../../../image/share.png" />
                                   </image>

@@ -12,7 +12,6 @@ public class Commentaire {
     private Connection cnx;
 
 
-
     @Override
     public String toString() {
         return "Commentaire{" +
@@ -21,6 +20,7 @@ public class Commentaire {
                 ", auteur='" + auteur + '\'' +
                 ", date_creation=" + date_creation +
                 ", post=" + post +
+                ", cnx=" + cnx +
                 '}';
     }
 

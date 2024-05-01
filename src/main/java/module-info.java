@@ -6,6 +6,10 @@ module com.example.django2 {
     requires org.apache.poi.ooxml;
     requires org.apache.pdfbox;
     requires twilio;
+    requires org.controlsfx.controls;
+    requires jdk.javadoc;
+    requires java.mail;
+    requires itextpdf;
 
 
     opens com.example.django2 to javafx.fxml;

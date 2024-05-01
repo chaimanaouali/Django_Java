@@ -18,7 +18,7 @@ public class App extends Application {
      //  Parent root = FXMLLoader.load(getClass().getResource("ajouterCommnentaire.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("AfficherCommentaire.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("updateCommentaire.fxml"));
-     //Parent root = FXMLLoader.load(getClass().getResource("afficherPost.fxml"));
+    //Parent root = FXMLLoader.load(getClass().getResource("afficherPost.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root, 1500,800));
         primaryStage.show();

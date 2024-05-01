@@ -12,19 +12,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Post;
 import service.ServicePost;
 import utils.ExportPDF;
 import utils.exportExcelle;
+import utils.pdfgenerator;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
+
+//import static jdk.javadoc.internal.doclets.toolkit.util.DocPath.parent;
 
 public class AfficherPostXML implements Initializable {
     @FXML
@@ -81,6 +91,17 @@ public class AfficherPostXML implements Initializable {
     private Button btAjouter;
     @FXML
     private Pagination pagination;
+    private Scene scene;
+    @FXML
+    private ImageView changeimage;
+    @FXML
+    private Button btn_changeMode;
+    @FXML
+    private AnchorPane parent;
+    @FXML
+    private Button modeToggleButton;
+    private boolean isNightMode = false;
+
 
     @FXML
     private TextField searchField;
@@ -92,24 +113,58 @@ public class AfficherPostXML implements Initializable {
     private List<Post> allPosts; // List of all posts
     private ObservableList<Post> currentPagePosts; // Posts for the current page
 
+  
+
+
+
+
+
+    @FXML
+    private void toggleMode(ActionEvent event) {
+        Scene scene = modeToggleButton.getScene(); // Get the Scene from the Button
+        URL nightModeUrl = getClass().getResource("/styles/nightmode.css");
+        URL dayModeUrl = getClass().getResource("/styles/daymode.css");
+
+        if (isNightMode && nightModeUrl != null) {
+            // Switch to day mode
+            scene.getStylesheets().remove(nightModeUrl.toExternalForm());
+            scene.getStylesheets().add(dayModeUrl.toExternalForm());
+            modeToggleButton.setGraphic(new ImageView(new javafx.scene.image.Image(getClass().getResourceAsStream("/image/night-mode.png"))));
+        } else if (!isNightMode && dayModeUrl != null) {
+            // Switch to night mode
+            scene.getStylesheets().remove(dayModeUrl.toExternalForm());
+            scene.getStylesheets().add(nightModeUrl.toExternalForm());
+            modeToggleButton.setGraphic(new ImageView(new javafx.scene.image.Image(getClass().getResourceAsStream("/image/day-mode.png"))));
+        }
+
+        isNightMode = !isNightMode;
+    }
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Your existing initialization code
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        categories.setCellValueFactory(new PropertyValueFactory< >("categorie"));
+        categories.setCellValueFactory(new PropertyValueFactory<>("categorie"));
         image.setCellValueFactory(new PropertyValueFactory<>("image_name"));
-       // id.setCellValueFactory(new PropertyValueFactory<>("id"));
-
         pagination.setPageFactory(this::createPage);
 
         try {
-            // Populate allPosts when initializing the controller
             allPosts = servicePost.selectAll();
             populateTableView();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
+    @FXML
+    public void switchToNightMode(ActionEvent event) {
+        // Your logic for switching to night mode
+    }
+
 
 
     private Node createPage(int pageIndex) {
@@ -319,7 +374,7 @@ public class AfficherPostXML implements Initializable {
     private void navigateToCommentaire() {
         try {
             // Load the ListVoiture.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("afficherCommentaire.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherCommentaire.fxml"));
             javafx.scene.Parent root = loader.load();
 
             // Access the controller of the ListVoiture.fxml file
@@ -363,11 +418,18 @@ public class AfficherPostXML implements Initializable {
         try {
             exportExcelle.exportPostsToExcel(posts, filePath); // Corrected method call
             System.out.println("Data exported to " + filePath);
+
+            // Open the exported Excel file
+            File file = new File(filePath);
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    @FXML
+
+    /*@FXML
     void exportToPDF(ActionEvent event) {
         String filePath = "C:\\Users\\garal\\IdeaProjects\\Django2\\src\\main\\resources\\PostsData.pdf";
 
@@ -375,10 +437,87 @@ public class AfficherPostXML implements Initializable {
             ExportPDF exportPDF = new ExportPDF();
             exportPDF.generatePDF(filePath, allPosts); // Pass allPosts to the generatePDF method
             System.out.println("Data exported to " + filePath);
+
+            // Open the exported PDF file
+            File file = new File(filePath);
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+    @FXML
+    void printLogPdf(ActionEvent event) {
+        try {
+            Post selectedLogement = table.getSelectionModel().getSelectedItem();
+            if (selectedLogement == null) {
+                showAlert("No Post Selected", "Please select a Post to print.", Alert.AlertType.INFORMATION);
+                return;
+            }
+
+            // Generate the PDF file
+            pdfgenerator.generatePdf(selectedLogement.getTitre(), selectedLogement.getDescription(), selectedLogement.getCategorie());
+
+            showAlert("PDF Created", "Post details printed to PDF successfully.", Alert.AlertType.INFORMATION);
+
+            // Open the PDF file
+            File file = new File("C:\\Users\\garal\\IdeaProjects\\Django2\\post.pdf");
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    private void showAlert(String title, String content, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void refreshList(ActionEvent event) {
+        try {
+            populateTableView(); // Call method to repopulate TableView
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to populate table view: " + e.getMessage());
+        }
+    }
+   /* public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+    @FXML
+    private void switchToDayMode(ActionEvent event) {
+        setDayMode();
+    }
+
+    @FXML
+    private void switchToNightMode(ActionEvent event) {
+        setNightMode();
+    }
+    private void setDayMode() {
+        if (scene != null) {
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource("/src/styles/daymode.css").toExternalForm());
+            System.out.println("Switched to day mode");
+        }
+    }
+
+    private void setNightMode() {
+        if (scene != null) {
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource("/src/styles/nightmode.css").toExternalForm());
+            System.out.println("Switched to night mode");
+        }
+    }
+    */
+
+
+
 
 
 }
