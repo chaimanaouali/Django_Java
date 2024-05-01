@@ -1,5 +1,6 @@
 package com.example.user;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,10 +15,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.User;
+import org.controlsfx.control.Notifications;
 import services.ServiceUser;
 import utils.Hash;
 import utils.InputValidation;
 import utils.SessionManager;
+import utils.MailingService;
+
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -76,6 +81,10 @@ public class RegisterController implements Initializable {
         } else {
             st.insertOne(user);
             System.out.println("User added successfully.");
+
+            // Send email notification
+            sendRegistrationEmail(selectedEmailUser);
+            showNotification("Success", "Email reçus !!");
 
             redirectToFrontPage(user);
         }
@@ -149,8 +158,22 @@ public class RegisterController implements Initializable {
             throw new RuntimeException(e);
         }
 
-
     }
 
+    // Method to send registration email
+    private void sendRegistrationEmail(String recipientEmail) {
+        String subject = "Welcome to Our Application!";
+        String body = "Thank you for registering with our Django desktop application. Your account has been successfully created.";
+
+        // Send email
+        MailingService.SendMail(recipientEmail, subject, body);
+    }
+    private void showNotification(String title, String content) {
+        Notifications notification =Notifications.create()
+                .title(title)
+                .text(content);
+
+        Platform.runLater(() -> notification.showInformation());
+    }
 
 }
