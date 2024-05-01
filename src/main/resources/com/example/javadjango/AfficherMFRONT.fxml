@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxWidth="929.0" minWidth="796.0" prefHeight="604.0" prefWidth="929.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javadjango.AfficherMFRONT">
+   <children>
+      <ListView fx:id="listView" layoutX="249.0" layoutY="98.0" prefHeight="507.0" prefWidth="679.0" />
+      <TextField fx:id="searchMecFront" layoutX="249.0" layoutY="57.0" onKeyPressed="#searchMec" prefHeight="31.0" prefWidth="254.0" promptText="Rechercher" />
+      <ImageView fx:id="qrcodeMecanicen" fitHeight="161.0" fitWidth="178.0" layoutX="33.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="20.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnAfficherEFRONT" prefHeight="50.0" prefWidth="203.0" styleClass="add-btn" text="Les Evaluations" textAlignment="CENTER" textFill="#911919">
+         <font>
+            <Font name="Arial Bold Italic" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

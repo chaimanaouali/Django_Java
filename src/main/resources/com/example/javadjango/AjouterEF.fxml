@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxWidth="869.0" minWidth="796.0" prefHeight="512.0" prefWidth="869.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javadjango.AjouterEF">
+    <children>
+        <Label layoutX="14.0" layoutY="101.0" prefHeight="18.0" prefWidth="551.0" text="Nom Mecanicien" />
+        <Label layoutX="20.0" layoutY="144.0" prefHeight="18.0" prefWidth="551.0" text="Nom" />
+        <TextField fx:id="NomE" layoutX="105.0" layoutY="141.0" prefHeight="26.0" prefWidth="478.0" promptText="Saisir votre nom..." />
+        <Label layoutX="21.0" layoutY="186.0" prefHeight="18.0" prefWidth="551.0" text="Prénom" />
+        <TextField fx:id="PrenomE" layoutX="105.0" layoutY="182.0" prefHeight="26.0" prefWidth="478.0" promptText="Saisir votre prénom..." />
+        <Label layoutX="23.0" layoutY="225.0" prefHeight="18.0" prefWidth="551.0" text="Avis" />
+        <Button layoutX="382.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnAjouterE" text="Ajouter" textFill="#128139" />
+
+        <Label layoutX="-222.0" layoutY="270.0" prefHeight="18.0" prefWidth="551.0" text="Numéro" />
+        <ImageView fitHeight="42.0" fitWidth="45.0" layoutX="31.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+        <TextField fx:id="AvisE" layoutX="104.0" layoutY="222.0" prefHeight="26.0" prefWidth="478.0" promptText="Saisir votre avis..." />
+        <Label layoutX="24.0" layoutY="270.0" prefHeight="18.0" prefWidth="551.0" text="Date" />
+          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="267.0" layoutY="28.0" text="Ajouter Evaluation" textAlignment="CENTER">
+              <font>
+                  <Font name="Times New Roman" size="30.0" />
+              </font>
+          </Label>
+      <Label fx:id="nommecanicien" layoutX="239.0" layoutY="101.0" prefHeight="18.0" prefWidth="210.0" />
+      <Label fx:id="dateE" layoutX="105.0" layoutY="270.0" prefHeight="18.0" prefWidth="166.0" />
+    </children>
+</AnchorPane>

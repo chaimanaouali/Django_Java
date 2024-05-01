@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxWidth="869.0" minWidth="796.0" prefHeight="512.0" prefWidth="869.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javadjango.AfficherE">
+    <children>
+        <ImageView fitHeight="56.0" fitWidth="80.0" layoutX="44.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../Downloads/django.png" />
+            </image>
+        </ImageView>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="45.0" text="Liste Mécanicien" textAlignment="CENTER">
+            <font>
+                <Font name="Times New Roman" size="30.0" />
+            </font>
+        </Label>
+        <AnchorPane layoutX="4.0" layoutY="14.0" prefHeight="86.0" prefWidth="592.0" style="-fx-background-color: #DBC2AD;">
+            <children>
+                <ImageView fitHeight="56.0" fitWidth="80.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../../Downloads/django.png" />
+                    </image>
+                </ImageView>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="192.0" layoutY="25.0" text="Liste Evaluations" textAlignment="CENTER">
+                    <font>
+                        <Font name="Times New Roman" size="30.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <TableView fx:id="TableEvaluation" layoutX="24.0" layoutY="123.0" prefHeight="200.0" prefWidth="557.0">
+            <columns>
+                <TableColumn fx:id="IdE" minWidth="0.0" prefWidth="0.0" text="ID" />
+                <TableColumn fx:id="mecanicien_id" minWidth="0.0" prefWidth="0.0" text="Mécanicien_id" />
+                <TableColumn fx:id="NomE" prefWidth="136.79999351501465" text="Nom" />
+                <TableColumn fx:id="prenomE" prefWidth="154.4000244140625" text="Prénom" />
+                <TableColumn fx:id="AvisE" prefWidth="138.4000244140625" text="Avis" />
+                <TableColumn fx:id="Date_eval" prefWidth="136.7999267578125" text="Date_evaluation" />
+            </columns>
+        </TableView>
+        <Button layoutX="66.0" layoutY="344.0" mnemonicParsing="false" onAction="#btnModifierEAffichage" prefHeight="26.0" prefWidth="90.0" text="Modifier" textFill="#6e4607" />
+        <Button layoutX="422.0" layoutY="344.0" mnemonicParsing="false" onAction="#btnsupprimerE" prefHeight="26.0" prefWidth="90.0" text="Supprimer" textFill="#128139" />
+    </children>
+</AnchorPane>

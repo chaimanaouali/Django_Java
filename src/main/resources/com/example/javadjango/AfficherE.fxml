@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.shape.Rectangle?>
+<AnchorPane maxWidth="869.0" minWidth="796.0" prefHeight="512.0" prefWidth="869.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javadjango.AfficherE">
+
+   <children>
+   <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
+         <children>
+            <ImageView fitHeight="116.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+
+            </ImageView>
+         </children></VBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="87.0" layoutX="132.0" layoutY="-4.0" stroke="#37619b" strokeType="INSIDE" width="920.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="34.0" text="Liste Evaluations" textAlignment="CENTER">
+         <font>
+            <Font name="Times New Roman" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="TableEvaluation" layoutX="255.0" layoutY="193.0" prefHeight="200.0" prefWidth="557.0">
+         <columns>
+            <TableColumn fx:id="IdE" minWidth="0.0" prefWidth="0.0" text="ID" />
+            <TableColumn fx:id="mecanicien_id" minWidth="9.600006103515625" prefWidth="92.0" text="Mécanicien_id" />
+            <TableColumn fx:id="NomE" prefWidth="91.20001220703125" text="Nom" />
+            <TableColumn fx:id="prenomE" prefWidth="105.60003662109375" text="Prénom" />
+            <TableColumn fx:id="AvisE" prefWidth="138.4000244140625" text="Avis" />
+            <TableColumn fx:id="Date_eval" prefWidth="136.7999267578125" text="Date_evaluation" />
+         </columns>
+      </TableView>
+      <Button layoutX="389.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnAjouterAffichageE" prefHeight="26.0" prefWidth="90.0" text="Ajouter" textFill="#472c99" />
+      <Button layoutX="534.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnModifierEAffichage" prefHeight="26.0" prefWidth="90.0" text="Modifier" textFill="#6e4607" />
+      <Button layoutX="674.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnsupprimerE" prefHeight="26.0" prefWidth="90.0" text="Supprimer" textFill="#128139" />
+      <Button layoutX="266.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnretourAffichageE" prefHeight="26.0" prefWidth="90.0" text="Retour" textFill="#472c99" />
+      <Button layoutX="741.0" layoutY="156.0" mnemonicParsing="false" onAction="#btnpdfEval" prefHeight="26.0" prefWidth="45.0" text="PDF" />
+      <Button layoutX="688.0" layoutY="156.0" mnemonicParsing="false" onAction="#btnExcelEval" text="EXCEL" />
+      <TextField fx:id="searchEvalBack" layoutX="255.0" layoutY="156.0" onKeyPressed="#rechercheEval" prefHeight="26.0" prefWidth="231.0" promptText="Evaluation" />
+      <PieChart fx:id="pieChart" layoutX="364.0" layoutY="461.0" prefHeight="159.0" prefWidth="210.0" />
+      <Button layoutX="494.0" layoutY="156.0" mnemonicParsing="false" onAction="#btntrierEBack" text="Trier" />
+   </children>
+</AnchorPane>

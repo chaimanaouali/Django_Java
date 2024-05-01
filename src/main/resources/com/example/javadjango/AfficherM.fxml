@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxWidth="1050.0" minWidth="796.0" prefHeight="531.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javadjango.AfficherM">
+
+    <children>
+        <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
+            <children>
+                <ImageView fitHeight="116.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../../Downloads/django.png" />
+                    </image>
+                </ImageView>
+            </children></VBox>
+        <Button layoutX="750.0" layoutY="383.0" mnemonicParsing="false" onAction="#btnSupprimerM" prefHeight="34.0" prefWidth="101.0" text="Supprimer" textFill="#128139" />
+        <Button layoutX="619.0" layoutY="383.0" mnemonicParsing="false" onAction="#btnModifierMAffichage" prefHeight="34.0" prefWidth="94.0" text="Modifier" textFill="#6e4607" />
+        <Button layoutX="758.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnAjouterAffichage" prefHeight="34.0" prefWidth="86.0" text="Ajouter" textFill="#472c99" />
+        <ImageView fitHeight="42.0" fitWidth="45.0" layoutX="21.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="87.0" layoutX="132.0" layoutY="-4.0" stroke="#37619b" strokeType="INSIDE" width="920.0" />
+        <Label layoutX="449.0" layoutY="15.0" text="Liste Mecaniciens" textFill="#dfdfdf">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+
+        <TableView fx:id="TableMecanicien" layoutX="243.0" layoutY="143.0" prefHeight="215.0" prefWidth="708.0">
+        <columns>
+          <TableColumn fx:id="idM" minWidth="0.0" prefWidth="0.0" text="id" />
+          <TableColumn fx:id="NomM" minWidth="7.20001220703125" prefWidth="65.60000610351562" text="Nom" />
+            <TableColumn fx:id="PrenomM" prefWidth="72.79998779296875" text="Prénom" />
+            <TableColumn fx:id="LocalM" prefWidth="92.0" text="Localisation" />
+            <TableColumn fx:id="DispoM" prefWidth="80.800048828125" text="Disponibilité" />
+            <TableColumn fx:id="NumM" prefWidth="80.00003051757812" text="Numéro" />
+            <TableColumn fx:id="ImageM" prefWidth="149.5999755859375" text="Image" />
+            <TableColumn fx:id="EmailM" prefWidth="172.0" text="Email" />
+        </columns>
+      </TableView>
+      <Button layoutX="623.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnretourAffichage" prefHeight="34.0" prefWidth="86.0" text="Retour " textFill="#472c99" />
+      <Button layoutX="801.0" layoutY="102.0" mnemonicParsing="false" onAction="#btnpdfMec" prefHeight="26.0" prefWidth="45.0" text="PDF" />
+      <Button layoutX="742.0" layoutY="102.0" mnemonicParsing="false" onAction="#btnExcelMec" text="EXCEL" />
+      <TextField fx:id="searchMecBack" layoutX="241.0" layoutY="101.0" onKeyPressed="#rechercheMec" prefHeight="26.0" prefWidth="318.0" promptText="Mecanicien" />
+          <ImageView fitHeight="56.0" fitWidth="80.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../../../../../Downloads/django.png" />
+              </image>
+          </ImageView>
+      <Button layoutX="563.0" layoutY="102.0" mnemonicParsing="false" onAction="#btntrierMBack" text="Trier" />
+    </children>
+
+</AnchorPane>
