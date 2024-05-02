@@ -8,6 +8,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import javafx.embed.swing.SwingFXUtils;
@@ -112,7 +113,7 @@ public class GestionDevis implements Initializable {
     private TextField tfPrenom;
 
     @FXML
-    private TextField tfPrenom1;
+    private ComboBox<String> tfPrenom1;
 
     @FXML
     private TextField tfPrix;
@@ -129,7 +130,12 @@ public class GestionDevis implements Initializable {
     @FXML
     private VBox vboxDevis1;
 
+    public static final String ACCOUNT_SID = "ACdb45117869a081108be58ab82f838f35";
+    public static final String AUTH_TOKEN = "73d8c4d94e62cfd601451fbfd7008f8d";
 
+    static {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    }
     @FXML
     void insertOne(ActionEvent event) {
         if (tfNom.getText().isEmpty() || tfPrenom.getText().isEmpty() || tfAdresse.getText().isEmpty() ||
@@ -324,7 +330,7 @@ public class GestionDevis implements Initializable {
     }
     @FXML
     void insertOne1(ActionEvent event) {
-        if (tfNom1.getText().isEmpty() || tfPrenom1.getText().isEmpty() || tfAdresse1.getText().isEmpty() ||
+        if (tfNom1.getText().isEmpty()  || tfAdresse1.getText().isEmpty() ||
                 tfDate1.getValue() == null || tfModele1.getText().isEmpty() ||
                 tfPuissance1.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -335,7 +341,7 @@ public class GestionDevis implements Initializable {
             try {
 
                 String selectedEtat = tfNom1.getText();
-                String selectedDecision = tfPrenom1.getText();
+                String selectedDecision = tfPrenom1.getValue();
                 String selectedDocuments = tfAdresse1.getText();
                 String selectedEmail1 = (String)tfEmail1.getValue();
                 LocalDate selectedDate = tfDate1.getValue(); // Assuming tfDate is a DatePicker
@@ -364,7 +370,7 @@ public class GestionDevis implements Initializable {
                 // Set the title
                 alert.setTitle("Ajout");
                 String recipientPhoneNumber = "+21624534106";
-                String messageBody = "votre reponse devis est disponible dés maintenant";
+                String messageBody = "chlebsa taw!";
                 sendSMS(recipientPhoneNumber, messageBody);
 
                 // Set the header text
@@ -376,7 +382,7 @@ public class GestionDevis implements Initializable {
                 // Display the alert
                 alert.showAndWait();
                 tfNom1.setText("");
-                tfPrenom1.setText("");
+                tfPrenom1.getSelectionModel().selectFirst();
                 tfAdresse1.setText("");
                 tfEmail1.getSelectionModel().selectFirst();
                 tfDate1.setValue(null);
@@ -431,6 +437,10 @@ public class GestionDevis implements Initializable {
             tfEmail1.getItems().add(e);
         }
         tfEmail1.getSelectionModel().selectFirst();
+        tfPrenom1.getItems().add("En Cours");
+        tfPrenom1.getItems().add("Acceptée");
+        tfPrenom1.getItems().add("Réfusée");
+        tfPrenom1.getSelectionModel().selectFirst();
     }
 
 
@@ -663,15 +673,21 @@ public void afficherDevis(){
             updateReponseDevis controller = loader.getController();
             controller.initData(devis);
 
-
+            Button up = controller.getBt();
+            up.setOnMouseClicked(event -> {
+                afficherReponseDevis();
+                System.out.println("yes");
+            });
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root));
+
             stage.setOnCloseRequest(event -> {
                 // Refresh the TableView when the PopUp stage is closed
 
                 Stage gg= (Stage)tfNom.getScene().getWindow();
                 gg.close();
+                afficherReponseDevis();
             });
             stage.show();
 

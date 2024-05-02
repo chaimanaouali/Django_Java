@@ -125,6 +125,7 @@ public class updateDevis implements Initializable {
         try {
             Image brandingImage = new Image(getClass().getResource("/images/django-removebg-preview.png").toString());
             brandingImageView.setImage(brandingImage);
+
         } catch (Exception e) {
             e.printStackTrace();
         }}

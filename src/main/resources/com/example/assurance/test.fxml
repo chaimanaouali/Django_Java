@@ -282,7 +282,6 @@
                               <Label layoutX="29.0" layoutY="57.0" prefHeight="18.0" prefWidth="118.0" text="Etat" />
                               <TextField id="tfNom" fx:id="tfNom1" layoutX="29.0" layoutY="84.0" prefHeight="26.0" prefWidth="150.0" />
                               <Label layoutX="28.0" layoutY="131.0" prefHeight="18.0" prefWidth="66.0" text="Decision" />
-                              <TextField id="tfPrenom" fx:id="tfPrenom1" layoutX="29.0" layoutY="158.0" prefHeight="26.0" prefWidth="150.0" />
                               <Label layoutX="291.0" layoutY="122.0" text="Documents" />
                               <TextField id="tfAdresse" fx:id="tfAdresse1" layoutX="291.0" layoutY="158.0" />
                               <Label layoutX="28.0" layoutY="201.0" text="Email" />
@@ -295,6 +294,7 @@
                               <ComboBox fx:id="tfEmail1" layoutX="28.0" layoutY="237.0" prefWidth="150.0" />
                               <Button fx:id="boutonAjouter1" layoutX="583.0" layoutY="428.0" mnemonicParsing="false" onAction="#insertOne1" text="Ajouter" />
                               <Button fx:id="choose" layoutX="460.0" layoutY="158.0" mnemonicParsing="false" onAction="#ChooseF" text="Choose File" />
+                              <ComboBox fx:id="tfPrenom1" layoutX="28.0" layoutY="158.0" prefWidth="150.0" />
                            </children>
                         </AnchorPane>
                      </content>

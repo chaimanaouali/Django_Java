@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -22,7 +23,6 @@
         <TextField id="tfNom" fx:id="tfNom" layoutX="13.0" layoutY="169.0" prefHeight="26.0" prefWidth="150.0" />
         <Button id="boutonAjouter" fx:id="boutonAjouter" layoutX="444.0" layoutY="503.0" mnemonicParsing="false" onAction="#updateOne1" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #2A914D;" text="Update" textFill="WHITE" />
         <Label layoutX="10.0" layoutY="218.0" prefHeight="18.0" prefWidth="66.0" text="Decision" />
-        <TextField id="tfPrenom" fx:id="tfPrenom" layoutX="11.0" layoutY="246.0" prefHeight="26.0" prefWidth="150.0" />
         <Label layoutX="9.0" layoutY="291.0" text="Documents" />
         <TextField id="tfAdresse" fx:id="tfAdresse" layoutX="12.0" layoutY="321.0" />
         <Label layoutX="11.0" layoutY="362.0" text="Date Reglement" />
@@ -34,5 +34,6 @@
         <Button id="retourbutton" fx:id="cancelButton" layoutX="559.0" layoutY="503.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #FF0000;" text="retour" textFill="WHITE" />
       <TextField id="tfModele" fx:id="tfid" layoutX="420.0" layoutY="160.0" visible="false" />
       <TextField id="tfPuissance" fx:id="tfEmail" layoutX="511.0" layoutY="195.0" visible="false" />
+      <ComboBox fx:id="tfPrenom" layoutX="12.0" layoutY="249.0" prefWidth="150.0" />
     </children>
 </AnchorPane>

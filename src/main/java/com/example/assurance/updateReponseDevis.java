@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -48,7 +45,7 @@ public class updateReponseDevis implements Initializable {
     private TextField tfNom;
 
     @FXML
-    private TextField tfPrenom;
+    private ComboBox<String> tfPrenom;
 
     @FXML
     private TextField tfPuissance;
@@ -65,6 +62,7 @@ public class updateReponseDevis implements Initializable {
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
+        controller.afficherReponseDevis();
         }
 
     private ReponseDevis selecteddevis;
@@ -72,7 +70,10 @@ public class updateReponseDevis implements Initializable {
         selecteddevis = devis;
         // Populate the fields in the UI with the data from selectedUser
         tfNom.setText(selecteddevis.getEtat());
-        tfPrenom.setText(selecteddevis.getDecision());
+        tfPrenom.getItems().add("En Cours");
+        tfPrenom.getItems().add("Acceptée");
+        tfPrenom.getItems().add("Réfusée");
+        tfPrenom.setValue(selecteddevis.getDecision());
         tfAdresse.setText(selecteddevis.getDocuments());
 
         tfEmail.setText(String.valueOf(selecteddevis.getEmail_id()));
@@ -85,7 +86,7 @@ public class updateReponseDevis implements Initializable {
 @FXML
     void updateOne1(ActionEvent Event)throws SQLException{
     String selectedEtat = tfNom.getText();
-    String selectedDecision = tfPrenom.getText();
+    String selectedDecision = tfPrenom.getValue();
     String selectedDocuments = tfAdresse.getText();
 
     int selectedEmail =Integer.parseInt( tfEmail.getText());
@@ -111,12 +112,19 @@ public class updateReponseDevis implements Initializable {
         System.err.println("Failed to update Reponse Reponse devis: " + e.getMessage());
     }
 }
+    public Button getBt(){
+        return boutonAjouter;
+    }
     @Override
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             Image brandingImage = new Image(getClass().getResource("/images/django-removebg-preview.png").toString());
             brandingImageView.setImage(brandingImage);
+            tfPrenom.getItems().add("En Cours");
+            tfPrenom.getItems().add("Acceptée");
+            tfPrenom.getItems().add("Réfusée");
+            tfPrenom.getSelectionModel().selectFirst();
         } catch (Exception e) {
             e.printStackTrace();
         }}
