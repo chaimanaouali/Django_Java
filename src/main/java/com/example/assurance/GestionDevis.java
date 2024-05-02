@@ -8,7 +8,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import javafx.embed.swing.SwingFXUtils;
@@ -130,12 +129,7 @@ public class GestionDevis implements Initializable {
     @FXML
     private VBox vboxDevis1;
 
-    public static final String ACCOUNT_SID = "ACdb45117869a081108be58ab82f838f35";
-    public static final String AUTH_TOKEN = "73d8c4d94e62cfd601451fbfd7008f8d";
 
-    static {
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-    }
     @FXML
     void insertOne(ActionEvent event) {
         if (tfNom.getText().isEmpty() || tfPrenom.getText().isEmpty() || tfAdresse.getText().isEmpty() ||
