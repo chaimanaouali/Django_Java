@@ -7,6 +7,7 @@ module com.example.djangoassurancejava {
     requires java.desktop;
     requires com.google.zxing;
     requires javafx.swing;
+    requires twilio;
 
     opens com.example.djangoassurancejava to javafx.fxml;
     exports com.example.djangoassurancejava;

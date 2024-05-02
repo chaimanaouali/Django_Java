@@ -53,6 +53,7 @@ public class AjouterContrat implements Initializable {
 
     private List<Popup> currentPopups = new ArrayList<>();
 
+
     @FXML
     void cancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();

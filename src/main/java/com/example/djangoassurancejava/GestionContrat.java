@@ -54,6 +54,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
 
 /**
  * FXML Controller class
@@ -191,6 +195,11 @@ public class GestionContrat implements Initializable {
     @FXML
     private Button pdf;
 
+    public static final String ACCOUNT_SID = "AC39da85bd72354e8b0a1846684abd93c9";
+    public static final String AUTH_TOKEN = "a1ba9db8d81d810255ac2cbecca9421f";
+    static { Twilio.init(ACCOUNT_SID, AUTH_TOKEN); }
+
+
     @FXML
     public void insertOne(ActionEvent event) throws SQLException {
         LocalDate dated = datedebutDatePicker.getValue();
@@ -216,7 +225,7 @@ public class GestionContrat implements Initializable {
         clearPopups();  // Clear any existing popups
 
         // Validation regex patterns
-        String nameRegex = "^[A-Z][a-z]+$";
+        String nameRegex = "^[a-z]+$";
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
         String phoneRegex = "^[529][0-9]{7}$";
 
@@ -231,11 +240,11 @@ public class GestionContrat implements Initializable {
 
             // Validate name and surname
             if (!nom.matches(nameRegex)) {
-                showErrorPopup(nomTextField, "Le nom doit commencer par une majuscule et contenir uniquement des lettres.");
+                showErrorPopup(nomTextField, "Le nom doit contenir uniquement des lettres.");
                 valid = false;
             }
             if (!prenom.matches(nameRegex)) {
-                showErrorPopup(prenomTextField, "Le prénom doit commencer par une majuscule et contenir uniquement des lettres.");
+                showErrorPopup(prenomTextField, "Le prénom doit contenir uniquement des lettres.");
                 valid = false;
             }
 
@@ -265,6 +274,13 @@ public class GestionContrat implements Initializable {
             Contrat contrat = new Contrat(selectedDesc, dated, datef, adress_assur, numero, nom, prenom, email);
             ServiceContrat st = new ServiceContrat();
             st.ajouter(contrat);
+
+            //sms
+
+            String recipientPhoneNumber = "+21658128366";
+            String messageBody = "Anew contract has been added succesfully !";
+            sendSMS(recipientPhoneNumber, messageBody);
+
             afficherDevis();
             showAlert(Alert.AlertType.INFORMATION, "Succès", "Contrat ajouté avec succès.");
         } catch (Exception e) {
@@ -843,4 +859,16 @@ public void afficherReponseDevis(){
             e.printStackTrace();
         }
     }
+
+    public static void sendSMS(String recipientPhoneNumber, String messageBody) {
+        String twilioPhoneNumber = "+12679532826";
+        Message message = Message.creator(
+                new PhoneNumber(recipientPhoneNumber),
+                new PhoneNumber(twilioPhoneNumber),
+                messageBody)
+                .create();
+        System.out.println("SMS sent successfully. SID: " + message.getSid());
+    }
+
+
 }
