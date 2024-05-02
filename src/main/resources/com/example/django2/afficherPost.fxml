@@ -15,13 +15,12 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.django2.AfficherPostXML">
+<AnchorPane id="AnchorPane" fx:id="main1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.django2.AfficherPostXML">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
+        <AnchorPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
             <children>
                 <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
                     <children>
-                      <Button onAction="#switchToNightMode" text="Night Mode" />
                         <ImageView fitHeight="150.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../uploads/logo-removebg-preview.png" />
@@ -67,7 +66,7 @@
                     </image>
                 </ImageView>
                 <Label fx:id="loginLabel" layoutX="1045.0" layoutY="60.0" text="Admin" />
-                <TableView fx:id="table" layoutX="350.0" layoutY="206.0" prefHeight="309.0" prefWidth="648.0" style="-fx-background-color: #3BB033;">
+                <TableView fx:id="table" layoutX="350.0" layoutY="206.0" prefHeight="309.0" prefWidth="648.0">
                     <columns>
                         <TableColumn fx:id="titre" prefWidth="169.0" text="Titre" />
                         <TableColumn fx:id="description" prefWidth="164.0" text="Description" />
@@ -109,17 +108,6 @@
                 </Button>
                 <TextField fx:id="searchField" layoutX="555.0" layoutY="134.0" prefHeight="25.0" prefWidth="190.0" />
                 <Pagination fx:id="pagination" layoutX="350.0" layoutY="523.0" prefHeight="40.0" prefWidth="648.0" />
-                <Button onAction="#switchToNightMode" text="Night Mode" />
-
-                <Button fx:id="modeToggleButton" layoutX="281.0" layoutY="113.0" mnemonicParsing="false" onAction="#toggleMode" prefHeight="37.0" prefWidth="49.0" text="Button">
-                    <graphic>
-                        <ImageView fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../image/night-mode.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
             <Button fx:id="pdfbut" layoutX="407.0" layoutY="166.0" onAction="#printLogPdf" prefHeight="37.0" prefWidth="55.0" style="-fx-text-fill: white; -fx-font-size: 14px;">
                <graphic>
                   <ImageView fitHeight="24" fitWidth="24">

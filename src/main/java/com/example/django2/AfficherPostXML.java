@@ -1,5 +1,6 @@
 package com.example.django2;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -97,6 +98,10 @@ public class AfficherPostXML implements Initializable {
     @FXML
     private Button btn_changeMode;
     @FXML
+    private AnchorPane main;
+    @FXML
+    private AnchorPane main1;
+    @FXML
     private AnchorPane parent;
     @FXML
     private Button modeToggleButton;
@@ -145,6 +150,29 @@ public class AfficherPostXML implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Your existing initialization code
+
+        com.example.django2.ToggleSwitch button = new com.example.django2.ToggleSwitch();
+        SimpleBooleanProperty isOn = button.switchOnProperty();
+        isOn.addListener((observable, oldValue, newValue) -> {
+            // Get the resource URL for the CSS file
+            URL cssResource = getClass().getResource("/image/newCascadeStyleSheet.css");
+            if (cssResource != null) {
+                String cssPath = cssResource.toExternalForm();
+                if (newValue) {
+                    // Add CSS stylesheet
+                    button.getScene().getRoot().getStylesheets().add(cssPath);
+                } else {
+                    // Remove CSS stylesheet
+                    button.getScene().getRoot().getStylesheets().remove(cssPath);
+                }
+            } else {
+                // Handle the case where the resource is not found
+                System.err.println("CSS file not found.");
+            }
+        });
+        main1.getChildren().add(button);
+
+        // Your remaining initialization code
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         categories.setCellValueFactory(new PropertyValueFactory<>("categorie"));
@@ -157,9 +185,8 @@ public class AfficherPostXML implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
+
     @FXML
     public void switchToNightMode(ActionEvent event) {
         // Your logic for switching to night mode
