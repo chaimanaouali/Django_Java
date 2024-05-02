@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
@@ -20,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import models.Commentaire;
 import models.Post;
@@ -29,6 +31,7 @@ import service.ServicePost;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import utils.MailingService;
 
 
 import java.awt.*;
@@ -375,8 +378,35 @@ public class itemPost {
         // Create ImageViews for sharing options
         ImageView smsIcon = new ImageView(new Image(getClass().getResourceAsStream("/image/sms.png")));
         ImageView whatsappIcon = new ImageView(new Image(getClass().getResourceAsStream("/image/whatsapp.png")));
-        ImageView otherIcon = new ImageView(new Image(getClass().getResourceAsStream("/image/gmail.png")));
+        ImageView gmailIcon = new ImageView(new Image(getClass().getResourceAsStream("/image/gmail.png")));
+
+
+        // Create scale transition for each icon
+        ScaleTransition smsScaleTransition = createScaleTransition(smsIcon);
+        ScaleTransition whatsappScaleTransition = createScaleTransition(whatsappIcon);
+        ScaleTransition gmailScaleTransition = createScaleTransition(gmailIcon);
+
+        // Set initial scale for icons
+        smsIcon.setScaleX(1);
+        smsIcon.setScaleY(1);
+        whatsappIcon.setScaleX(1);
+        whatsappIcon.setScaleY(1);
+        gmailIcon.setScaleX(1);
+        gmailIcon.setScaleY(1);
+
+        // Add event handlers for mouse enter and exit events
+        smsIcon.setOnMouseEntered(e -> smsScaleTransition.play());
+        smsIcon.setOnMouseExited(e -> smsScaleTransition.stop());
+        whatsappIcon.setOnMouseEntered(e -> whatsappScaleTransition.play());
+        whatsappIcon.setOnMouseExited(e -> whatsappScaleTransition.stop());
+        gmailIcon.setOnMouseEntered(e -> gmailScaleTransition.play());
+        gmailIcon.setOnMouseExited(e -> gmailScaleTransition.stop());
+
+
         smsIcon.setOnMouseClicked(e -> {
+            // Perform scale animation
+            smsScaleTransition.play();
+
             String recipientPhoneNumber = "+21626455505"; // Replace with the recipient's phone number
             String messageBody = "Check out this post!"; // Customize the message as needed
             sendSMS(recipientPhoneNumber, messageBody);
@@ -384,6 +414,9 @@ public class itemPost {
         });
 
         whatsappIcon.setOnMouseClicked(e -> {
+            // Perform scale animation
+            whatsappScaleTransition.play();
+
             // Handle share via WhatsApp action
             popup.hide();
             String message = "Check out this post: " + post.getDescription() + "\n\n" +
@@ -391,9 +424,26 @@ public class itemPost {
             shareViaWhatsApp(message);
         });
 
-        otherIcon.setOnMouseClicked(e -> {
-            // Handle share via Other action
+        gmailIcon.setOnMouseClicked(e -> {
+            // Perform scale animation
+            gmailScaleTransition.play();
+
             popup.hide();
+            // Prepare email data
+            String recipientEmail = "recipient@example.com"; // Replace with the recipient's email address
+            String subject = "Check out this post!";
+            String body = "Hey,\n\nI thought you might be interested in this post:\n" +
+                    post.getDescription() + "\n\nYou can view it here: [insert post link]\n\nRegards,\n[Your Name]";
+
+            // Send email
+            MailingService.sendMail(recipientEmail, subject, body);
+
+            // Show confirmation dialog
+            Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+            confirmation.initStyle(StageStyle.UNDECORATED);
+            confirmation.setHeaderText(null);
+            confirmation.setContentText("Email sent successfully!");
+            confirmation.showAndWait();
         });
 
         // Set the fitHeight and fitWidth for the icons
@@ -401,11 +451,11 @@ public class itemPost {
         smsIcon.setFitWidth(35);
         whatsappIcon.setFitHeight(35);
         whatsappIcon.setFitWidth(35);
-        otherIcon.setFitHeight(35);
-        otherIcon.setFitWidth(35);
+        gmailIcon.setFitHeight(35);
+        gmailIcon.setFitWidth(35);
 
         // Create a HBox to hold the icons horizontally
-        HBox hbox = new HBox(smsIcon, whatsappIcon, otherIcon);
+        HBox hbox = new HBox(smsIcon, whatsappIcon, gmailIcon);
         hbox.setSpacing(10);
         hbox.setPadding(new Insets(10));
 
@@ -435,23 +485,8 @@ public class itemPost {
                 popup.hide();
             }
         });
-
-
-
-        // Add animation effect for each icon
-        ScaleTransition smsScaleTransition = createScaleTransition(smsIcon);
-        ScaleTransition whatsappScaleTransition = createScaleTransition(whatsappIcon);
-        ScaleTransition otherScaleTransition = createScaleTransition(otherIcon);
-
-        smsIcon.setOnMouseEntered(e -> smsScaleTransition.play());
-        smsIcon.setOnMouseExited(e -> smsScaleTransition.stop());
-
-        whatsappIcon.setOnMouseEntered(e -> whatsappScaleTransition.play());
-        whatsappIcon.setOnMouseExited(e -> whatsappScaleTransition.stop());
-
-        otherIcon.setOnMouseEntered(e -> otherScaleTransition.play());
-        otherIcon.setOnMouseExited(e -> otherScaleTransition.stop());
     }
+
     private ScaleTransition createScaleTransition(ImageView imageView) {
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), imageView);
         scaleTransition.setFromX(1);
@@ -471,6 +506,7 @@ public class itemPost {
             e.printStackTrace();
         }
     }
+
 
 
 

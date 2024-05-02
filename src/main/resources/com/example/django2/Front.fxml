@@ -60,7 +60,7 @@
             <top>
                 <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1138.0" style="-fx-border-color: #37619B; -fx-background-color: #37619B;" BorderPane.alignment="CENTER">
                     <children>
-                        <ImageView fx:id="brandingImageView" fitHeight="132.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="brandingImageView" fitHeight="132.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../image/logo-removebg-preview.png" />
                             </image>
@@ -69,7 +69,7 @@
                             <children>
                                 <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="42.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-
+                                        <Image url="@../../../image/home-removebg-preview.png" />
                                     </image>
                                 </ImageView>
                                 <Label layoutX="104.0" layoutY="51.0" prefHeight="47.0" prefWidth="89.0" text="Home" textFill="WHITE">
@@ -94,6 +94,7 @@
                                 </Label>
                                 <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="52.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
+                                        <Image url="@../../../image/contactpng-removebg-preview.png" />
                                     </image>
                                 </ImageView>
                             </children>

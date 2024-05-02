@@ -170,7 +170,7 @@ public class AfficherPostXML implements Initializable {
                 System.err.println("CSS file not found.");
             }
         });
-        main1.getChildren().add(button);
+        main.getChildren().add(button);
 
         // Your remaining initialization code
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
@@ -543,7 +543,9 @@ public class AfficherPostXML implements Initializable {
     }
     */
 
-
+    public List<Post> getAllPosts() throws SQLException {
+        return servicePost.selectAll();
+    }
 
 
 

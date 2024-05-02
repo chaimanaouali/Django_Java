@@ -6,6 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Post;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class ChatbotPopupController {
 
@@ -18,19 +22,32 @@ public class ChatbotPopupController {
     @FXML
     private Button sendButton;
 
-    
 
+    private int countNumberOfPosts() {
+        try {
+            // Access the list of posts from the AfficherPostXML class
+            AfficherPostXML afficherPostXML = new AfficherPostXML();
+            List<Post> posts = afficherPostXML.getAllPosts();
+            return posts.size();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the SQLException
+            return -1; // or throw an exception
+        }
+    }
     // Define predefined questions and responses
     private final String[] predefinedQuestions = {
             "what is your name?",
             "how old are you?",
-            "where are you from?"
+            "where are you from?",
+            "how many posts are there?" // Add the new question
     };
 
     private final String[] predefinedResponses = {
             "My name is Chatbot.",
             "I am a chatbot, I don't have an age.",
-            "I exist in the digital world!"
+            "I exist in the digital world!",
+            "There are currently " + countNumberOfPosts() + " posts." // Update the response
     };
 
     @FXML

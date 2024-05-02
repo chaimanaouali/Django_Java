@@ -1,32 +1,31 @@
-/*package utils;
+package utils;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 import java.util.Properties;
 
 public class MailingService {
+    private static final String USERNAME = "jordi.herzog@ethereal.email";
+    private static final String HOST = "smtp.ethereal.email";
+    private static final String PORT = "587";
+    private static final String PASSWORD = "ZZh2FW4E1v6JNxD9sn";
 
-    private static String username ="lilyan85@ethereal.email";
-    private static String host="smtp.ethereal.email";
-    private  static String port="587";
-    private static String password="JUkGNMvx6kBBcHA6rK";
-    public static void SendMail(String to, String subject,String body){
-        Properties properties = System.getProperties();
+    public static void sendMail(String to, String subject, String body) {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", HOST);
+        properties.put("mail.smtp.port", PORT);
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
 
-        properties.setProperty("mail.smtp.host", host);
-        properties.setProperty("mail.smtp.port", port);
-        properties.setProperty("mail.smtp.auth", "true");
-        properties.setProperty("mail.smtp.starttls.enable", "true");
+        // Disable SSL certificate validation
+        properties.put("mail.smtp.ssl.trust", "*");
 
         // Get the default Session object
-        javax.mail.Session session = javax.mail.Session.getInstance(properties, new Authenticator() {
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-               // return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(USERNAME, PASSWORD);
             }
         });
 
@@ -35,7 +34,7 @@ public class MailingService {
             MimeMessage message = new MimeMessage(session);
 
             // Set From: header field of the header
-            message.setFrom(new InternetAddress("django@gmail.com"));
+            message.setFrom(new InternetAddress(USERNAME));
 
             // Set To: header field of the header
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
@@ -50,8 +49,8 @@ public class MailingService {
             Transport.send(message);
             System.out.println("Sent message successfully!");
         } catch (MessagingException mex) {
-            System.out.println(mex.getMessage());
+            mex.printStackTrace();
+            // Handle exception properly
         }
     }
 }
-*/
