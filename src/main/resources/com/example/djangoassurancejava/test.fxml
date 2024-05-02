@@ -85,7 +85,7 @@
                                  </content></ScrollPane>
                               <HBox layoutX="12.0" layoutY="31.0" prefHeight="54.0" prefWidth="792.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="80.0" text="type " textFill="#dfdfdf">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="131.0" text="type " textFill="#dfdfdf">
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin>
@@ -93,12 +93,12 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="106.0" text="date debut" textFill="#dfdfdf">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="134.0" text="date debut" textFill="#dfdfdf">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="97.0" text="date fin" textFill="#dfdfdf">
+                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="114.0" text="date fin" textFill="#dfdfdf">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -113,17 +113,17 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="74.0" text="nom" textFill="#dfdfdf">
+                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="98.0" text="nom" textFill="#dfdfdf">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="75.0" text="prenom" textFill="#dfdfdf">
+                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="104.0" text="prenom" textFill="#dfdfdf">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="88.0" text="email" textFill="#dfdfdf">
+                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="113.0" text="email" textFill="#dfdfdf">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -133,7 +133,7 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="88.0" text="Delete" textFill="#dfdfdf">
+                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="51.0" text="Del" textFill="#dfdfdf">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -145,7 +145,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="pdf" layoutX="144.0" layoutY="451.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="PDF">
+                              <Button fx:id="pdf" layoutX="144.0" layoutY="451.0" mnemonicParsing="false" onAction="#pdf" prefHeight="33.0" prefWidth="94.0" text="PDF">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

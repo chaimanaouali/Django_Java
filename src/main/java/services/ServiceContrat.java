@@ -84,7 +84,18 @@ public class ServiceContrat implements CRUD<Contrat> {
 
     @Override
     public Type rechercheId(int id) throws SQLException {
-        return null;
+        String req = "SELECT * FROM type where id =" + id;
+        Type type = null;
+        try (Statement st = cnx.createStatement(); ResultSet rs = st.executeQuery(req)) {
+            while (rs.next()) {
+                type = new Type();
+                type.setId(rs.getInt("id"));
+                type.setDescription(rs.getString("description"));
+                type.setType_couverture(rs.getString("type_couverture"));
+
+            }
+        } // Try-with-resources ensures that Statement and ResultSet are closed after use
+        return type;
     }
 
     @Override

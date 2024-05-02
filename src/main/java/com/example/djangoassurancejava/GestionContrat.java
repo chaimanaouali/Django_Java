@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.example.djangoassurancejava;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -14,9 +15,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -26,13 +30,20 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Contrat;
-
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import models.Type;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import services.ServiceContrat;
 
 import services.ServiceType;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -175,6 +186,10 @@ public class GestionContrat implements Initializable {
 
     @FXML
     private TextField tfPuissance1;
+    @FXML
+    private TableView<Contrat> TypeTableView;
+    @FXML
+    private Button pdf;
 
     @FXML
     public void insertOne(ActionEvent event) throws SQLException {
@@ -192,7 +207,12 @@ public class GestionContrat implements Initializable {
         List<Type> tt = sty.recuperer();
         int selectedDesc = 1;
 
-
+        for (Type t : tt) {
+            if (t.getDescription().equals(selecteddescription)) {
+                selectedDesc = t.getId();
+                break;
+            }
+        }
         clearPopups();  // Clear any existing popups
 
         // Validation regex patterns
@@ -325,18 +345,19 @@ public class GestionContrat implements Initializable {
                 Button btqr = otherController.getbtqr();
                 int ide = otherController.getEmailId();
                 btqr.setOnAction(evt -> {
-                    Type dee = null;
+
                     try {
                         System.out.println(ide);
-                        dee = sd.rechercheId(ide);
+                        Type dee = sd.rechercheId(ide);
                         System.out.println(ide);
                         System.out.println(dee);
+                        String AllInfo = "Type Couverture: " + dee.getType_couverture() + "\nDescription:"+ dee.getDescription() ;
+                        qr(AllInfo);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                     // Remove the HBox from the VBox when the button is clicked
-                    String AllInfo = "Type Couverture: " + dee.getType_couverture() + "\nDescription:"+ dee.getDescription() ;
-                    qr(AllInfo);
+
                 });
                 deleteButton.setOnAction(eve -> {
                     // Remove the HBox from the VBox when the button is clicked
@@ -465,6 +486,8 @@ public class GestionContrat implements Initializable {
         List<Contrat> dd = null;
         try {
             dd = ds.recuperer();
+
+            //TypeTableView.setItems();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -597,6 +620,7 @@ public void afficherReponseDevis(){
                         Type dee = null;
                         try {
                             System.out.println(ide);
+
                             dee = dd.rechercheId(ide );
                             System.out.println(ide);
                             System.out.println(dee);
@@ -730,4 +754,93 @@ public void afficherReponseDevis(){
         }
     }
 
+    @FXML
+    void pdf(ActionEvent event) {
+        try {
+            ServiceContrat sc = new ServiceContrat();
+            List<Contrat> data = sc.recuperer();
+            PDDocument document = new PDDocument();
+
+            try {
+                PDPage page = new PDPage();
+                document.addPage(page);
+                PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+                // Set a custom font
+                PDFont fontBold = PDType1Font.HELVETICA_BOLD;
+                PDFont fontRegular = PDType1Font.HELVETICA;
+
+                contentStream.beginText();
+                contentStream.setFont(fontBold, 14);
+                contentStream.setLeading(20f);
+                contentStream.newLineAtOffset(100, 700);
+                contentStream.showText("Contrat Details");
+                contentStream.newLine();
+
+                // Reset to regular font for contract details
+                contentStream.setFont(fontRegular, 12);
+
+                for (Contrat ca : data) {
+                    contentStream.showText("Nom: " + ca.getNom());
+                    contentStream.newLine();
+
+                    contentStream.showText("Prenom: " + ca.getPrenom());
+                    contentStream.newLine();
+
+                    contentStream.showText("Email: " + ca.getEmail());
+                    contentStream.newLine();
+
+                    contentStream.showText("Adresse: " + ca.getAdresse_assur());
+                    contentStream.newLine();
+
+                    contentStream.showText("Numero: " + ca.getNumero_assur());
+                    contentStream.newLine();
+
+                    contentStream.showText("Type de couverture: " + ca.getType_couverture_id());
+                    contentStream.newLine();
+
+                    contentStream.showText("Date debut du contrat: " + ca.getDate_debut_contrat());
+                    contentStream.newLine();
+
+                    contentStream.showText("Date fin du contrat: " + ca.getDatefin_contrat());
+                    contentStream.newLine();
+
+                    contentStream.newLine();
+                    contentStream.newLine();
+                }
+
+                contentStream.endText();
+                contentStream.close();
+
+                // Save and open the document
+                String outputPath = "C:/Users/Lenovo/Desktop/zahra/contrat.pdf";
+                File file = new File(outputPath);
+                document.save(file);
+                document.close();
+
+                // Show a success popup
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Le PDF a été généré avec succès.");
+                alert.showAndWait();
+
+                Desktop.getDesktop().open(file);
+            } catch (IOException e) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Failed to create PDF");
+                errorAlert.setContentText("An error occurred while creating the PDF: " + e.getMessage());
+                errorAlert.showAndWait();
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText("Failed to retrieve data");
+            errorAlert.setContentText("An error occurred while retrieving data from the database: " + e.getMessage());
+            errorAlert.showAndWait();
+            e.printStackTrace();
+        }
+    }
 }
