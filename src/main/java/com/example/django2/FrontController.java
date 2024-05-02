@@ -1,5 +1,6 @@
 package com.example.django2;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +58,9 @@ public class FrontController implements Initializable {
     private Image image;
     private MyListener myListener;
 
+    @FXML
+    private AnchorPane mainF;
+
     private List<Post> getData() throws SQLException {
         ServicePost servicePost = new ServicePost();
         List<Post> PostList = servicePost.selectAll();
@@ -68,6 +72,27 @@ public class FrontController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        com.example.django2.ToggleSwitch button = new com.example.django2.ToggleSwitch();
+        SimpleBooleanProperty isOn = button.switchOnProperty();
+        isOn.addListener((observable, oldValue, newValue) -> {
+            // Get the resource URL for the CSS file
+            URL cssResource = getClass().getResource("/image/newCascadeStyleSheet.css");
+            if (cssResource != null) {
+                String cssPath = cssResource.toExternalForm();
+                if (newValue) {
+                    // Add CSS stylesheet
+                    button.getScene().getRoot().getStylesheets().add(cssPath);
+                } else {
+                    // Remove CSS stylesheet
+                    button.getScene().getRoot().getStylesheets().remove(cssPath);
+                }
+            } else {
+                // Handle the case where the resource is not found
+                System.err.println("CSS file not found.");
+            }
+        });
+        mainF.getChildren().add(button);
         try {
             postList = getData(); // Populate the existing PostList
         } catch (SQLException e) {

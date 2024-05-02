@@ -11,5 +11,6 @@
             <Button fx:id="sendButton" text="Send" onAction="#sendMessage" />
             <Button text="Quit" onAction="#onClose" />
         </HBox>
+        <VBox fx:id="buttonBox" prefWidth="500" spacing="10" alignment="CENTER" />
     </VBox>
 </AnchorPane>

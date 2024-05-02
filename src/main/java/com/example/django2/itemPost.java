@@ -430,10 +430,10 @@ public class itemPost {
 
             popup.hide();
             // Prepare email data
-            String recipientEmail = "recipient@example.com"; // Replace with the recipient's email address
+            String recipientEmail = "django@esprit.com"; // Replace with the recipient's email address
             String subject = "Check out this post!";
             String body = "Hey,\n\nI thought you might be interested in this post:\n" +
-                    post.getDescription() + "\n\nYou can view it here: [insert post link]\n\nRegards,\n[Your Name]";
+                    post.getDescription() + "\n\nYou can view it here: [insert post link]\n\nRegards,\n[Django]";
 
             // Send email
             MailingService.sendMail(recipientEmail, subject, body);

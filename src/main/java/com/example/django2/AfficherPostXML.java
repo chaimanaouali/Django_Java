@@ -149,28 +149,6 @@ public class AfficherPostXML implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Your existing initialization code
-
-        com.example.django2.ToggleSwitch button = new com.example.django2.ToggleSwitch();
-        SimpleBooleanProperty isOn = button.switchOnProperty();
-        isOn.addListener((observable, oldValue, newValue) -> {
-            // Get the resource URL for the CSS file
-            URL cssResource = getClass().getResource("/image/newCascadeStyleSheet.css");
-            if (cssResource != null) {
-                String cssPath = cssResource.toExternalForm();
-                if (newValue) {
-                    // Add CSS stylesheet
-                    button.getScene().getRoot().getStylesheets().add(cssPath);
-                } else {
-                    // Remove CSS stylesheet
-                    button.getScene().getRoot().getStylesheets().remove(cssPath);
-                }
-            } else {
-                // Handle the case where the resource is not found
-                System.err.println("CSS file not found.");
-            }
-        });
-        main.getChildren().add(button);
 
         // Your remaining initialization code
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
