@@ -3,15 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.example.assurance;
-import javafx.embed.swing.SwingFXUtils;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,6 +26,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Devis;
@@ -33,6 +39,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,12 +50,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
 /**
  * FXML Controller class
  *
  * @author chaima
  */
 public class GestionDevis implements Initializable {
+    private  Path source ;
     @FXML
     private Label nomCol;
 
@@ -117,6 +129,13 @@ public class GestionDevis implements Initializable {
     private VBox vboxDevis;
     @FXML
     private VBox vboxDevis1;
+
+    public static final String ACCOUNT_SID = "ACdb45117869a081108be58ab82f838f35";
+    public static final String AUTH_TOKEN = "73d8c4d94e62cfd601451fbfd7008f8d";
+
+    static {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    }
     @FXML
     void insertOne(ActionEvent event) {
         if (tfNom.getText().isEmpty() || tfPrenom.getText().isEmpty() || tfAdresse.getText().isEmpty() ||
@@ -350,6 +369,9 @@ public class GestionDevis implements Initializable {
 
                 // Set the title
                 alert.setTitle("Ajout");
+                String recipientPhoneNumber = "+21624534106";
+                String messageBody = "votre reponse devis est disponible dés maintenant";
+                sendSMS(recipientPhoneNumber, messageBody);
 
                 // Set the header text
                 alert.setHeaderText("Reponse Devis Ajouté!");
@@ -368,8 +390,8 @@ public class GestionDevis implements Initializable {
                 tfPuissance1.setText("");
 
 
-              //  Path target = Paths.get("src/main/resources/Documents/"+selectedEmail1+".txt"); // Destination within your project directory
-               // Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+               Path target = Paths.get("src/main/resources/Documents/"+selectedEmail1+".txt"); // Destination within your project directory
+                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
 
 
             } catch (SQLException e) {
@@ -382,6 +404,8 @@ public class GestionDevis implements Initializable {
                 alert.setTitle("Erreur de saisie");
                 alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
                 alert.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -661,5 +685,37 @@ public void afficherDevis(){
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void ChooseF(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(mainStage);
+        if (selectedFile != null) {
+
+            source = Path.of(selectedFile.getAbsolutePath());
+            tfAdresse.setText(source.toString());
+
+        }
+    }
+
+    public static void sendSMS(String recipientPhoneNumber, String messageBody) {
+        String twilioPhoneNumber = "+13342039105";
+
+        Message message = Message.creator(
+                        new PhoneNumber(recipientPhoneNumber),
+                        new PhoneNumber(twilioPhoneNumber),
+                        messageBody)
+                .create();
+
+        System.out.println("SMS sent successfully. SID: " + message.getSid());
+    }
+
 
 }

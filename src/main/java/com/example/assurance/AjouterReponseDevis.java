@@ -1,5 +1,6 @@
 package com.example.assurance;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AjouterReponseDevis implements Initializable {
+
     private  Path source ;
     @FXML
     private Button boutonAjouter;
@@ -67,6 +69,10 @@ public class AjouterReponseDevis implements Initializable {
     private TextField tfPuissance;
     @FXML
     private ImageView brandingImageView;
+
+
+
+
     @FXML
     void ChooseF(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -122,7 +128,11 @@ public class AjouterReponseDevis implements Initializable {
 
                 ReponseDevis d = new ReponseDevis(selectedEmail, selectedEtat, selectedDecision,selectedDelai,  selectedDuree, selectedDocuments,selectedDate);
                 ServiceReponseDevis sp = new ServiceReponseDevis();
+
                 sp.insertOne(d);
+
+
+
 
 
                 Path target = Paths.get("src/main/resources/Documents/"+selectedEmail1+".txt"); // Destination within your project directory
@@ -142,6 +152,7 @@ public class AjouterReponseDevis implements Initializable {
 
                 stage1.show();
                 stage.close();
+
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur de saisie");
@@ -199,5 +210,9 @@ public class AjouterReponseDevis implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }}
+
+
+
+
 
 }

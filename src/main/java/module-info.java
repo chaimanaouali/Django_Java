@@ -5,6 +5,7 @@ module com.example.assurance {
     requires java.desktop;
     requires com.google.zxing;
     requires javafx.swing;
+    requires twilio;
 
 
     opens com.example.assurance to javafx.fxml;

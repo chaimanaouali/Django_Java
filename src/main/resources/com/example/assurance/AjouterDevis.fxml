@@ -4,20 +4,13 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="556.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assurance.AjouterDevis">
     <children>
-        <AnchorPane prefHeight="120.0" prefWidth="695.0" style="-fx-background-color: #DBC2AD;">
+        <AnchorPane prefHeight="120.0" prefWidth="695.0" style="-fx-background-color: #37619b;">
             <children>
-                <ImageView fx:id="brandingImageView" fitHeight="100.0" fitWidth="200.0" layoutX="32.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../images/django-removebg-preview.png" />
-                    </image>
-                </ImageView>
                 <Label layoutX="266.0" layoutY="43.0" prefHeight="18.0" prefWidth="150.0" text="Ajouter un Devis">
                     <font>
                         <Font size="19.0" />
