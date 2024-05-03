@@ -44,12 +44,13 @@ import java.util.*;
 public class AfficherMFRONT implements Initializable {
     private mecanicien selectedMecanicien;
     private final ServiceMecanicien sm = new ServiceMecanicien();
-   private String uploads = "";
+    private String uploads = "";
     FileChooser fc = new FileChooser();
     String filepath = null, filename = null, fn = null;
     List<mecanicien> list = new ArrayList<>();
     @FXML
     private TextField searchMecFront;
+
     public int getId() {
         return getId();
     }
@@ -58,11 +59,13 @@ public class AfficherMFRONT implements Initializable {
     private ListView<GridPane> listView;
     @FXML
     private ImageView qrcodeMecanicen;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showMecanicienFront();
 
     }
+
     public void showMecanicienFront() {
 
         listView.getItems().clear();
@@ -125,12 +128,12 @@ public class AfficherMFRONT implements Initializable {
         ImageView imageView = new ImageView();
         loadAndSetImage(imageView, mecanicien.getImage()); // Charger et définir l'image
 
-        Label nameLabel = new Label( mecanicien.getNom());
-        Label prenomLabel = new Label( mecanicien.getPrenom());
-        Label localLabel = new Label( mecanicien.getLocalisation());
-       // Label dispoLabel = new Label( mecanicien.getDisponibilite());
-        Label numLabel = new Label( mecanicien.getNumero());
-       // Label emailLabel = new Label( mecanicien.getEmail());
+        Label nameLabel = new Label(mecanicien.getNom());
+        Label prenomLabel = new Label(mecanicien.getPrenom());
+        Label localLabel = new Label(mecanicien.getLocalisation());
+        // Label dispoLabel = new Label( mecanicien.getDisponibilite());
+        Label numLabel = new Label(mecanicien.getNumero());
+        // Label emailLabel = new Label( mecanicien.getEmail());
         Button addButton2 = new Button("Confirmer le RDV");
         Button addButton = new Button("Creer une evaluation");
         addButton.getStyleClass().add("addbuttonevaluation");
@@ -139,7 +142,7 @@ public class AfficherMFRONT implements Initializable {
 
 
         // Ajouter les composants à VBox, en commençant par l'image
-        vbox.getChildren().addAll(imageView, nameLabel, prenomLabel, localLabel,numLabel,addButton2,qrCodeButton,addButton);
+        vbox.getChildren().addAll(imageView, nameLabel, prenomLabel, localLabel, numLabel, addButton2, qrCodeButton, addButton);
 
 
         addButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -149,7 +152,7 @@ public class AfficherMFRONT implements Initializable {
                     // Charger la vue AjouterE.fxml
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterEF.fxml"));
                     Parent root = loader.load();
-                    AjouterEF controller= loader.getController();
+                    AjouterEF controller = loader.getController();
                     controller.getNommecanicien().setText(mecanicien.getNom());
                     controller.setId_mecanicien(mecanicien.getId());
                     // Créer une nouvelle instance
@@ -167,7 +170,7 @@ public class AfficherMFRONT implements Initializable {
 
         qrCodeButton.setOnAction(event ->
                 {
-                    String qrData = "nom: " + mecanicien.getNom() + "\t prenom: " + mecanicien.getPrenom() + "\n localisation: " + mecanicien.getLocalisation() + "\t disponibilite: " + mecanicien.getDisponibilite() +"\n numero: " + mecanicien.getNumero() + "\t  image: " + mecanicien.getImage() +"\n email: " + mecanicien.getEmail();
+                    String qrData = "nom: " + mecanicien.getNom() + "\t prenom: " + mecanicien.getPrenom() + "\n localisation: " + mecanicien.getLocalisation() + "\t disponibilite: " + mecanicien.getDisponibilite() + "\n numero: " + mecanicien.getNumero() + "\t  image: " + mecanicien.getImage() + "\n email: " + mecanicien.getEmail();
 
                     // Générez et affichez le QR code
                     generateAndDisplayQRCode(qrData);
@@ -175,20 +178,19 @@ public class AfficherMFRONT implements Initializable {
 
 
         );
-        /*addButton2.setOnAction(event->
+        addButton2.setOnAction(event ->
                 {
 
                     String toPhoneNumber = "+216" + "55686196";
                     System.out.println(toPhoneNumber);
-                    SmsSender.sendVerificationCode(toPhoneNumber,mecanicien.getNom());
+                    SmsSender.sendVerificationCode(toPhoneNumber, mecanicien.getNom());
                 }
 
-                );*/
+        );
         // Définir l'espacement et l'alignement de la VBox
         vbox.setSpacing(10);
         vbox.setAlignment(Pos.CENTER);
         return vbox;
-
 
 
     }
@@ -261,6 +263,8 @@ public class AfficherMFRONT implements Initializable {
         return writableImage;
     }
 
+    // Method to generate response based on user input
+
 
     @FXML
     void btnAfficherEFRONT(ActionEvent event) {
@@ -281,12 +285,26 @@ public class AfficherMFRONT implements Initializable {
         }*/
 
     }
+
     @FXML
-    void searchMec(KeyEvent event) {}
+    void btnChatBot(ActionEvent event) {
+        try {
+            // Load the AjouterM.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatBot.fxml"));
+            Parent root = loader.load();
+
+            // Create the stage for the AjouterM scene
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Show the AjouterM stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-
-
+}
 
 
 
