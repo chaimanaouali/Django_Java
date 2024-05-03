@@ -39,11 +39,13 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import services.ServiceContrat;
+import com.example.djangoassurancejava.Mail;
 
 import services.ServiceType;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -57,6 +59,8 @@ import java.util.ResourceBundle;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import utils.MailingService;
+
 
 
 /**
@@ -194,6 +198,10 @@ public class GestionContrat implements Initializable {
     private TableView<Contrat> TypeTableView;
     @FXML
     private Button pdf;
+    @FXML
+    private Button reclamationBt;
+
+    private Mail mail;
 
     public static final String ACCOUNT_SID = "AC39da85bd72354e8b0a1846684abd93c9";
     public static final String AUTH_TOKEN = "a1ba9db8d81d810255ac2cbecca9421f";
@@ -274,6 +282,9 @@ public class GestionContrat implements Initializable {
             Contrat contrat = new Contrat(selectedDesc, dated, datef, adress_assur, numero, nom, prenom, email);
             ServiceContrat st = new ServiceContrat();
             st.ajouter(contrat);
+
+            //email
+            //sendRegistrationEmail(emailTextField.getText());
 
             //sms
 
@@ -864,6 +875,36 @@ public void afficherReponseDevis(){
                 .create();
         System.out.println("SMS sent successfully. SID: " + message.getSid());
     }
+    /*private void sendRegistrationEmail(String recipientEmail) {
+        String subject = "Welcome to Our Application!";
+        String body = "Thank you for registering with our Django desktop application. Your account has been successfully created.";
+
+        // Send email
+        MailingService.sendMail(recipientEmail, subject, body);
+    }*/
+    private void navigateToMail() {
+        try {
+            // Load the AddVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Mail.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Show the scene containing the AddVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // Refresh the table view after adding a new voiture
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void navigateToMailling(ActionEvent event) {
+        navigateToMail();
+
+    }
 
 
-}
+    }

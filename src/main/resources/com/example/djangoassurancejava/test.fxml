@@ -76,7 +76,7 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0" style="-fx-background-color: #FFF;">
                                     <children>
-                                        <ScrollPane hbarPolicy="NEVER" layoutX="10.0" layoutY="94.0" maxWidth="798.0" minWidth="798.0" prefHeight="354.0" prefWidth="798.0" style="-fx-background-color: #FFF;" vbarPolicy="NEVER">
+                                        <ScrollPane hbarPolicy="NEVER" layoutX="10.0" layoutY="94.0" maxWidth="798.0" minWidth="798.0" onDragDetected="#navigateToMailling" prefHeight="354.0" prefWidth="798.0" style="-fx-background-color: #FFF;" vbarPolicy="NEVER">
                                  <content>
                                     <VBox fx:id="vboxDevis" spacing="5.0" style="-fx-background-color: #FFF;" />
                                  </content></ScrollPane>
@@ -143,6 +143,11 @@
                                  </font>
                               </Button>
                               <Button fx:id="pdf" layoutX="144.0" layoutY="451.0" mnemonicParsing="false" onAction="#pdf" prefHeight="33.0" prefWidth="94.0" text="PDF">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="reclamationBt" layoutX="268.0" layoutY="451.0" mnemonicParsing="false" onAction="#navigateToMailling" prefHeight="34.0" prefWidth="120.0" text="Reclamation">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
