@@ -20,6 +20,25 @@
   <dependencies>
 
     <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.octo.captcha</groupId>
+      <artifactId>jcaptcha-all</artifactId>
+      <version>1.0-RC6</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-web</artifactId>
+      <version>16</version>
+    </dependency>
+
+    <dependency>
     <groupId>com.twilio.sdk</groupId>
     <artifactId>twilio</artifactId>
     <version>10.1.5</version>

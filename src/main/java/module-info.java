@@ -9,6 +9,8 @@ module com.example.user {
     requires io;
     requires twilio;
     requires org.controlsfx.controls;
+    requires jcaptcha.all;
+    requires javafx.web;
 
 
     opens com.example.user to javafx.fxml;

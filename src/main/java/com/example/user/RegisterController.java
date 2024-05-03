@@ -1,6 +1,7 @@
 package com.example.user;
 
 import javafx.application.Platform;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import models.User;
 import org.controlsfx.control.Notifications;
@@ -29,7 +32,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+
 public class RegisterController implements Initializable {
+
+
+    @FXML
+    private WebView captchaWebView;
 
     @FXML
     private Button confirmerButton;
@@ -55,6 +63,8 @@ public class RegisterController implements Initializable {
     @FXML
     private Hyperlink loginLink;
 
+
+    private final String siteKey = "6LfghYUpAAAAABhCXtTnSmlvNwjahoFhnCYzxYbR";
 
     @FXML
     void insertOne(ActionEvent event) throws SQLException {
@@ -107,6 +117,29 @@ public class RegisterController implements Initializable {
         try {
             Image brandingImage = new Image(getClass().getResource("/images/logo-django.png").toString());
             brandingImageView.setImage(brandingImage);
+
+           /* WebEngine webEngine = captchaWebView.getEngine();
+            // Load the HTML content
+            String htmlContent = "<!DOCTYPE html>\n" +
+                    "<html lang=\"en\">\n" +
+                    "<head>\n" +
+                    "    <meta charset=\"UTF-8\">\n" +
+                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                    "    <title>reCAPTCHA Demo</title>\n" +
+                    "    <!-- Include the reCAPTCHA API script -->\n" +
+                    "    <script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "    <h1>reCAPTCHA</h1>\n" +
+                    "    <!-- Include the reCAPTCHA widget -->\n" +
+                    "    <div class=\"g-recaptcha\" data-sitekey=\"6LfghYUpAAAAALwpNXErT9gjKGDMDta5U83xW_uD\n\"></div>\n" +
+                    "    <!-- Your other HTML content goes here -->\n" +
+                    "</body>\n" +
+                    "</html>";
+
+            webEngine.loadContent(htmlContent);*/
+            //webEngine.load("https://www.google.com/recaptcha/api2/anchor?ar=1&k=" + siteKey + "&hl=en&v=r20220117140947&size=normal&cb=6m39kthokk28");
+
         } catch (Exception e) {
             e.printStackTrace();
         }}
@@ -175,5 +208,8 @@ public class RegisterController implements Initializable {
 
         Platform.runLater(() -> notification.showInformation());
     }
+
+
+
 
 }

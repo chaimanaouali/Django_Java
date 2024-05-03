@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="445.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.UpdateVoiture">
     <children>
-        <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #DBC2AD;">
+        <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #37619B;">
             <children>
                 <ImageView fx:id="brandingImageView" fitHeight="120.0" fitWidth="69.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>

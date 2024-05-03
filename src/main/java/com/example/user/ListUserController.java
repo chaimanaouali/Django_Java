@@ -417,6 +417,31 @@ public class ListUserController implements Initializable {
         userTableView.getItems().addAll(filteredUsers);
     }
 
+    private void navigateToMail() {
+        try {
+            // Load the AddVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Mail.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Show the scene containing the AddVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // Refresh the table view after adding a new voiture
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void navigateToMailling(ActionEvent event) {
+        navigateToMail();
+
+    }
+
+
     }
 
 

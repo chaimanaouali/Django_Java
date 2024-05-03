@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="445.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.RegisterController">
+<AnchorPane prefHeight="528.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.RegisterController">
     <children>
-        <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #DBC2AD;">
+        <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #37619B;">
             <children>
                 <ImageView fx:id="brandingImageView" fitHeight="120.0" fitWidth="69.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -50,8 +50,8 @@
         <TextField fx:id="nomUserTextField" layoutX="92.0" layoutY="126.0" prefHeight="25.0" prefWidth="300.0" promptText="Nom" />
       <PasswordField fx:id="passwordTextField" layoutX="92.0" layoutY="307.0" prefHeight="25.0" prefWidth="300.0" promptText="Mot De Passe" />
         <TextField fx:id="emailUserTextField" layoutX="92.0" layoutY="245.0" prefHeight="25.0" prefWidth="300.0" promptText="*****@****.com" />
-        <Button fx:id="confirmerButton" layoutX="419.0" layoutY="386.0" mnemonicParsing="false" onAction="#insertOne" style="-fx-background-color: #2A914D;" text="Confirmer" textFill="WHITE" />
-        <Button fx:id="cancelButton" layoutX="14.0" layoutY="386.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
+        <Button fx:id="confirmerButton" layoutX="357.0" layoutY="427.0" mnemonicParsing="false" onAction="#insertOne" style="-fx-background-color: #2A914D;" text="Confirmer" textFill="WHITE" />
+        <Button fx:id="cancelButton" layoutX="86.0" layoutY="427.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
       <Hyperlink fx:id="loginLink" layoutX="82.0" layoutY="348.0" onAction="#loginLinkOnAction" text="Connecter" />
     </children>
 </AnchorPane>

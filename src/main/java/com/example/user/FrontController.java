@@ -169,6 +169,8 @@ public class FrontController implements Initializable {
     @FXML
     void ajouterButtonOnAction(ActionEvent event) {
         navigateToAddVoiture();
+        refreshList();
+
     }
 
     public void refreshList() {

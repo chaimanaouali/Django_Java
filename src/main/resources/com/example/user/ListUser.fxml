@@ -79,6 +79,7 @@
                 <Label fx:id="loginLabel" layoutX="1045.0" layoutY="60.0" text="Admin" />
                 <TextField fx:id="searchField" layoutX="551.0" layoutY="123.0" promptText="Recherche" />
                 <Pagination fx:id="pagination" layoutX="293.0" layoutY="372.0" prefHeight="59.0" prefWidth="700.0" />
+            <Button layoutX="571.0" layoutY="543.0" mnemonicParsing="false" onAction="#navigateToMailling" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #37619B;" text="Mail" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>

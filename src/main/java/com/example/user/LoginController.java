@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import jdk.internal.access.JavaNetUriAccess;
 import models.User;
 import services.ServiceUser;
 import utils.Hash;

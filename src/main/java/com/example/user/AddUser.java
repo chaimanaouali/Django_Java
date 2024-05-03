@@ -2,7 +2,9 @@ package com.example.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -93,7 +95,9 @@ public class AddUser implements Initializable {
         } else {
                     st.insertOne(user);
                     System.out.println("User added successfully.");
-                    if (listUserController != null) {
+
+
+            if (listUserController != null) {
                         listUserController.refreshList();
                     }
                     Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -116,5 +120,6 @@ public class AddUser implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }}
+
 
 }
