@@ -82,7 +82,7 @@ public class Mail {
             message.setSubject(subject); // Set the subject of the email
             message.setText(mmessage); // Set the content of the email
             message.setContent(
-                    "<h1 style =\"color:red\" >DON'T MISS YOUR APPOINTEMENT !! </h1> <br/> <img width=\"50%\" height=\"50%\" src=https://i.imgur.com/iYcBkOf.png>",
+                    "<h1 style =\"color:red\" >Django Assurance </h1> <br> <h3>"+messageArea.getText()+"</h3>",
                     "text/html");
             // Enable debugging
             session.setDebug(true);

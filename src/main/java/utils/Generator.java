@@ -7,7 +7,7 @@ public class Generator {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         // Create a StringBuilder to store the generated code
-        StringBuilder codeBuilder = new StringBuilder();
+        String codeBuilder = new String();
 
         // Create an instance of Random
         Random random = new Random();
@@ -16,10 +16,10 @@ public class Generator {
         for (int i = 0; i < length; i++) {
             int randomIndex = random.nextInt(characters.length());
             char randomChar = characters.charAt(randomIndex);
-            codeBuilder.append(randomChar);
+            codeBuilder+=randomChar;
         }
 
         // Convert StringBuilder to String and return
-        return codeBuilder.toString();
+        return codeBuilder;
     }
 }

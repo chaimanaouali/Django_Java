@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebEngine;
@@ -24,6 +21,7 @@ import utils.Hash;
 import utils.InputValidation;
 import utils.SessionManager;
 import utils.MailingService;
+import utils.CaptchaGenerator;
 
 
 
@@ -63,6 +61,12 @@ public class RegisterController implements Initializable {
     @FXML
     private Hyperlink loginLink;
 
+    @FXML
+    private Label captchaLabel;
+
+    @FXML
+    private TextField captchaTF;
+
 
     private final String siteKey = "6LfghYUpAAAAABhCXtTnSmlvNwjahoFhnCYzxYbR";
 
@@ -73,6 +77,9 @@ public class RegisterController implements Initializable {
         String selectedEmailUser = (String) emailUserTextField.getText();
         String passwordUser = passwordTextField.getText();
         String selectedRoles = "[]";
+        String captchaTFText = captchaTF.getText();
+
+
 
         String hashedpwd = Hash.generateHash(passwordUser);
 // Create a new Transport object with retrieved values
@@ -88,6 +95,12 @@ public class RegisterController implements Initializable {
             InputValidation.showAlert("Input Error", null, "Please enter a valid email address.");
         } else if (!InputValidation.isValidPassword(passwordUser)) {
             InputValidation.showAlert("Input Error", null, "Please enter a valid password (at least 8 characters with at least one digit and one letter).");
+        } else if (!captchaLabel.getText().equals(captchaTFText)) {
+            InputValidation.showAlert("Input Error", null, "Captcha is not valid");
+            String captcha = CaptchaGenerator.generateCaptcha();
+            System.out.println("Captcha: "+ captcha);
+            captchaLabel.setText(captcha);
+            captchaTF.setText("");
         } else {
             st.insertOne(user);
             System.out.println("User added successfully.");
@@ -139,7 +152,9 @@ public class RegisterController implements Initializable {
 
             webEngine.loadContent(htmlContent);*/
             //webEngine.load("https://www.google.com/recaptcha/api2/anchor?ar=1&k=" + siteKey + "&hl=en&v=r20220117140947&size=normal&cb=6m39kthokk28");
-
+            String captcha = CaptchaGenerator.generateCaptcha();
+            System.out.println("Captcha: "+ captcha);
+            captchaLabel.setText(captcha);
         } catch (Exception e) {
             e.printStackTrace();
         }}
