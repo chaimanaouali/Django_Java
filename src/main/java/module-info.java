@@ -8,6 +8,7 @@ module com.example.djangoassurancejava {
     requires com.google.zxing;
     requires javafx.swing;
     requires twilio;
+    requires mail;
 
     opens com.example.djangoassurancejava to javafx.fxml;
     exports com.example.djangoassurancejava;

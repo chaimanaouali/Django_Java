@@ -63,8 +63,8 @@ public class AjouterType implements Initializable {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-
-    /*@FXML
+/*
+    @FXML
     void addButtonOnAction(ActionEvent event) {
        String type_de_couverture = typedecouvertureTextField.getText().trim();
         String description = descriptionTextField.getText().trim();
@@ -85,7 +85,7 @@ public class AjouterType implements Initializable {
         String selecteddescription = descriptionTextField.getText();
 
         // Regex to match only letters (and spaces to allow multi-word entries)
-        String regex = "^[A-Za-z ]+$";
+
 
         // Check if any field is empty
         if (selectedtypedecouverture.isEmpty() || selecteddescription.isEmpty()) {
@@ -93,11 +93,6 @@ public class AjouterType implements Initializable {
             return;
         }
 
-        // Check if the fields contain only letters (and spaces)
-        if (!selectedtypedecouverture.matches(regex) || !selecteddescription.matches(regex)) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Les champs ne doivent contenir que des lettres.");
-            return;
-        }
 
         // Create a new Type object with retrieved values
         Type type = new Type(selecteddescription, selectedtypedecouverture);

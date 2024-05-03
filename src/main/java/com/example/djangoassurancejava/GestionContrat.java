@@ -416,7 +416,6 @@ public class GestionContrat implements Initializable {
         String selecteddescription = descriptionTextField.getText();
 
         // Regex to match only letters (and spaces to allow multi-word entries)
-        String regex = "^[A-Za-z ]+$";
 
         // Check if any field is empty
         if (selectedtypedecouverture.isEmpty() || selecteddescription.isEmpty()) {
@@ -424,11 +423,7 @@ public class GestionContrat implements Initializable {
             return;
         }
 
-        // Check if the fields contain only letters (and spaces)
-        if (!selectedtypedecouverture.matches(regex) || !selecteddescription.matches(regex)) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Les champs ne doivent contenir que des lettres.");
-            return;
-        }
+        // Check if the fields contain only letters (and spaces
 
         // Create a new Type object with retrieved values
         Type type = new Type(selecteddescription, selectedtypedecouverture);
