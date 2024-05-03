@@ -6,6 +6,9 @@ module com.example.assurance {
     requires com.google.zxing;
     requires javafx.swing;
     requires twilio;
+   // requires mail;
+    requires java.mail;
+    requires org.controlsfx.controls;
 
 
     opens com.example.assurance to javafx.fxml;

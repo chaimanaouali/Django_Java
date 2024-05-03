@@ -35,6 +35,7 @@ import services.ServiceDevis;
 import services.ServiceReponseDevis;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -370,7 +371,7 @@ public class GestionDevis implements Initializable {
                 // Set the title
                 alert.setTitle("Ajout");
                 String recipientPhoneNumber = "+21624534106";
-                String messageBody = "chlebsa taw!";
+                String messageBody = "votre reponse devis est ajouté avec succés";
                 sendSMS(recipientPhoneNumber, messageBody);
 
                 // Set the header text
@@ -445,27 +446,37 @@ public class GestionDevis implements Initializable {
 
 
     public void deleteDevis(int id){
+        // Afficher une boîte de dialogue de confirmation
+        int confirmation = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir supprimer ce devis ?", "Confirmation de suppression", JOptionPane.YES_NO_OPTION);
 
-        ServiceDevis st = new ServiceDevis();
-        try {
-            st.deleteOne(id);
-            System.out.println("devis deleted successfully.");
-            afficherDevis();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Failed to delete devis: " + e.getMessage());
+        // Vérifier la réponse de l'utilisateur
+        if (confirmation == JOptionPane.YES_OPTION) {
+            ServiceDevis st = new ServiceDevis();
+            try {
+                st.deleteOne(id);
+                System.out.println("devis deleted successfully.");
+                afficherDevis();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println("Failed to delete devis: " + e.getMessage());
+            }
         }
     }
     public void deleteReponseDevis(int id){
+        // Afficher une boîte de dialogue de confirmation
+        int confirmation = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir supprimer cette Reponse Devis ?", "Confirmation de suppression", JOptionPane.YES_NO_OPTION);
 
-        ServiceReponseDevis st = new ServiceReponseDevis();
-        try {
-            st.deleteOne(id);
-            System.out.println("devis deleted successfully.");
-            afficherReponseDevis();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Failed to delete devis: " + e.getMessage());
+        // Vérifier la réponse de l'utilisateur
+        if (confirmation == JOptionPane.YES_OPTION) {
+            ServiceReponseDevis st = new ServiceReponseDevis();
+            try {
+                st.deleteOne(id);
+                System.out.println("devis deleted successfully.");
+                afficherReponseDevis();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println("Failed to delete devis: " + e.getMessage());
+            }
         }
     }
 public void afficherDevis(){
@@ -725,6 +736,29 @@ public void afficherDevis(){
                 .create();
 
         System.out.println("SMS sent successfully. SID: " + message.getSid());
+    }
+    private void navigateToMail() {
+        try {
+            // Load the AddVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Mail.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Show the scene containing the AddVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // Refresh the table view after adding a new voiture
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void navigateToMailling(ActionEvent event) {
+        navigateToMail();
+
     }
 
 

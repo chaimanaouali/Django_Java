@@ -5,6 +5,8 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -17,6 +19,11 @@
                         <Font size="19.0" />
                     </font>
                 </Label>
+            <ImageView fitHeight="97.0" fitWidth="158.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Users/Lenovo/Downloads/django-removebg-preview.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
         <Label layoutX="11.0" layoutY="144.0" prefHeight="18.0" prefWidth="118.0" text="Etat" />

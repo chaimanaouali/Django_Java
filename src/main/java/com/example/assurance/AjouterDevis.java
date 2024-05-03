@@ -1,5 +1,6 @@
 package com.example.assurance;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.Devis;
 import services.ServiceDevis;
+import org.controlsfx.control.Notifications;
 
 
 import java.io.IOException;
@@ -113,6 +115,9 @@ public class AjouterDevis implements Initializable {
                 Devis d = new Devis(selectedNom, selectedPrenom, selectedAdresse, selectedEmail, selectedDatenaiss, selectedNumtel, selectedModele, selectedPuissance, selectedPrix);
                 ServiceDevis sp = new ServiceDevis();
                 sp.insertOne(d);
+
+                showNotification("Success", "Email reçus !!");
+
                 Stage stage = (Stage) cancelButton.getScene().getWindow();
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherDevis.fxml"));
@@ -189,5 +194,13 @@ public class AjouterDevis implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }}
+
+    private void showNotification(String title, String content) {
+        Notifications notification =Notifications.create()
+                .title(title)
+                .text(content);
+
+        Platform.runLater(() -> notification.showInformation());
+    }
 
 }
