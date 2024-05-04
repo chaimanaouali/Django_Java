@@ -9,6 +9,8 @@ module com.example.djangoassurancejava {
     requires javafx.swing;
     requires twilio;
     requires java.mail;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
     //requires mail;
     //requires mail;
     //requires mail;

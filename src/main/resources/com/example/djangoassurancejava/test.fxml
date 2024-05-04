@@ -152,6 +152,11 @@
                                     <Font size="14.0" />
                                  </font>
                               </Button>
+                              <Button fx:id="excelbt" layoutX="415.0" layoutY="450.0" mnemonicParsing="false" onAction="#writeToExcel" prefHeight="34.0" prefWidth="120.0" text="Excel">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -264,7 +269,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
                            <children>
-                              <Button fx:id="boutonAjouter1" layoutX="593.0" layoutY="379.0" mnemonicParsing="false" onAction="#insertOne1" prefHeight="39.0" prefWidth="86.0" text="Ajouter" />
+                              <Button fx:id="boutonAjouter1" layoutX="583.0" layoutY="428.0" mnemonicParsing="false" onAction="#insertOne1" prefHeight="39.0" prefWidth="86.0" text="Ajouter" />
                               <Label layoutX="144.0" layoutY="138.0" prefHeight="38.0" prefWidth="190.0" styleClass="label" text="Type de couverture:" textAlignment="CENTER" textFill="#37619b">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />

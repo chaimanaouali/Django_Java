@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.example.djangoassurancejava;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -30,7 +29,6 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Contrat;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import models.Type;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -38,18 +36,22 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import services.ServiceContrat;
-import com.example.djangoassurancejava.Mail;
 
+import services.ServiceExcel;
 import services.ServiceType;
-import java.awt.Font;
-import java.awt.Font;
+
+import java.awt.Color;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -61,8 +63,6 @@ import java.util.ResourceBundle;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import utils.MailingService;
-
 
 
 /**
@@ -202,13 +202,23 @@ public class GestionContrat implements Initializable {
     private Button pdf;
     @FXML
     private Button reclamationBt;
-
+    @FXML
+    private Button excelbt;
     private Mail mail;
 
     public static final String ACCOUNT_SID = "AC39da85bd72354e8b0a1846684abd93c9";
     public static final String AUTH_TOKEN = "a1ba9db8d81d810255ac2cbecca9421f";
     static { Twilio.init(ACCOUNT_SID, AUTH_TOKEN); }
+    public ServiceExcel excelService = new ServiceExcel();
+    public ServiceContrat serviceContrat = new ServiceContrat();
 
+
+    @FXML
+    public void writeToExcel(ActionEvent event) throws SQLException{
+        List<Contrat> contrats=serviceContrat.recuperer();
+        excelService.writeToExcel(contrats,"C:/Users/Lenovo/Desktop/zahra/Contrats.xlsx");
+
+    }
 
     @FXML
     public void insertOne(ActionEvent event) throws SQLException {
@@ -950,6 +960,4 @@ public void afficherReponseDevis(){
         navigateToMail();
 
     }
-
-
-    }
+}
