@@ -11,8 +11,13 @@ module com.example.user {
     requires org.controlsfx.controls;
     requires jcaptcha.all;
     requires javafx.web;
-
+    requires com.google.zxing;
+    requires javafx.swing;
+    requires org.apache.pdfbox;
+    requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
+
+
 
     requires jdk.javadoc;
 

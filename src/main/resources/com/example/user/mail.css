@@ -1,0 +1,40 @@
+/* mail.css */
+
+/* Style for the title */
+.title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* Style for the labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Style for the text area */
+.text-area {
+    -fx-prompt-text-fill: #999999;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+}
+
+/* Style for the text fields */
+.text-field {
+    -fx-prompt-text-fill: #999999;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+}
+
+/* Style for the send button */
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #4CAF50;
+    -fx-border-color: transparent;
+}
+
+/* Style for the send button when hovered */
+.button:hover {
+    -fx-background-color: #45a049;
+}

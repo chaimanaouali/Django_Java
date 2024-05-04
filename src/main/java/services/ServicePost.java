@@ -1,5 +1,6 @@
 package services;
 
+import models.Devis;
 import models.Post;
 import utils.DBconnection;
 import utils.DBconnection;
@@ -129,6 +130,22 @@ public class ServicePost implements CRUD<Post> {
 
         return posts;
     }
+
+    @Override
+    public List<Post> rechercheF(String vari) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public Devis rechercheId(int idd) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public void deleteOne(Integer t) throws SQLException {
+
+    }
+
     public void updateLikeCount(long postId, Post post) throws SQLException {
         if (post.getTitre().isEmpty()) {
             System.err.println("Error updating post: Invalid post title.");

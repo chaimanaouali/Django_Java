@@ -1,5 +1,6 @@
 package services;
 
+import models.Devis;
 import models.User;
 import models.Voiture;
 import utils.DBconnection;
@@ -107,6 +108,21 @@ public class ServiceVoiture implements CRUD<Voiture> {
         }
 
         return voitureList;
+    }
+
+    @Override
+    public List<Voiture> rechercheF(String vari) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public Devis rechercheId(int idd) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public void deleteOne(Integer t) throws SQLException {
+
     }
 
     public List<Voiture> selectVoitureByUser(User u) throws SQLException {

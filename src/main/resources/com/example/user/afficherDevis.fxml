@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.afficherDevis">
+    <children>
+        <TableView fx:id="devisTableView" layoutY="116.0" prefHeight="199.0" prefWidth="700.0">
+            <columns>
+                <TableColumn fx:id="idCol" prefWidth="50.39999234676361" text="ID" visible="false" />
+                <TableColumn fx:id="nomCol" maxWidth="100.0" prefWidth="49.600006103515625" text="NOM" />
+                <TableColumn fx:id="prenomCol" maxWidth="154.39996337890625" prefWidth="67.20001983642578" text="PRENOM" />
+                <TableColumn fx:id="emailCol" maxWidth="262.4000244140625" prefWidth="81.60003662109375" text="EMAIL" />
+                <TableColumn fx:id="adresseCol" maxWidth="312.7999572753906" prefWidth="59.20001220703125" text="Adresse" />
+                <TableColumn fx:id="datenaissCol" maxWidth="342.4000549316406" prefWidth="76.0" text="Date Naissance" />
+            <TableColumn fx:id="modeleCol1" maxWidth="342.4000549316406" prefWidth="79.99993896484375" text="Modele" />
+            <TableColumn fx:id="puissanceCol11" maxWidth="342.4000549316406" prefWidth="63.199981689453125" text="Puissance" />
+            <TableColumn fx:id="prixCol111" maxWidth="342.4000549316406" prefWidth="66.4000244140625" text="Prix" />
+            <TableColumn fx:id="numtelCol1111" maxWidth="342.4000549316406" prefWidth="101.60003662109375" text="Num Tel" />
+            </columns>
+        </TableView>
+        <AnchorPane prefHeight="78.0" prefWidth="700.0" style="-fx-background-color: #DBC2AD;">
+            <children>
+                <ImageView fitHeight="69.0" fitWidth="87.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/django-removebg-preview.png" />
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="-57.0" layoutY="-6.0" scaleX="3.0" scaleY="3.0" scaleZ="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devis" translateX="200.0" translateY="50.0" />
+            </children>
+        </AnchorPane>
+        <Button fx:id="cancelButton" layoutX="459.0" layoutY="468.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #DBC2AD;" text="Fermer" />
+        <Button fx:id="supprimerButton" layoutX="555.0" layoutY="468.0" mnemonicParsing="false" onAction="#AjoutOne" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #2A914D;" text="Ajouter" textFill="WHITE" />
+      <Button fx:id="supprimerButton1" layoutX="34.0" layoutY="468.0" mnemonicParsing="false" onAction="#getReponseDevis" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #B0C4DE;" text="ReponseDevis" textFill="WHITE" />
+      <TextField fx:id="recherchee" layoutX="27.0" layoutY="350.0" onKeyReleased="#recherche" />
+      <Button layoutX="191.0" layoutY="451.0" mnemonicParsing="false" onAction="#chart" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #B0C4DE;" text="Chart" textFill="WHITE" />
+    </children>
+</AnchorPane>

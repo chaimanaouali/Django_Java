@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxWidth="796.0" minWidth="796.0" prefHeight="54.0" prefWidth="796.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.itemContrat">
+   <children>
+      <Button fx:id="btqr" mnemonicParsing="false" prefHeight="52.0" prefWidth="100.0" style="-fx-background-color: transparent;;">
+         <graphic>
+            <ImageView fx:id="typeCol" fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../screenshotqr/screenshot.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="debutCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="127.0" text="Date Debut Contrat" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="finCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="117.0" text="Date Fin Contrat" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="adresseCol" alignment="CENTER" prefHeight="54.0" prefWidth="78.0" text="Adresse" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="numeroCol" alignment="CENTER" prefHeight="54.0" prefWidth="86.0" text="Numero" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="nomCol" alignment="CENTER" prefHeight="54.0" prefWidth="81.0" text="Nom" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="prenomCol" alignment="CENTER" prefHeight="54.0" prefWidth="88.0" text="Prenom" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailCol" alignment="CENTER" prefHeight="54.0" prefWidth="90.0" text="Email" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="deleteB" ellipsisString="" mnemonicParsing="false" prefHeight="39.0" prefWidth="16.0" style="-fx-background-color: red;" text="id">
+         <font>
+            <Font />
+         </font>
+         <HBox.margin>
+            <Insets top="7.0" />
+         </HBox.margin>
+      </Button>
+      <Label fx:id="idCol" alignment="CENTER" contentDisplay="CENTER" maxHeight="54.0" maxWidth="0.0" minHeight="54.0" minWidth="0.0" prefHeight="54.0" prefWidth="0.0" text="id" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="idtypeCol" alignment="CENTER" prefHeight="54.0" prefWidth="0.0" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</HBox>

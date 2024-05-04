@@ -1,6 +1,7 @@
 package services;
 
 import models.Commentaire;
+import models.Devis;
 import models.Post;
 import utils.DBconnection;
 
@@ -108,6 +109,21 @@ public class ServiceCommentaire implements CRUD<Commentaire> {
                 }
 
                 return commentaireList;
+        }
+
+        @Override
+        public List<Commentaire> rechercheF(String vari) throws SQLException {
+                return null;
+        }
+
+        @Override
+        public Devis rechercheId(int idd) throws SQLException {
+                return null;
+        }
+
+        @Override
+        public void deleteOne(Integer t) throws SQLException {
+
         }
 
         public List<String> getAllPostTitles() throws SQLException {

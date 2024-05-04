@@ -1,5 +1,6 @@
 package services;
 
+import models.Devis;
 import models.Voiture;
 
 import java.sql.SQLException;
@@ -12,4 +13,9 @@ public interface CRUD<T> {
     void updateOne(T t) throws SQLException;
     void deleteOne(T t) throws SQLException;
     List<T> selectAll() throws SQLException;
+    List<T> rechercheF(String vari) throws SQLException;
+    Devis rechercheId(int idd) throws SQLException;
+    void deleteOne(Integer t) throws SQLException;
+
+
 }
