@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.AfficherE">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
+         <children>
+            <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                     </image></ImageView>
+                  <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
+                  <Button fx:id="MecanicienButton" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#btnMecanicien" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Mécaniciens" textFill="WHITE" />
+                  <Button fx:id="EvaluationButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnEvaluation" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Evaluations" textFill="WHITE" />
+               </children>
+            </VBox>
+            <Label layoutX="248.0" layoutY="24.0" text="Tournois">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="82.0" layoutX="220.0" stroke="#37619b" strokeType="INSIDE" width="717.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="880.0" layoutY="-14.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="16.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="913.0" layoutY="-24.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="42.0" />
+
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="20.0" layoutX="210.0" layoutY="74.0" stroke="#37619b" strokeType="INSIDE" width="27.0" />
+            <Circle fill="WHITE" layoutX="236.0" layoutY="96.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" />
+            <Label layoutX="449.0" layoutY="15.0" text="Evaluations" textFill="#dfdfdf">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <TableView fx:id="TableEvaluation" layoutX="347.0" layoutY="189.0" prefHeight="200.0" prefWidth="557.0">
+               <columns>
+                  <TableColumn fx:id="IdE" minWidth="0.0" prefWidth="0.0" text="ID" />
+                  <TableColumn fx:id="mecanicien_id" minWidth="9.600006103515625" prefWidth="92.0" text="Mécanicien_id" />
+                  <TableColumn fx:id="NomE" prefWidth="91.20001220703125" text="Nom" />
+                  <TableColumn fx:id="prenomE" prefWidth="105.60003662109375" text="Prénom" />
+                  <TableColumn fx:id="AvisE" prefWidth="138.4000244140625" text="Avis" />
+                  <TableColumn fx:id="Date_eval" prefWidth="136.7999267578125" text="Date_evaluation" />
+               </columns>
+            </TableView>
+            <Button layoutX="481.0" layoutY="400.0" mnemonicParsing="false" onAction="#btnAjouterAffichageE" prefHeight="26.0" prefWidth="90.0" text="Ajouter" textFill="#472c99" />
+            <Button layoutX="626.0" layoutY="400.0" mnemonicParsing="false" onAction="#btnModifierEAffichage" prefHeight="26.0" prefWidth="90.0" text="Modifier" textFill="#6e4607" />
+            <Button layoutX="766.0" layoutY="400.0" mnemonicParsing="false" onAction="#btnsupprimerE" prefHeight="26.0" prefWidth="90.0" text="Supprimer" textFill="#128139" />
+            <Button layoutX="833.0" layoutY="152.0" mnemonicParsing="false" onAction="#btnpdfEval" prefHeight="26.0" prefWidth="45.0" text="PDF" />
+            <Button layoutX="780.0" layoutY="152.0" mnemonicParsing="false" onAction="#btnExcelEval" text="EXCEL" />
+            <TextField fx:id="searchEvalBack" layoutX="347.0" layoutY="152.0" onKeyPressed="#rechercheEval" prefHeight="26.0" prefWidth="231.0" promptText="Evaluation" />
+            <Button layoutX="586.0" layoutY="152.0" mnemonicParsing="false" onAction="#btntrierEBack" text="Trier" />
+            <Label fx:id="labelInfo" layoutX="578.0" layoutY="524.0" text="Informations sur les mécaniciens" />
+         </children>
+      </AnchorPane>
+      <PieChart fx:id="pieChart" layoutX="374.0" layoutY="471.0" prefHeight="159.0" prefWidth="210.0" />
+
+   </children>
+</AnchorPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxWidth="869.0" minWidth="796.0" prefHeight="512.0" prefWidth="869.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ModifierE">
+   <children>
+      <Label layoutX="29.0" layoutY="111.0" prefHeight="18.0" prefWidth="551.0" text="Mécanicien_id" />
+      <Label layoutX="30.0" layoutY="154.0" prefHeight="18.0" prefWidth="551.0" text="Nom" />
+      <TextField fx:id="NomE" layoutX="115.0" layoutY="151.0" prefHeight="26.0" prefWidth="478.0" promptText="Saisir votre nom..." />
+      <Label layoutX="31.0" layoutY="196.0" prefHeight="18.0" prefWidth="551.0" text="Prénom" />
+      <TextField fx:id="PrenomE" layoutX="115.0" layoutY="192.0" prefHeight="26.0" prefWidth="478.0" promptText="Saisir votre prénom..." />
+      <Label layoutX="33.0" layoutY="235.0" prefHeight="18.0" prefWidth="551.0" text="Avis" />
+      <Label layoutX="-212.0" layoutY="280.0" prefHeight="18.0" prefWidth="551.0" text="Numéro" />
+      <ImageView fitHeight="42.0" fitWidth="45.0" layoutX="41.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="AvisE" layoutX="114.0" layoutY="232.0" prefHeight="26.0" prefWidth="478.0" promptText="Saisir votre avis..." />
+      <Label layoutX="34.0" layoutY="280.0" prefHeight="18.0" prefWidth="551.0" text="Date" />
+      <DatePicker fx:id="dateE" layoutX="108.0" layoutY="277.0" promptText="Choisir une date" />
+      <Button layoutX="506.0" layoutY="346.0" mnemonicParsing="false" onAction="#btnmodifierE" text="Enregistrer" textFill="#128139" />
+      <Button layoutX="335.0" layoutY="349.0" mnemonicParsing="false" onAction="#btnafficherModifE" prefHeight="26.0" prefWidth="74.0" text="Afficher" textFill="#472c99" />
+      <ComboBox fx:id="comboboxmec" layoutX="114.0" layoutY="108.0" prefWidth="150.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="34.0" text="Modifier Evaluation" textAlignment="CENTER">
+         <font>
+            <Font name="Times New Roman" size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ide" layoutX="657.0" layoutY="38.0" prefHeight="26.0" prefWidth="30.0" />
+   </children>
+</AnchorPane>

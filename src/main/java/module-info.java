@@ -19,10 +19,17 @@ module com.example.user {
 
 
 
+    requires com.google.protobuf;
+    requires TrayNotification;
+    requires java.persistence;
+
+
+
     requires jdk.javadoc;
 
     requires itextpdf;
 
+    opens models to javafx.base;
 
     opens com.example.user to javafx.fxml;
     exports com.example.user;

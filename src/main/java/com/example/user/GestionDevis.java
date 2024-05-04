@@ -826,7 +826,7 @@ public void afficherDevis(){
                     contentStream.close();
 
                     // Save and open the document
-                    String outputPath = "C:/Users/Lenovo/Desktop/chaima/devis_" + dev.getId() + ".pdf";
+                    String outputPath = "C:/Users/garal/OneDrive/Bureau/zahra/contrat.pdf" + dev.getId() + ".pdf";
                     File file = new File(outputPath);
                     document.save(file);
                     document.close();
