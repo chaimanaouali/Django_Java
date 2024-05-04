@@ -85,7 +85,7 @@ public class UpdateContrat implements Initializable {
         }
         typedecouvertureChoiceBox.getSelectionModel().selectFirst();
 
-
+    System.out.print("kkkk"+selectedcontrat);
         selectedcontrat = contrat;
         // Populate the fields in the UI with the data from selectedUser
         nomTextField.setText(selectedcontrat.getNom());
