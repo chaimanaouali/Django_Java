@@ -42,8 +42,9 @@ import services.ServiceContrat;
 import com.example.djangoassurancejava.Mail;
 
 import services.ServiceType;
-
+import java.awt.Font;
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -529,28 +530,44 @@ public class GestionContrat implements Initializable {
     }
 
 
-   public void deleteDevis(int id){
+    public void deleteDevis(int id){
 
-        ServiceContrat st = new ServiceContrat();
-        try {
-            st.supprimer(id);
-            System.out.println("Contrat deleted successfully.");
-            afficherDevis();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Failed to delete Contrat: " + e.getMessage());
+        // Affichage de la boîte de dialogue de confirmation
+        int choice = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir supprimer ce contrat ?", "Confirmation de suppression", JOptionPane.YES_NO_OPTION);
+
+        // Vérification de la réponse de l'utilisateur
+        if(choice == JOptionPane.YES_OPTION) {
+            ServiceContrat st = new ServiceContrat();
+            try {
+                st.supprimer(id);
+                System.out.println("Contrat deleted successfully.");
+                afficherDevis();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println("Failed to delete Contrat: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Suppression annulée par l'utilisateur.");
         }
     }
     public void deleteReponseDevis(int id){
 
-        ServiceType st = new ServiceType();
-        try {
-            st.supprimer(id);
-            System.out.println("Type deleted successfully.");
-            afficherReponseDevis();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Failed to delete type: " + e.getMessage());
+        // Affichage de la boîte de dialogue de confirmation
+        int choice = JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir supprimer ce type de contrat ?", "Confirmation de suppression", JOptionPane.YES_NO_OPTION);
+
+        // Vérification de la réponse de l'utilisateur
+        if(choice == JOptionPane.YES_OPTION) {
+            ServiceType st = new ServiceType();
+            try {
+                st.supprimer(id);
+                System.out.println("Type deleted successfully.");
+                afficherReponseDevis();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println("Failed to delete type: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Suppression annulée par l'utilisateur.");
         }
     }
 public void afficherReponseDevis(){

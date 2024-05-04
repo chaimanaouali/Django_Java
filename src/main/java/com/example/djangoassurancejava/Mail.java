@@ -54,7 +54,7 @@ public class Mail {
     void sendEmail(ActionEvent event) {
         String to = toField.getText();
         String subject = subjectField.getText();
-        String mmessage = messageArea.getText();
+        //String mmessage = messageArea.getText();
         String username = "zahra.zellazi@esprit.tn";
         String password = "lfpl lmhr jeru enfs";
 
@@ -74,16 +74,15 @@ public class Mail {
                     }
                 });
 
+        String messageEmail=messageArea.getText();
         try {
             // Create a message
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("zahra.zellazi@esprit.tn"));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject(subject); // Set the subject of the email
-            message.setText(mmessage); // Set the content of the email
-            message.setContent(
-                    "<h1 style =\"color:red\" >DON'T MISS YOUR APPOINTEMENT !! </h1> <br/> <img width=\"50%\" height=\"50%\" src=https://i.imgur.com/iYcBkOf.png>",
-                    "text/html");
+            message.setText(messageEmail); // Set the content of the email
+            //message.setContent(messageEmail,"text/html");
             // Enable debugging
             session.setDebug(true);
 
