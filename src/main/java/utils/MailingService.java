@@ -6,10 +6,10 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class MailingService {
-    private static final String USERNAME = "jordi.herzog@ethereal.email";
+    private static final String USERNAME = "nickolas.mayer@ethereal.email";
     private static final String HOST = "smtp.ethereal.email";
     private static final String PORT = "587";
-    private static final String PASSWORD = "ZZh2FW4E1v6JNxD9sn";
+    private static final String PASSWORD = "CCaVSqRjzauCKyMBrM";
 
     public static void sendMail(String to, String subject, String body) {
         Properties properties = new Properties();
@@ -47,7 +47,7 @@ public class MailingService {
 
             // Send message
             Transport.send(message);
-            System.out.println("Sent message successfully!");
+            System.out.println("Sent email successfully!");
         } catch (MessagingException mex) {
             mex.printStackTrace();
             // Handle exception properly

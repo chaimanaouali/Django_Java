@@ -32,6 +32,7 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import utils.MailingService;
+import org.controlsfx.control.Notifications;
 
 
 import java.awt.*;
@@ -429,21 +430,20 @@ public class itemPost {
             gmailScaleTransition.play();
 
             popup.hide();
-            // Prepare email data
+
+// Prepare email data
             String recipientEmail = "django@esprit.com"; // Replace with the recipient's email address
-            String subject = "Check out this post!";
-            String body = "Hey,\n\nI thought you might be interested in this post:\n" +
-                    post.getDescription() + "\n\nYou can view it here: [insert post link]\n\nRegards,\n[Django]";
+            String subject = "Check out this post: " + post.getTitre();
+            String body = "Hey,\n\nI thought you might be interested in this post:\n\n" +
+                    "Title: " + post.getTitre() + "\n\nDescription:\n" + post.getDescription() +
+                    "\n\nYou can view it here: [insert post link]\n\nRegards,\n[Django]";
+
 
             // Send email
             MailingService.sendMail(recipientEmail, subject, body);
-
+            showNotification("Success", "Email shared successfully!");
             // Show confirmation dialog
-            Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
-            confirmation.initStyle(StageStyle.UNDECORATED);
-            confirmation.setHeaderText(null);
-            confirmation.setContentText("Email sent successfully!");
-            confirmation.showAndWait();
+
         });
 
         // Set the fitHeight and fitWidth for the icons
@@ -485,6 +485,13 @@ public class itemPost {
                 popup.hide();
             }
         });
+    }
+
+    private void showNotification(String title, String content) {
+        Notifications.create()
+                .title(title)
+                .text(content)
+                .showInformation();
     }
 
     private ScaleTransition createScaleTransition(ImageView imageView) {

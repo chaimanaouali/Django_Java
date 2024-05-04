@@ -1,5 +1,7 @@
 package com.example.django2;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +58,8 @@ public class AjouterPostXML implements Initializable {
 
     @FXML
     private ImageView brandingImageView;
+    @FXML
+    private ComboBox<String> cbCategories;
 
     private Image image;
 
@@ -71,7 +75,7 @@ public class AjouterPostXML implements Initializable {
 
     @FXML
     void AjouterPost(ActionEvent event) {
-        if (tfTitre.getText().isEmpty() && tfDescription.getText().isEmpty() && tfCategories.getText().isEmpty()) {
+        if (tfTitre.getText().isEmpty() && tfDescription.getText().isEmpty() && cbCategories.getValue().isEmpty()){
             all.setText("You should fill all labels");
         } else {
             all.setText("");
@@ -80,7 +84,7 @@ public class AjouterPostXML implements Initializable {
                 titre.setText("You should fill the label");
             } else if (tfDescription.getText().isEmpty()) {
                 des.setText("You should fill the label");
-            } else if (tfCategories.getText().isEmpty()) {
+            } else if (cbCategories.getValue().isEmpty()) {
                 cate.setText("You should fill the label");
             } else if (data.path == null || data.path.isEmpty()) {
                 showNotification("Erreur", "Veuillez sélectionner une image.");
@@ -88,7 +92,7 @@ public class AjouterPostXML implements Initializable {
             } else {
                 String titre = tfTitre.getText();
                 String description = tfDescription.getText();
-                String categorie = tfCategories.getText();
+                String categorie = cbCategories.getValue();
 
                 Post post = new Post(titre, description, data.path, categorie);
                 try {
@@ -162,6 +166,10 @@ public class AjouterPostXML implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ObservableList<String> categories = FXCollections.observableArrayList(
+                "Quotidiens", "Lifestyle", "Bien-être ", "Tech Innovante");
+        cbCategories.setItems(categories);
         try {
             Image brandingImage = new Image(getClass().getResource("/image/logo-removebg-preview.png").toString());
             brandingImageView.setImage(brandingImage);

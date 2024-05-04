@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="620.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.django2.AjouterCommentaire">
     <children>
-        <AnchorPane prefHeight="136.0" prefWidth="726.0" style="-fx-background-color: #DBC2AD;">
+        <AnchorPane prefHeight="136.0" prefWidth="726.0" style="-fx-background-color: #37619B;">
             <children>
                 <ImageView fx:id="brandingImageView" fitHeight="136.0" fitWidth="139.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>

@@ -31,6 +31,17 @@
                                 <String fx:value="search-box" />
                                 <String fx:value="shadow" />
                             </styleClass>
+                     <children>
+                         <Button fx:id="chatbotButton" onAction="#openChatbotPopup" prefHeight="38.0" prefWidth="47.0" style="-fx-background-color: transparent; -fx-background-radius: 0; -fx-border-radius: 50%;">
+
+                         <graphic>
+                              <ImageView fitHeight="49.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/chat-bot1.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                     </children>
                         </HBox>
                     </children>
                 </VBox>
@@ -119,7 +130,6 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="chatbotButton" layoutX="-56.0" layoutY="61.0" onAction="#openChatbotPopup" text="Chat with Chatbot" />
                             </children></Pane>
                         <Pane layoutX="1000.8" layoutY="1.8" prefHeight="74.0" prefWidth="144.0" style="-fx-background-color: #37619B;">
                             <children>

@@ -6,14 +6,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.django2.CommentPopupController">
+<VBox prefHeight="300" prefWidth="400" style="-fx-background-color: #37619B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.django2.CommentPopupController">
+    <VBox prefHeight="76.0" prefWidth="400.0" alignment="CENTER">
+        <children>
+            <ImageView fitHeight="51.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../image/comments.png" />
+                </image>
+            </ImageView>
+        </children>
+    </VBox>
     <ListView fx:id="commentListView" prefHeight="253.0" prefWidth="400" />
-    <Button layoutX="4.0" onAction="#addComment" prefHeight="48.0" prefWidth="82.0">
-      <graphic>
-         <ImageView fitHeight="40.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../../../image/add.png" />
-            </image>
-         </ImageView>
-      </graphic></Button>
+    <Button layoutX="4.0" onAction="#addComment" prefHeight="48.0" prefWidth="63.0" style="-fx-background-color: #bfdfff; -fx-text-fill: white;">
+        <graphic>
+            <ImageView fitHeight="40.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../image/add.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
 </VBox>

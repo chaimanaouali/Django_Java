@@ -105,7 +105,7 @@ public class AfficherPostXML implements Initializable {
     private AnchorPane parent;
     @FXML
     private Button modeToggleButton;
-    private boolean isNightMode = false;
+
 
 
     @FXML
@@ -124,26 +124,7 @@ public class AfficherPostXML implements Initializable {
 
 
 
-    @FXML
-    private void toggleMode(ActionEvent event) {
-        Scene scene = modeToggleButton.getScene(); // Get the Scene from the Button
-        URL nightModeUrl = getClass().getResource("/styles/nightmode.css");
-        URL dayModeUrl = getClass().getResource("/styles/daymode.css");
 
-        if (isNightMode && nightModeUrl != null) {
-            // Switch to day mode
-            scene.getStylesheets().remove(nightModeUrl.toExternalForm());
-            scene.getStylesheets().add(dayModeUrl.toExternalForm());
-            modeToggleButton.setGraphic(new ImageView(new javafx.scene.image.Image(getClass().getResourceAsStream("/image/night-mode.png"))));
-        } else if (!isNightMode && dayModeUrl != null) {
-            // Switch to night mode
-            scene.getStylesheets().remove(dayModeUrl.toExternalForm());
-            scene.getStylesheets().add(nightModeUrl.toExternalForm());
-            modeToggleButton.setGraphic(new ImageView(new javafx.scene.image.Image(getClass().getResourceAsStream("/image/day-mode.png"))));
-        }
-
-        isNightMode = !isNightMode;
-    }
 
 
 
@@ -165,10 +146,7 @@ public class AfficherPostXML implements Initializable {
         }
     }
 
-    @FXML
-    public void switchToNightMode(ActionEvent event) {
-        // Your logic for switching to night mode
-    }
+
 
 
 
