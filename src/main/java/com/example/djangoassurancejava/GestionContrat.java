@@ -43,6 +43,7 @@ import com.example.djangoassurancejava.Mail;
 
 import services.ServiceType;
 import java.awt.Font;
+import java.awt.Font;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
