@@ -18,6 +18,7 @@ import com.example.user.App;
 import com.example.user.MyListener;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Post;
 import models.User;
 import models.Voiture;
 
@@ -102,6 +103,11 @@ public class FrontController implements Initializable {
                 setChosenFruit(voiture);
                 selectedVoiture = voiture;
                 System.out.println(selectedVoiture);
+            }
+
+            @Override
+            public void onClickListener(Post post) {
+
             }
         };
 

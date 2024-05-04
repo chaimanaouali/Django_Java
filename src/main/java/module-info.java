@@ -12,6 +12,12 @@ module com.example.user {
     requires jcaptcha.all;
     requires javafx.web;
 
+    requires org.apache.poi.ooxml;
+
+    requires jdk.javadoc;
+
+    requires itextpdf;
+
 
     opens com.example.user to javafx.fxml;
     exports com.example.user;

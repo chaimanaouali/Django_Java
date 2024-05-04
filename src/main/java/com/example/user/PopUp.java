@@ -2,17 +2,13 @@ package com.example.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import models.User;
+import models.Post;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,7 +25,7 @@ public class PopUp implements Initializable {
     @FXML
     private ImageView brandingImageView;
 
-    private User selectedUser;
+    private Post selectedPost;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,13 +35,11 @@ public class PopUp implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
 
-    public void initData(User user) {
-        this.selectedUser = user;
+    public void initData(Post post) {
+        this.selectedPost = post;
 
     }
 
@@ -60,13 +54,13 @@ public class PopUp implements Initializable {
 
 
         // Navigate to UpdateUser.fxml
-        navigateToUpdateUser(this.selectedUser);
+        navigateToUpdatePost(this.selectedPost);
 
         cancelButtonOnAction(event);
     }
 
-    private void navigateToUpdateUser(User user) {
-        try {
+    private void navigateToUpdatePost(Post post) {
+      /*  try {
             // Load the UpdateUser.fxml file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateUser.fxml"));
             Parent root = loader.load();
@@ -81,7 +75,7 @@ public class PopUp implements Initializable {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 
