@@ -16,8 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.Devis;
 import services.ServiceDevis;
-import org.controlsfx.control.Notifications;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -196,11 +194,14 @@ public class AjouterDevis implements Initializable {
         }}
 
     private void showNotification(String title, String content) {
-        Notifications notification =Notifications.create()
-                .title(title)
-                .text(content);
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(title);
+            alert.setHeaderText(null); // No header text
+            alert.setContentText(content);
+            alert.showAndWait(); // Wait for user to close the dialog
+        });
 
-        Platform.runLater(() -> notification.showInformation());
+
     }
-
 }

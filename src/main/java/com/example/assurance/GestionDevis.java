@@ -20,6 +20,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -31,11 +34,17 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Devis;
 import models.ReponseDevis;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import services.ServiceDevis;
 import services.ServiceReponseDevis;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -420,6 +429,7 @@ public class GestionDevis implements Initializable {
         afficherReponseDevis();
         ServiceDevis ds = new ServiceDevis();
         List<Devis> dd = null;
+
         try {
             dd = ds.selectAll();
         } catch (SQLException e) {
@@ -524,22 +534,18 @@ public void afficherDevis(){
 
 }
 
-    public void afficherReponseDevis(){
-        vboxDevis1.getChildren().clear();
+    public void afficherReponseDevis() {
+        vboxDevis1.getChildren().clear(); // Clear the VBox
         ServiceReponseDevis sd = new ServiceReponseDevis();
         try {
-            List<ReponseDevis>deviss = sd.selectAll();
-            HBox hb[]= new HBox[deviss.size()];
-            for (ReponseDevis d: deviss
-            ) {
-
+            List<ReponseDevis> deviss = sd.selectAll();
+            for (ReponseDevis d : deviss) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("itemReponseDevis.fxml"));
                     Parent root = loader.load();
                     itemReponseDevis otherController = loader.getController();
                     HBox hbox = (HBox) loader.getRoot();
                     vboxDevis1.getChildren().add(hbox);
-
 
                     otherController.afficher(d);
 
@@ -561,26 +567,27 @@ public void afficherDevis(){
                     Button deleteButton = otherController.getDeleteButton();
                     int id = otherController.getId();
                     int ide = otherController.getEmailId();
-                    ServiceDevis dd =new ServiceDevis();
+                    ServiceDevis dd = new ServiceDevis();
 
                     deleteButton.setOnAction(event -> {
                         // Remove the HBox from the VBox when the button is clicked
                         deleteReponseDevis(id);
+                        // After deleting, refresh the VBox and HBox
+                        afficherReponseDevis(); // Refresh
                     });
+
                     Button btqr = otherController.getbtqr();
 
                     btqr.setOnAction(event -> {
                         Devis dee = null;
                         try {
-                            System.out.println(ide);
                             dee = dd.rechercheId(ide);
-                            System.out.println(dee);
                         } catch (SQLException e) {
                             throw new RuntimeException(e);
                         }
                         // Remove the HBox from the VBox when the button is clicked
-                        String AllInfo = "Nom: " + dee.getNom() + "\nprénom:"+dee.getPrenom()+"\nadresse: " + dee.getAdresse() + "\nemail: " + dee.getEmail() + "\ndate de naissance: " + dee.getDate_naiss()
-                                + "\nmodele: " + dee.getModele() + "\npuissance: " + dee.getPuissance() + "\nprix: " + dee.getPuissance() + "\nnuméro téléphone: " + dee.getNum_tel() ;
+                        String AllInfo = "Nom: " + dee.getNom() + "\nprénom:" + dee.getPrenom() + "\nadresse: " + dee.getAdresse() + "\nemail: " + dee.getEmail() + "\ndate de naissance: " + dee.getDate_naiss()
+                                + "\nmodele: " + dee.getModele() + "\npuissance: " + dee.getPuissance() + "\nprix: " + dee.getPuissance() + "\nnuméro téléphone: " + dee.getNum_tel();
                         qr(AllInfo);
                     });
                 } catch (IOException e) {
@@ -590,8 +597,8 @@ public void afficherDevis(){
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
+
 
     private void qr(String AllInfo) {
         // Generate the information for the QR code
@@ -760,6 +767,97 @@ public void afficherDevis(){
         navigateToMail();
 
     }
+
+    @FXML
+    void pdf(ActionEvent event) {
+        try {
+            ServiceDevis sd = new ServiceDevis();
+            List<Devis> data = sd.selectAll();
+
+            for (Devis dev : data) {
+                PDDocument document = new PDDocument();
+                try {
+                    PDPage page = new PDPage();
+                    document.addPage(page);
+                    PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+                    // Set a custom font
+                    PDFont fontBold = PDType1Font.HELVETICA_BOLD;
+                    PDFont fontRegular = PDType1Font.HELVETICA;
+
+                    contentStream.beginText();
+                    contentStream.setFont(fontBold, 14);
+                    contentStream.setLeading(20f);
+                    contentStream.newLineAtOffset(100, 700);
+                    contentStream.showText("Devis Details");
+                    contentStream.newLine();
+
+                    // Reset to regular font for devis details
+                    contentStream.setFont(fontRegular, 12);
+
+                    contentStream.showText("Nom: " + dev.getNom());
+                    contentStream.newLine();
+
+                    contentStream.showText("Prenom: " + dev.getPrenom());
+                    contentStream.newLine();
+
+                    contentStream.showText("Email: " + dev.getEmail());
+                    contentStream.newLine();
+
+                    contentStream.showText("Adresse: " + dev.getAdresse());
+                    contentStream.newLine();
+
+                    contentStream.showText("Date de naissance: " + dev.getDate_naiss());
+                    contentStream.newLine();
+
+                    contentStream.showText("Numéro de téléphone: " + dev.getNum_tel());
+                    contentStream.newLine();
+
+                    contentStream.showText("Modèle: " + dev.getModele());
+                    contentStream.newLine();
+
+                    contentStream.showText("Puissance: " + dev.getPuissance());
+                    contentStream.newLine();
+
+                    contentStream.showText("Prix: " + dev.getPrix());
+                    contentStream.newLine();
+
+                    contentStream.endText();
+                    contentStream.close();
+
+                    // Save and open the document
+                    String outputPath = "C:/Users/Lenovo/Desktop/chaima/devis_" + dev.getId() + ".pdf";
+                    File file = new File(outputPath);
+                    document.save(file);
+                    document.close();
+
+                    // Show a success popup
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Le PDF pour le devis " + dev.getId() + " a été généré avec succès.");
+                    alert.showAndWait();
+
+                    Desktop.getDesktop().open(file);
+                } catch (IOException e) {
+                    Alert errorAlert = new Alert(AlertType.ERROR);
+                    errorAlert.setTitle("Error");
+                    errorAlert.setHeaderText("Failed to create PDF");
+                    errorAlert.setContentText("An error occurred while creating the PDF: " + e.getMessage());
+                    errorAlert.showAndWait();
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException e) {
+            Alert errorAlert = new Alert(AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText("Failed to retrieve data");
+            errorAlert.setContentText("An error occurred while retrieving data from the database: " + e.getMessage());
+            errorAlert.showAndWait();
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

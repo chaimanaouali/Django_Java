@@ -149,6 +149,11 @@
                                     <Font size="14.0" />
                                  </font>
                               </Button>
+                              <Button fx:id="pdf" layoutX="127.0" layoutY="451.0" mnemonicParsing="false" onAction="#pdf" prefHeight="33.0" prefWidth="94.0" text="PDF">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -276,7 +281,7 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <Button layoutX="52.0" layoutY="458.0" mnemonicParsing="false" onAction="#navigateToMailling" prefHeight="33.0" prefWidth="94.0" text="Reclamation">
+                              <Button layoutX="52.0" layoutY="458.0" mnemonicParsing="false" onAction="#navigateToMailling" prefHeight="33.0" prefWidth="94.0" text="confirmation">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -310,7 +315,7 @@
                   </Tab>
                     </tabs>
                 </TabPane>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="82.0" layoutX="220.0" stroke="#37619b" strokeType="INSIDE" width="717.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="82.0" layoutX="219.0" stroke="#37619b" strokeType="INSIDE" width="717.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="880.0" layoutY="-14.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="16.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="913.0" layoutY="-24.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="42.0" />
 

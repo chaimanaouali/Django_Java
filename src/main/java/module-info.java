@@ -9,6 +9,7 @@ module com.example.assurance {
    // requires mail;
     requires java.mail;
     requires org.controlsfx.controls;
+    requires org.apache.pdfbox;
 
 
     opens com.example.assurance to javafx.fxml;
