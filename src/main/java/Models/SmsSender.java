@@ -14,7 +14,7 @@ public class SmsSender {
         // Générer un code aléatoire
         Random random = new Random();
         verificationCode = String.format("%04d", random.nextInt(10000));
-        String messageBody = "Bonjour, votre rendez-vous est confirmé avec le mécanicien."+" "+nom+" Gardez le code de confirmation.: " + verificationCode;
+        String messageBody = "Bonjour,Merci pour votre confiance ,Votre demande pour RDV avec le mécanicien"+" "+nom+" est en cours de traitement nous reviendrons pour vous le plutot possible. Gardez le code de confirmation.: " + verificationCode;
         Message message = Message.creator(
                         new PhoneNumber(toPhoneNumber),
                         new PhoneNumber(twilioPhoneNumber),

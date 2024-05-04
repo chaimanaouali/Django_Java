@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javadjango.ChatBot">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"  style="-fx-background-color: #4b85d1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javadjango.ChatBot">
    <children>
       <VBox layoutX="88.0" layoutY="58.0" prefHeight="283.0" prefWidth="390.0">
          <children>

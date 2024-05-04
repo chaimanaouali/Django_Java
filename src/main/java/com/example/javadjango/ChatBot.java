@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import static javafx.application.Application.launch;
+
 
 public class ChatBot {
     @FXML
@@ -28,28 +30,42 @@ public class ChatBot {
             // Effacer le champ de texte après l'envoi du message
             inputField.clear();
         }
+
+    // Method to generate response based on user input
     private String getResponse(String input) {
         input = input.toLowerCase();
+
         switch (input) {
-            case "comment se déroule la consultation en ligne ?":
-                return "The online consultation is conducted via secure video conference.";
-
-            case "quels sont les médecins disponibles pour une consultation en ligne ?":
-                return "Currently, our available doctors for online consultations are Dr. Smith and Dr. Dupont.";
-
-            case "comment puis-je payer pour la consultation en ligne ?":
-                return "Once your appointment is confirmed, you will receive a payment link.";
-
-            case "comment puis-je annuler ou reporter mon rendez-vous en ligne ?":
-                return "You can cancel or reschedule your online appointment by contacting us directly by phone or email.";
-
-            case "mes informations médicales seront-elles sécurisées ?":
-                return "Absolutely. We use advanced technologies to protect your confidentiality.";
+            case "hello":
+            case "hi":
+                return "Hello there!";
+            case "how are you?":
+                return "I'm just a chatbot, but thanks for asking!";
+            case "i need help":
+                return "Of course.";
+            case "est ce que il ya des mecaniciens zone tunis":
+                return "Oui bien sur Arbi Houssem";
+            case "est ce que il ya des mecaniciens zone beja":
+                return "Non desole";
+            case "est ce que il ya des mecaniciens zone sousse":
+                return "Oui bien sur Chemakh Skander";
+            case "est ce que il ya des mecaniciens zone Gabes":
+                return "Oui bien sur Dorki Salim";
+            case "bye":
+                return "Goodbye!";
+            case "bonjour":
+                return "bonjour!";
+            case "j ai besoin d aide":
+                return "Oui bien sur je suis la !";
 
             default:
-                return "I'm sorry, I didn't understand that.";
+                return "Desole je compremds pas.";
         }
     }
 
+
+    public static void main(String[] args) {
+        launch(args);
     }
+}
 

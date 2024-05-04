@@ -225,26 +225,6 @@ public class AfficherM {
         }
     }
 
-    @FXML
-    void btnretourAffichage(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle scène
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Reparation.fxml"));
-            Parent root = loader.load();
-
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Obtenir la référence à la scène actuelle
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Définir la nouvelle scène sur la fenêtre principale
-            stage.setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace(); // Gérer les erreurs de chargement du FXML
-        }
-    }
 
     @FXML
     void btnExcelMec(ActionEvent event) throws SQLException, FileNotFoundException, IOException {
@@ -301,29 +281,43 @@ public class AfficherM {
             // Obtenez le contenu de la page
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-            // Écrivez du texte dans le document
+            // Définir le style de texte
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-            contentStream.beginText();
-            contentStream.newLineAtOffset(50, 500);
+            contentStream.setLeading(14.5f); // Espace entre les lignes
 
+            // Écrivez du texte dans le document
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 750); // Positionnez le texte en haut de la page
+            contentStream.showText("LES MECANICIENS");
+            contentStream.newLine(); // Saut de ligne après le titre
+
+            // Positionnez le texte des détails des mécaniciens sous le titre
+            contentStream.newLineAtOffset(0, -20);
 
             for (mecanicien mecanicien : data) {
-
-
-                String ligne = "Nom : " + mecanicien.getNom() + "   Prénom : " + mecanicien.getPrenom() + "  localisation : " + mecanicien.getLocalisation() + "  disponibilite : " + mecanicien.getDisponibilite() + "    numero : " + mecanicien.getNumero() + "   image : " + mecanicien.getImage() + "   email : " + mecanicien.getEmail();
-                contentStream.showText(ligne);
-
+                // Appliquer le style CSS ici
+                contentStream.showText("Nom : " + mecanicien.getNom());
                 contentStream.newLine();
-                contentStream.newLineAtOffset(0, -20);
-
-
+                contentStream.showText("Prénom : " + mecanicien.getPrenom());
+                contentStream.newLine();
+                contentStream.showText("Localisation : " + mecanicien.getLocalisation());
+                contentStream.newLine();
+                contentStream.showText("Disponibilité : " + mecanicien.getDisponibilite());
+                contentStream.newLine();
+                contentStream.showText("Numéro : " + mecanicien.getNumero());
+                contentStream.newLine();
+                contentStream.showText("Image : " + mecanicien.getImage());
+                contentStream.newLine();
+                contentStream.showText("Email : " + mecanicien.getEmail());
+                contentStream.newLine();
+                contentStream.newLine(); // Saut de ligne supplémentaire entre les entrées
             }
 
-            contentStream.endText();
-
             // Fermez le contenu de la page
+            contentStream.endText();
             contentStream.close();
 
+            // Enregistrez le document PDF
             String outputPath = "C:/Users/Nour/IdeaProjects/JAVADjango/src/main/java/PDF/Mecanicien.pdf";
             File file = new File(outputPath);
             document.save(file);
@@ -331,12 +325,13 @@ public class AfficherM {
             // Fermez le document
             document.close();
 
-            JOptionPane.showMessageDialog(null, "Exportation 'PDF' effectuée avec succés");
-            // Desktop.getDesktop().open(file);
+            JOptionPane.showMessageDialog(null, "Exportation 'PDF' effectuée avec succès");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     private void rechercherMecanicien(String rechercheText) {
         ServiceMecanicien serviceMec = new ServiceMecanicien();
@@ -382,7 +377,48 @@ public class AfficherM {
             }
         }, 3000);  // 3000 millisecondes = 3 secondes (vous pouvez ajuster ce nombre selon vos besoins)
     }
+    @FXML
+    void btnMec(ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle scène
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherM.fxml"));
+            Parent root = loader.load();
 
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la référence à la scène actuelle
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre principale
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérer les erreurs de chargement du FXML
+        }
+
+    }
+    @FXML
+    void btnEval(ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle scène
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherE.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la référence à la scène actuelle
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre principale
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérer les erreurs de chargement du FXML
+        }
+
+    }
 
 }
 

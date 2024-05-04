@@ -45,6 +45,10 @@ import java.util.*;
 import java.util.Date;
 import java.util.Timer;
 import java.util.stream.Collectors;
+import javafx.scene.control.Label;
+
+// Déclaration du label
+
 
 public class AfficherE {
 
@@ -66,6 +70,8 @@ public class AfficherE {
         private PieChart pieChart;
         @FXML
         private TextField searchEvalBack;
+        @FXML
+        private Label labelInfo;
         private Connection connect;
         private ServiceEvaluation eval;
        // private evaluation evaluationToModify;
@@ -207,26 +213,6 @@ public class AfficherE {
                         e.printStackTrace(); // Gérer les erreurs de chargement du FXML
                 }
         }
-        @FXML
-        void btnretourAffichageE(ActionEvent event) {
-                try {
-                        // Charger le fichier FXML de la nouvelle scène
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("Reparation.fxml"));
-                        Parent root = loader.load();
-
-                        // Créer une nouvelle scène
-                        Scene scene = new Scene(root);
-
-                        // Obtenir la référence à la scène actuelle
-                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                        // Définir la nouvelle scène sur la fenêtre principale
-                        stage.setScene(scene);
-
-                } catch (IOException e) {
-                        e.printStackTrace(); // Gérer les erreurs de chargement du FXML
-                }
-        }
 
         @FXML
         void btnExcelEval(ActionEvent event) throws SQLException, IOException {
@@ -265,7 +251,6 @@ public class AfficherE {
 
         }
 
-
         @FXML
         void btnpdfEval(ActionEvent event) {
                 ObservableList<evaluation> data = TableEvaluation.getItems();
@@ -281,29 +266,37 @@ public class AfficherE {
                         // Obtenez le contenu de la page
                         PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-                        // Écrivez du texte dans le document
+                        // Définir le style de texte
                         contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                        contentStream.beginText();
-                        contentStream.newLineAtOffset(50, 500);
+                        contentStream.setLeading(14.5f); // Espace entre les lignes
 
+                        // Écrivez du texte dans le document
+                        contentStream.beginText();
+                        contentStream.newLineAtOffset(50, 700); // Positionnez le texte en haut de la page
+                        contentStream.showText("LES EVALUATIONS");
+                        contentStream.newLine(); // Saut de ligne après le titre
+
+                        // Positionnez le texte des détails des évaluations sous le titre
+                        contentStream.newLineAtOffset(0, -20);
 
                         for (evaluation evaluation : data) {
-
-
-                                String ligne = "Nom : " + evaluation.getNom_client() + "   Prénom : " + evaluation.getPrenom_client() + "  Avis : " + evaluation.getAvis_client() + "  Date Eval : " + evaluation.getDate_eval();
-                                contentStream.showText(ligne);
-
+                                // Appliquer le style CSS ici
+                                contentStream.showText("Nom : " + evaluation.getNom_client());
                                 contentStream.newLine();
-                                contentStream.newLineAtOffset(0, -20);
-
-
+                                contentStream.showText("Prénom : " + evaluation.getPrenom_client());
+                                contentStream.newLine();
+                                contentStream.showText("Avis : " + evaluation.getAvis_client());
+                                contentStream.newLine();
+                                contentStream.showText("Date Eval : " + evaluation.getDate_eval());
+                                contentStream.newLine();
+                                contentStream.newLine(); // Saut de ligne supplémentaire entre les entrées
                         }
 
-                        contentStream.endText();
-
                         // Fermez le contenu de la page
+                        contentStream.endText();
                         contentStream.close();
 
+                        // Enregistrez le document PDF
                         String outputPath = "C:/Users/Nour/IdeaProjects/JAVADjango/src/main/java/PDF/Evaluation.pdf";
                         File file = new File(outputPath);
                         document.save(file);
@@ -311,13 +304,13 @@ public class AfficherE {
                         // Fermez le document
                         document.close();
 
-                        JOptionPane.showMessageDialog(null, "Exportation 'PDF' effectuée avec succés");
-                        // Desktop.getDesktop().open(file);
+                        JOptionPane.showMessageDialog(null, "Exportation 'PDF' effectuée avec succès");
                 } catch (IOException e) {
                         e.printStackTrace();
                 }
-
         }
+
+
 
         private void rechercherEvaluation(String rechercheText) {
                 ServiceEvaluation serviceMec = new ServiceEvaluation();
@@ -337,34 +330,39 @@ public class AfficherE {
                 rechercherEvaluation(rechercheText);
         }
 
+
         private void afficherRepartitionEvaluationParMecanicien() {
                 // Récupérer la liste des évaluations
                 ObservableList<evaluation> evaluations = TableEvaluation.getItems();
 
-                // Créer une liste observable pour stocker les données du graphique circulaire
-                ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+                // Créer un map pour stocker le nombre total d'évaluations pour chaque mécanicien
+                Map<Integer, Integer> totalEvaluationCounts = new HashMap<>();
 
-                // Créer un map pour compter le nombre d'évaluations pour chaque mécanicien
-                ObservableMap<Integer, Integer> evaluationCounts = FXCollections.observableHashMap();
-
-                // Parcourir les évaluations et compter le nombre d'évaluations pour chaque mécanicien
+                // Parcourir les évaluations et compter le nombre total d'évaluations pour chaque mécanicien
                 for (evaluation eval : evaluations) {
                         int mecanicienId = eval.getMecanicien_id();
-                        evaluationCounts.put(mecanicienId, evaluationCounts.getOrDefault(mecanicienId, 0) + 1);
+                        totalEvaluationCounts.put(mecanicienId, totalEvaluationCounts.getOrDefault(mecanicienId, 0) + 1);
                 }
 
-                // Calculer la somme totale des évaluations
-                int totalEvaluations = evaluations.size();
-                // Ajouter les données au graphique circulaire avec les pourcentages
-                evaluationCounts.forEach((mecanicien_id, count) -> {
-                        double percentage = ((double) count / totalEvaluations) * 100;
-                        String label = "Mécanicien ID: " + mecanicien_id + " (" + String.format("%.2f", percentage) + "%)";
-                        pieChartData.add(new PieChart.Data(label, count));
+                // Créer une liste pour stocker les données du graphique circulaire
+                ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+                // Ajouter les données au graphique circulaire avec les étiquettes
+                totalEvaluationCounts.forEach((mecanicienId, total) -> {
+                        String label = "Mécanicien ID: " + mecanicienId + " (" + total + ")";
+                        pieChartData.add(new PieChart.Data(label, total));
                 });
 
                 // Définir les données dans le PieChart
                 pieChart.setData(pieChartData);
+
+                // Afficher les informations dans le label
+                StringBuilder labelText = new StringBuilder();
+                pieChartData.forEach(data -> labelText.append(data.getName()).append("\n"));
+                labelInfo.setText(labelText.toString());
         }
+
+
 
         @FXML
         void btntrierEBack(ActionEvent event) {
@@ -392,7 +390,48 @@ public class AfficherE {
                 }, 3000);
         }
 
+        @FXML
+        void btnMecanicien(ActionEvent event) {
+                try {
+                        // Charger le fichier FXML de la nouvelle scène
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherM.fxml"));
+                        Parent root = loader.load();
 
+                        // Créer une nouvelle scène
+                        Scene scene = new Scene(root);
+
+                        // Obtenir la référence à la scène actuelle
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                        // Définir la nouvelle scène sur la fenêtre principale
+                        stage.setScene(scene);
+
+                } catch (IOException e) {
+                        e.printStackTrace(); // Gérer les erreurs de chargement du FXML
+                }
+
+        }
+        @FXML
+        void btnEvaluation(ActionEvent event) {
+                try {
+                        // Charger le fichier FXML de la nouvelle scène
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherE.fxml"));
+                        Parent root = loader.load();
+
+                        // Créer une nouvelle scène
+                        Scene scene = new Scene(root);
+
+                        // Obtenir la référence à la scène actuelle
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                        // Définir la nouvelle scène sur la fenêtre principale
+                        stage.setScene(scene);
+
+                } catch (IOException e) {
+                        e.printStackTrace(); // Gérer les erreurs de chargement du FXML
+                }
+
+        }
 }
 
 

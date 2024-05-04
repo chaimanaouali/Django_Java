@@ -209,46 +209,6 @@ public class ModifierM {
         }
     }
 
-    public void btnmecanicien(ActionEvent actionEvent) {
-            try {
-                // Charger le fichier FXML de la nouvelle scène
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherM.fxml"));
-                Parent root = loader.load();
-
-                // Créer une nouvelle scène
-                Scene scene = new Scene(root);
-
-                // Obtenir la référence à la scène actuelle
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Correction ici: 'event' devrait être 'actionEvent'
-
-                // Définir la nouvelle scène sur la fenêtre principale
-                stage.setScene(scene);
-
-            } catch (IOException e) {
-                e.printStackTrace(); // Gérer les erreurs de chargement du FXML
-            }
-        }
-
-    public void btnevaluation(ActionEvent actionEvent) {
-            try {
-                // Charger le fichier FXML de la nouvelle scène
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherE.fxml"));
-                Parent root = loader.load();
-
-                // Créer une nouvelle scène
-                Scene scene = new Scene(root);
-
-                // Obtenir la référence à la scène actuelle
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Correction ici: 'event' devrait être 'actionEvent'
-
-                // Définir la nouvelle scène sur la fenêtre principale
-                stage.setScene(scene);
-
-            } catch (IOException e) {
-                e.printStackTrace(); // Gérer les erreurs de chargement du FXML
-            }
-        }
-
     }
 
 

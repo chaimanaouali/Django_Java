@@ -51,23 +51,8 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="622.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" spacing="15.0">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <children>
-                        <Pane prefHeight="65.0" prefWidth="393.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="-24.0" layoutY="-32.0" prefHeight="408.0" prefWidth="880.0" />
-                           </children></Pane>
-                        <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <ListView fx:id="listView" prefHeight="461.0" prefWidth="862.0" />
-                  <Button mnemonicParsing="false" onAction="#btnChatBot" text="ChatBot" />
+                  <ListView fx:id="listView" prefHeight="613.0" prefWidth="862.0" />
+                  <Button mnemonicParsing="false" onAction="#btnChatBot" text="Aide!" />
                </children>
             </VBox>
          </center>

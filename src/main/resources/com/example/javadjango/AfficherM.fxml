@@ -22,8 +22,8 @@
                             <image>
                             </image></ImageView>
                         <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
-                        <Button fx:id="userButton" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Users" textFill="WHITE" />
-                        <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Voitures" textFill="WHITE" />
+                        <Button fx:id="MecButton" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#btnMec" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Mécaniciens" textFill="WHITE" />
+                        <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnEval" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Evaluations" textFill="WHITE" />
                     </children>
                 </VBox>
                 <Label layoutX="248.0" layoutY="24.0" text="Tournois">
@@ -37,16 +37,16 @@
 
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="20.0" layoutX="210.0" layoutY="74.0" stroke="#37619b" strokeType="INSIDE" width="27.0" />
                 <Circle fill="WHITE" layoutX="236.0" layoutY="96.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" />
-                <Label layoutX="449.0" layoutY="15.0" text="Voitures" textFill="#dfdfdf">
+                <Label layoutX="449.0" layoutY="15.0" text="Mécaniciens" textFill="#dfdfdf">
                     <font>
                         <Font name="System Bold" size="36.0" />
                     </font>
                 </Label>
+              <Button layoutX="428.0" layoutY="387.0" mnemonicParsing="false" onAction="#btnAjouterAffichage" prefHeight="34.0" prefWidth="86.0" text="Ajouter" textFill="#472c99" />
+              <Button layoutX="565.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnModifierMAffichage" prefHeight="34.0" prefWidth="94.0" text="Modifier" textFill="#6e4607" />
+              <Button layoutX="686.0" layoutY="383.0" mnemonicParsing="false" onAction="#btnSupprimerM" prefHeight="34.0" prefWidth="101.0" text="Supprimer" textFill="#128139" />
             </children>
         </AnchorPane>
-        <Button layoutX="760.0" layoutY="393.0" mnemonicParsing="false" onAction="#btnSupprimerM" prefHeight="34.0" prefWidth="101.0" text="Supprimer" textFill="#128139" />
-        <Button layoutX="629.0" layoutY="393.0" mnemonicParsing="false" onAction="#btnModifierMAffichage" prefHeight="34.0" prefWidth="94.0" text="Modifier" textFill="#6e4607" />
-        <Button layoutX="768.0" layoutY="449.0" mnemonicParsing="false" onAction="#btnAjouterAffichage" prefHeight="34.0" prefWidth="86.0" text="Ajouter" textFill="#472c99" />
         <TableView fx:id="TableMecanicien" layoutX="253.0" layoutY="153.0" prefHeight="215.0" prefWidth="708.0">
             <columns>
                 <TableColumn fx:id="idM" minWidth="0.0" prefWidth="0.0" text="id" />
@@ -59,7 +59,6 @@
                 <TableColumn fx:id="EmailM" prefWidth="172.0" text="Email" />
             </columns>
         </TableView>
-        <Button layoutX="633.0" layoutY="449.0" mnemonicParsing="false" onAction="#btnretourAffichage" prefHeight="34.0" prefWidth="86.0" text="Retour " textFill="#472c99" />
         <Button layoutX="811.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnpdfMec" prefHeight="26.0" prefWidth="45.0" text="PDF" />
         <Button layoutX="752.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnExcelMec" text="EXCEL" />
         <TextField fx:id="searchMecBack" layoutX="251.0" layoutY="111.0" onKeyPressed="#rechercheMec" prefHeight="26.0" prefWidth="318.0" promptText="Mecanicien" />

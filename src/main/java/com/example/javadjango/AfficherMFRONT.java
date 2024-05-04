@@ -130,11 +130,11 @@ public class AfficherMFRONT implements Initializable {
 
         Label nameLabel = new Label(mecanicien.getNom());
         Label prenomLabel = new Label(mecanicien.getPrenom());
-        Label localLabel = new Label(mecanicien.getLocalisation());
+       // Label localLabel = new Label(mecanicien.getLocalisation());
         // Label dispoLabel = new Label( mecanicien.getDisponibilite());
-        Label numLabel = new Label(mecanicien.getNumero());
+       // Label numLabel = new Label(mecanicien.getNumero());
         // Label emailLabel = new Label( mecanicien.getEmail());
-        Button addButton2 = new Button("Confirmer le RDV");
+        Button addButton2 = new Button("Reserver un RDV");
         Button addButton = new Button("Creer une evaluation");
         addButton.getStyleClass().add("addbuttonevaluation");
         Button qrCodeButton = new Button("QR code");
@@ -142,7 +142,7 @@ public class AfficherMFRONT implements Initializable {
 
 
         // Ajouter les composants à VBox, en commençant par l'image
-        vbox.getChildren().addAll(imageView, nameLabel, prenomLabel, localLabel, numLabel, addButton2, qrCodeButton, addButton);
+        vbox.getChildren().addAll(imageView, nameLabel, prenomLabel, addButton2, qrCodeButton, addButton);
 
 
         addButton.setOnAction(new EventHandler<ActionEvent>() {
