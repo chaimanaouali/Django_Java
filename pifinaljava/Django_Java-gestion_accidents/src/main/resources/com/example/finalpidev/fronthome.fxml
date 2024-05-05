@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="721.0" prefWidth="1260.0" styleClass="dark-bg" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalpidev.fronthome">
+    <top>
+        <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <ImageView fitHeight="75.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/logo.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Menu" textFill="WHITE">
+                            <font>
+                                <Font name="Bodoni MT" size="26.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <Pane prefHeight="200.0" prefWidth="200.0" />
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label text="user" textFill="WHITE" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label text="sinistre" textFill="WHITE" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label text="habitat" textFill="WHITE" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label text="offres" textFill="WHITE" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label text="expert" textFill="WHITE" />
+                    </children>
+                </VBox>
+                <Pane layoutX="210.0" layoutY="10.0" prefHeight="100.0" prefWidth="299.0" />
+                <VBox alignment="CENTER" layoutX="410.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label text="Profile" textFill="WHITE" />
+                    </children>
+                </VBox>
+            </children>
+            <styleClass>
+                <String fx:value="nav-bg" />
+                <String fx:value="border-bottom" />
+            </styleClass>
+        </HBox>
+    </top>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="dark-bg" stylesheets="@style.css">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="115.0">
+                            <children>
+                                <Label alignment="CENTER" text="Constats" textFill="WHITE">
+                                    <font>
+                                        <Font size="23.0" />
+                                    </font>
+                                </Label>
+                                <Label text="155" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <Pane prefHeight="97.0" prefWidth="1068.0" />
+                        <VBox alignment="CENTER">
+                     <children>
+                        <ImageView fx:id="btnajouter" fitHeight="60.0" fitWidth="71.0" onMouseClicked="#ajouterfront" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/pluse.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                  <ScrollPane prefHeight="528.0" prefWidth="1245.0" styleClass="dark-bg" stylesheets="@style.css">
+                      <content>
+                          <GridPane fx:id="pgrid" styleClass="dark-bg" stylesheets="@style.css">
+                              <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                          </GridPane>
+                      </content>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+                  </ScrollPane>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
