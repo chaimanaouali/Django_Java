@@ -38,6 +38,16 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Button>
+                  <Button fx:id="voitureButton" mnemonicParsing="false" onAction="#voitureButtonOnAction" prefHeight="34.0" prefWidth="230.0" text="Voiture">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="userButton" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="34.0" prefWidth="224.0" text="User">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Contrat/type du contrat">
                             <graphic>
 
@@ -49,6 +59,31 @@
                                 <Insets left="35.0" />
                             </padding>
                         </Button>
+                  <Button fx:id="devisButton" mnemonicParsing="false" onAction="#devisButtonOnAction" prefHeight="32.0" prefWidth="246.0" text="Devis/Reponse">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="PostButton" mnemonicParsing="false" onAction="#PostButtonOnAction" prefHeight="30.0" prefWidth="234.0" text="Post">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="commentaireButton1" mnemonicParsing="false" onAction="#CommentaireButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Commentaire">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="evaluationButton" mnemonicParsing="false" onAction="#evaluationButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Evaluation">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="mecanicienButton" mnemonicParsing="false" onAction="#mecanicienButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Mecanicien">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#out" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Sign Out">
                             <graphic>
 

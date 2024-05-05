@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Devis;
 import models.ReponseDevis;
+import models.User;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -41,6 +42,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import services.ServiceDevis;
 import services.ServiceReponseDevis;
+import utils.SessionManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -140,6 +142,22 @@ public class GestionDevis implements Initializable {
     @FXML
     private VBox vboxDevis1;
 
+    @FXML
+    private Button voitureButton;
+    User currentUser;
+
+    @FXML
+    private Button userButton;
+    @FXML
+    private Button commentaireButton;
+    @FXML
+    private Button PostButton;
+    @FXML
+    private Button contratButton;
+    @FXML
+    private Button evaluationButton;
+    @FXML
+    private Button mecanicienButton;
     public static final String ACCOUNT_SID = "ACdb45117869a081108be58ab82f838f35";
     public static final String AUTH_TOKEN = "73d8c4d94e62cfd601451fbfd7008f8d";
 
@@ -424,6 +442,7 @@ public class GestionDevis implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.currentUser = SessionManager.getSession().getUser();
 
         afficherDevis();
         afficherReponseDevis();
@@ -858,6 +877,185 @@ public void afficherDevis(){
         }
     }
 
+    @FXML
+    void voitureButtonOnAction(ActionEvent event){
 
+        Stage stage = (Stage) voitureButton.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToVoiture();    }
+    private void navigateToVoiture() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ListVoiture.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            ListVoitureController controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void userButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) userButton.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToUser();    }
+    private void navigateToUser() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ListUser.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            ListUserController controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void CommentaireButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) commentaireButton.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToCommentaire();
+    }
+
+    private void navigateToCommentaire() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherCommentaire.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            AfficherCommentaire controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void PostButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) PostButton.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToPost();    }
+    private void navigateToPost() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("afficherPost.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            AfficherPostXML controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void contratButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) contratButton.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToContrat();    }
+    private void navigateToContrat() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("test2.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            GestionContrat controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void evaluationButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) evaluationButton.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToEvaluation();    }
+    private void navigateToEvaluation() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherE.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            AfficherE controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void mecanicienButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) mecanicienButton.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToMecanicien();    }
+    private void navigateToMecanicien() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherM.fxml"));
+            Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            AfficherM controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -26,8 +26,30 @@
                                 <Image url="@../../../images/logo-removebg-preview.png" />
                             </image></ImageView>
                         <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
+                  <Button fx:id="userButton" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="34.0" prefWidth="224.0" style="-fx-background-color: #37619B;" text="User" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="voitureButton" mnemonicParsing="false" onAction="#voitureButtonOnAction" prefHeight="34.0" prefWidth="230.0" style="-fx-background-color: #37619B;" text="Voiture" textFill="#fafafa">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="contratButton" mnemonicParsing="false" onAction="#contratButtonOnAction" prefHeight="30.0" prefWidth="234.0" style="-fx-background-color: #37619B;" text="Contrats/Types" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="devisButton" mnemonicParsing="false" onAction="#devisButtonOnAction" prefHeight="32.0" prefWidth="246.0" style="-fx-background-color: #37619B;" text="Devis/Reponse" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                        <Button graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Post" textFill="WHITE" />
                         <Button fx:id="commentaireButton" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#CommentaireButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Commentaire" textFill="WHITE" />
-                        <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Post" textFill="WHITE" />
+                  <Button fx:id="evaluationButton" mnemonicParsing="false" onAction="#evaluationButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Evaluation" textFill="WHITE" />
+                  <Button fx:id="mecanicienButton" mnemonicParsing="false" onAction="#mecanicienButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Mecanicien" textFill="WHITE" />
                         <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" styleClass="button1" text="Deconnexion" textFill="WHITE">
                             <graphic>
 
@@ -66,7 +88,7 @@
                     </image>
                 </ImageView>
                 <Label fx:id="loginLabel" layoutX="1045.0" layoutY="60.0" text="Admin" />
-                <TableView fx:id="table" layoutX="350.0" layoutY="206.0" prefHeight="309.0" prefWidth="648.0">
+                <TableView fx:id="table" layoutX="227.0" layoutY="191.0" prefHeight="309.0" prefWidth="648.0">
                     <columns>
                         <TableColumn fx:id="titre" prefWidth="169.0" text="Titre" />
                         <TableColumn fx:id="description" prefWidth="164.0" text="Description" />
@@ -107,7 +129,7 @@
                     </graphic>
                 </Button>
                 <TextField fx:id="searchField" layoutX="555.0" layoutY="134.0" prefHeight="25.0" prefWidth="190.0" />
-                <Pagination fx:id="pagination" layoutX="350.0" layoutY="523.0" prefHeight="40.0" prefWidth="648.0" />
+                <Pagination fx:id="pagination" layoutX="271.0" layoutY="521.0" prefHeight="40.0" prefWidth="648.0" />
             <Button fx:id="pdfbut" layoutX="407.0" layoutY="166.0" onAction="#printLogPdf" prefHeight="37.0" prefWidth="55.0" style="-fx-text-fill: white; -fx-font-size: 14px;">
                <graphic>
                   <ImageView fitHeight="24" fitWidth="24">

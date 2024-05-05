@@ -28,6 +28,20 @@
                         <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
                         <Button layoutX="10.0" layoutY="253.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Users" textFill="WHITE" />
                         <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#voitureButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Voitures" textFill="WHITE" />
+                  <Button fx:id="contratButton" mnemonicParsing="false" onAction="#contratButtonOnAction" prefHeight="30.0" prefWidth="234.0" style="-fx-background-color: #37619B;" text="Contrats/Types" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="devisButton" mnemonicParsing="false" onAction="#devisButtonOnAction" prefHeight="32.0" prefWidth="246.0" style="-fx-background-color: #37619B;" text="Devis/Reponse" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="PostButton" graphicTextGap="20.0" mnemonicParsing="false" onAction="#PostButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Post" textFill="WHITE" />
+                  <Button fx:id="commentaireButton" mnemonicParsing="false" onAction="#CommentaireButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Commentaire" textFill="WHITE" />
+                  <Button fx:id="mecanicienButton" mnemonicParsing="false" onAction="#mecanicienButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Mecanicien" textFill="WHITE" />
+                  <Button fx:id="evaluationButton" mnemonicParsing="false" onAction="#evaluationButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Evaluation" textFill="WHITE" />
                         <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" styleClass="button1" text="Deconnexion" textFill="WHITE">
                             <graphic>
 

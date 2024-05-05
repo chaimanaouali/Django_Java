@@ -11,9 +11,9 @@ import javafx.stage.StageStyle;
 public class App extends Application {
     @Override
     public  void start(Stage primaryStage) throws  Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("test2.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         //primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root, 1315,900));
+        primaryStage.setScene(new Scene(root, 520,445));
         primaryStage.show();
         }
 

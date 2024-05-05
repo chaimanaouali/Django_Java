@@ -125,7 +125,7 @@ public class LoginController implements Initializable {
 
     private void redirectToAdminPage() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("ListVoiture.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Admin - User List");
             stage.setScene(new Scene(root));

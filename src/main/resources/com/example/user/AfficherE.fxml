@@ -23,8 +23,30 @@
                      <image>
                      </image></ImageView>
                   <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
+                  <Button fx:id="userButton" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="34.0" prefWidth="224.0" style="-fx-background-color: #37619B;" text="User" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="voitureButton" mnemonicParsing="false" onAction="#voitureButtonOnAction" prefHeight="34.0" prefWidth="230.0" style="-fx-background-color: #37619B;" text="Voiture" textFill="#fafafa">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="contratButton" mnemonicParsing="false" onAction="#contratButtonOnAction" prefHeight="30.0" prefWidth="234.0" style="-fx-background-color: #37619B;" text="Contrats/Types" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="devisButton" mnemonicParsing="false" onAction="#devisButtonOnAction" prefHeight="32.0" prefWidth="246.0" style="-fx-background-color: #37619B;" text="Devis/Reponse" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="MecanicienButton" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#btnMecanicien" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Mécaniciens" textFill="WHITE" />
                   <Button fx:id="EvaluationButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnEvaluation" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Evaluations" textFill="WHITE" />
+                  <Button fx:id="PostButton" mnemonicParsing="false" onAction="#PostButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Post" textFill="WHITE" />
+                  <Button fx:id="commentaireButton" mnemonicParsing="false" onAction="#CommentaireButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Commentaires" textFill="WHITE" />
                </children>
             </VBox>
             <Label layoutX="248.0" layoutY="24.0" text="Tournois">
