@@ -21,7 +21,7 @@
                         <ImageView fitHeight="150.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                             </image></ImageView>
-                        <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
+                        <Button fx:id="homeBt" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
                   <Button fx:id="userButton" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="34.0" prefWidth="224.0" style="-fx-background-color: #37619B;" text="User" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
@@ -46,6 +46,7 @@
                         <Button fx:id="voitureButton" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnEval" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Evaluations" textFill="WHITE" />
                   <Button fx:id="PostButton" mnemonicParsing="false" onAction="#PostButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Post" textFill="WHITE" />
                   <Button fx:id="commentaireButton" mnemonicParsing="false" onAction="#CommentaireButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Commentaires" textFill="WHITE" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Deconnexion" textFill="WHITE" />
                     </children>
                 </VBox>
                 <Label layoutX="248.0" layoutY="24.0" text="Tournois">

@@ -43,7 +43,9 @@ import services.ServiceContrat;
 import services.ServiceExcel;
 import services.ServiceType;
 import utils.SessionManager;
-
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -57,6 +59,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static utils.SessionManager.clearSession;
 
 
 /**
@@ -218,18 +222,22 @@ public class GestionContrat implements Initializable {
     private Button evaluationButton;
     @FXML
     private Button mecanicienButton;
+    @FXML
+    private Button logoutButton;
 
-    public static final String ACCOUNT_SID = "AC39da85bd72354e8b0a1846684abd93c9";
-    public static final String AUTH_TOKEN = "a1ba9db8d81d810255ac2cbecca9421f";
+    public static final String ACCOUNT_SID = "ACe25a54b40232e5c53f882d6fa8837efa";
+    public static final String AUTH_TOKEN = "8404b9d07a4fcc138aecf93cd9aa389d";
     static { Twilio.init(ACCOUNT_SID, AUTH_TOKEN); }
     public ServiceExcel excelService = new ServiceExcel();
     public ServiceContrat serviceContrat = new ServiceContrat();
+    @FXML
+    private Button homeBt;
 
 
     @FXML
-    public void writeToExcel(ActionEvent event) throws SQLException{
+    public void writeToExcel(ActionEvent event) throws SQLException, IOException {
         List<Contrat> contrats=serviceContrat.recuperer();
-        excelService.writeToExcel(contrats,"C:/Users/garal/OneDrive/Bureau/zahra/Contrats.xlsx");
+        excelService.writeToExcel(contrats);
 
     }
 
@@ -905,7 +913,7 @@ public void afficherReponseDevis(){
                 contentStream.close();
 
                 // Save and open the document
-                String outputPath = "C:/Users/garal/OneDrive/Bureau/zahra/contrat.pdf";
+                String outputPath = "C:/Users/amena/OneDrive/Bureau/Zahraa/contrat.pdf";
                 File file = new File(outputPath);
                 document.save(file);
                 document.close();
@@ -937,7 +945,7 @@ public void afficherReponseDevis(){
     }
 
     public static void sendSMS(String recipientPhoneNumber, String messageBody) {
-        String twilioPhoneNumber = "+12679532826";
+        String twilioPhoneNumber = "+12512379365";
         Message message = Message.creator(
                 new PhoneNumber(recipientPhoneNumber),
                 new PhoneNumber(twilioPhoneNumber),
@@ -1155,5 +1163,70 @@ public void afficherReponseDevis(){
             e.printStackTrace();
         }
     }
+    @FXML
+    void logoutButtonOnAction(ActionEvent event) {
+        // Create a confirmation dialog
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmation");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Êtes-vous sûr de vouloir vous déconnecter?");
 
+        // Show the confirmation dialog
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // User confirmed, clear the session and navigate to the login window
+                clearSession();
+                // Close the current window
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.close();
+                // Navigate to the login window
+                navigateToLogin();
+            }
+        });
+    }
+    private void navigateToLogin() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            LoginController controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void homeButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) homeBt.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToHome();    }
+    private void navigateToHome() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            Home controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

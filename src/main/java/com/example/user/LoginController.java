@@ -51,8 +51,8 @@ public class LoginController implements Initializable {
 
     ServiceUser serviceUser = new ServiceUser();
 
-    public static final String ACCOUNT_SID = "ACf325dc22c7955b9d8d9188c765e88749";
-    public static final String AUTH_TOKEN = "1340a2d962fc5aa0f6c8ff758173dee7";
+    public static final String ACCOUNT_SID = "ACe25a54b40232e5c53f882d6fa8837efa";
+    public static final String AUTH_TOKEN = "8404b9d07a4fcc138aecf93cd9aa389d";
 
     static {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
@@ -125,7 +125,7 @@ public class LoginController implements Initializable {
 
     private void redirectToAdminPage() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListVoiture.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Admin - User List");
             stage.setScene(new Scene(root));
@@ -139,7 +139,7 @@ public class LoginController implements Initializable {
 
     private void redirectToFrontPage() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Front User");
             stage.setScene(new Scene(root));
@@ -183,7 +183,7 @@ public class LoginController implements Initializable {
     }
 
     public static void sendSMS(String recipientPhoneNumber, String messageBody) {
-        String twilioPhoneNumber = "+16812011783";
+        String twilioPhoneNumber = "+12512379365";
 
         Message message = Message.creator(
                         new PhoneNumber(recipientPhoneNumber),

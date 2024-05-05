@@ -62,6 +62,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static utils.SessionManager.clearSession;
+
 
 /**
  * FXML Controller class
@@ -158,6 +160,10 @@ public class GestionDevis implements Initializable {
     private Button evaluationButton;
     @FXML
     private Button mecanicienButton;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private Button homeBt;
     public static final String ACCOUNT_SID = "ACdb45117869a081108be58ab82f838f35";
     public static final String AUTH_TOKEN = "73d8c4d94e62cfd601451fbfd7008f8d";
 
@@ -218,7 +224,9 @@ public class GestionDevis implements Initializable {
                 sp.insertOne(d);
                 afficherDevis();
                 Alert alert = new Alert(AlertType.WARNING);
-
+                String recipientPhoneNumber = "+21624534106";
+                String messageBody = "votre reponse devis est ajouté avec succés";
+                sendSMS(recipientPhoneNumber, messageBody);
                 // Set the title
                 alert.setTitle("Ajout");
 
@@ -355,6 +363,32 @@ public class GestionDevis implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    void refresh(ActionEvent event){
+        afficherDevis();
+        afficherReponseDevis();
+        ServiceDevis ds = new ServiceDevis();
+        List<Devis> dd = null;
+tfEmail1.getItems().clear();
+        try {
+            dd = ds.selectAll();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        List<String> Emails = new ArrayList<>();
+        for (Devis d: dd
+        ) {
+            Emails.add(d.getEmail());
+
+        }
+        System.out.println(Emails);
+        for (String e: Emails
+        ) {
+            System.out.println("dddd");
+            tfEmail1.getItems().add(e);
+        }
+        tfEmail1.getSelectionModel().selectFirst();
     }
     @FXML
     void insertOne1(ActionEvent event) {
@@ -543,6 +577,12 @@ public void afficherDevis(){
                     // Remove the HBox from the VBox when the button is clicked
                     deleteDevis(id);
                 });
+                Button pdf = otherController.getpdfButton();
+
+                pdf.setOnAction(event -> {
+                    // Remove the HBox from the VBox when the button is clicked
+                    pdf(id);
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -681,6 +721,7 @@ public void afficherDevis(){
             Button up = controller.getBt();
             up.setOnMouseClicked(event -> {
                 afficherDevis();
+                System.out.println("changed");
             });
 
             Stage stage = new Stage();
@@ -688,7 +729,7 @@ public void afficherDevis(){
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(event -> {
                 // Refresh the TableView when the PopUp stage is closed
-
+                afficherDevis();
                 Stage gg= (Stage)tfNom.getScene().getWindow();
                 gg.close();
 
@@ -787,13 +828,13 @@ public void afficherDevis(){
 
     }
 
-    @FXML
-    void pdf(ActionEvent event) {
+
+    void pdf(int id) {
         try {
             ServiceDevis sd = new ServiceDevis();
-            List<Devis> data = sd.selectAll();
+            Devis dev =  sd.rechercheId(id);
 
-            for (Devis dev : data) {
+
                 PDDocument document = new PDDocument();
                 try {
                     PDPage page = new PDPage();
@@ -845,7 +886,7 @@ public void afficherDevis(){
                     contentStream.close();
 
                     // Save and open the document
-                    String outputPath = "C:/Users/garal/OneDrive/Bureau/zahra/contrat.pdf" + dev.getId() + ".pdf";
+                    String outputPath = "C:/Users/amena/OneDrive/Bureau/Zahraa/" + dev.getId() + ".pdf";
                     File file = new File(outputPath);
                     document.save(file);
                     document.close();
@@ -866,7 +907,7 @@ public void afficherDevis(){
                     errorAlert.showAndWait();
                     e.printStackTrace();
                 }
-            }
+
         } catch (SQLException e) {
             Alert errorAlert = new Alert(AlertType.ERROR);
             errorAlert.setTitle("Error");
@@ -1058,4 +1099,71 @@ public void afficherDevis(){
         }
     }
 
+    @FXML
+    void logoutButtonOnAction(ActionEvent event) {
+        // Create a confirmation dialog
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmation");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Êtes-vous sûr de vouloir vous déconnecter?");
+
+        // Show the confirmation dialog
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // User confirmed, clear the session and navigate to the login window
+                clearSession();
+                // Close the current window
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.close();
+                // Navigate to the login window
+                navigateToLogin();
+            }
+        });
+    }
+    private void navigateToLogin() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            LoginController controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void homeButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) homeBt.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToHome();    }
+    private void navigateToHome() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            Home controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

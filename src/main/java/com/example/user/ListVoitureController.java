@@ -99,7 +99,8 @@ public class ListVoitureController implements Initializable {
     private Button commentaireButton;
     @FXML
     private Button PostButton;
-
+    @FXML
+    private Button homeBt;
 
     User currentUser;
 
@@ -538,6 +539,32 @@ public class ListVoitureController implements Initializable {
             AfficherPostXML controller = loader.getController();
 
             // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void homeButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) homeBt.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToHome();    }
+    private void navigateToHome() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            Home controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
 

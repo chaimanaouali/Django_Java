@@ -35,6 +35,8 @@ import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static utils.SessionManager.clearSession;
+
 //import static jdk.javadoc.internal.doclets.toolkit.util.DocPath.parent;
 
 public class AfficherPostXML implements Initializable {
@@ -131,6 +133,10 @@ public class AfficherPostXML implements Initializable {
     private Button mecanicienButton;
     @FXML
     private Button contratButton;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private Button homeBt;
 
 
 
@@ -458,7 +464,7 @@ public class AfficherPostXML implements Initializable {
             showAlert("PDF Created", "Post details printed to PDF successfully.", Alert.AlertType.INFORMATION);
 
             // Open the PDF file
-            File file = new File("C:\\Users\\garal\\IdeaProjects\\Django2\\post.pdf");
+            File file = new File("C:\\Users\\amena\\Downloads\\Django_Java-userrrrrr\\Django_Java-user\\src\\main\\java\\post.pdf");
             if (file.exists()) {
                 Desktop.getDesktop().open(file);
             }
@@ -668,5 +674,71 @@ public class AfficherPostXML implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void logoutButtonOnAction(ActionEvent event) {
+        // Create a confirmation dialog
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmation");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Êtes-vous sûr de vouloir vous déconnecter?");
 
+        // Show the confirmation dialog
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // User confirmed, clear the session and navigate to the login window
+                clearSession();
+                // Close the current window
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.close();
+                // Navigate to the login window
+                navigateToLogin();
+            }
+        });
+    }
+    private void navigateToLogin() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            LoginController controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void homeButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) homeBt.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToHome();    }
+    private void navigateToHome() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            Home controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

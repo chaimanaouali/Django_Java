@@ -73,7 +73,7 @@ public class updateDevis implements Initializable {
         stage.close();
     }
     public Button getBt(){
-        return boutonAjouter;
+        return cancelButton;
     }
     private Devis selecteddevis;
     public void initData(Devis devis) {

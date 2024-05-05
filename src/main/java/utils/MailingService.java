@@ -5,10 +5,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 public class MailingService {
-    private static String username ="alisha.schuster@ethereal.email";
+    private static String username ="alexandra0@ethereal.email";
     private static String host="smtp.ethereal.email";
     private  static String port="587";
-    private static String password="VDWmjVPekTNVUnakpm";
+    private static String password="TUNFHKdSatq9Xv49gw";
     public static void SendMail(String to, String subject,String body){
         Properties properties = System.getProperties();
 

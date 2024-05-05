@@ -78,7 +78,7 @@ public class FrontController implements Initializable {
         return voitureList;
     }
 
-    private void setChosenFruit(Voiture voiture) {
+   /* private void setChosenFruit(Voiture voiture) {
         matriculeLabel.setText(voiture.getMatricule());
         marqueLable.setText(voiture.getMarque());
         priceLable.setText(String.valueOf(voiture.getPrix_voiture()));
@@ -86,7 +86,7 @@ public class FrontController implements Initializable {
         Image image = new Image(getClass().getResource("/images/car.png").toString());
         img.setImage(image);
 
-    }
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -100,7 +100,7 @@ public class FrontController implements Initializable {
         myListener = new MyListener() {
             @Override
             public void onClickListener(Voiture voiture) {
-                setChosenFruit(voiture);
+                //setChosenFruit(voiture);
                 selectedVoiture = voiture;
                 System.out.println(selectedVoiture);
             }
@@ -112,7 +112,7 @@ public class FrontController implements Initializable {
         };
 
         if (voitureList.size() > 0) {
-            setChosenFruit(voitureList.get(0));
+          //  setChosenFruit(voitureList.get(0));
             System.out.println(voitureList.size());
         }
 

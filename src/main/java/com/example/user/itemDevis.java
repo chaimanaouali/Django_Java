@@ -51,8 +51,13 @@ public class itemDevis implements Initializable {
     private Label idCol;
     @FXML
     private Button deleteB;
+    @FXML
+    private Button pdf;
     public Button getDeleteButton(){
         return deleteB;
+    }
+    public Button getpdfButton(){
+        return pdf;
     }
     public int getId(){
         System.out.println(Integer.valueOf(idCol.getText()));

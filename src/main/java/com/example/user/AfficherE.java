@@ -41,6 +41,8 @@ import java.util.Timer;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static utils.SessionManager.clearSession;
+
 // Déclaration du label
 
 
@@ -74,6 +76,9 @@ public class AfficherE {
 
         @FXML
         private Button voitureButton;
+            @FXML
+            private Button logoutButton;
+
         User currentUser;
 
         @FXML
@@ -88,6 +93,8 @@ public class AfficherE {
     private Button contratButton;
     @FXML
     private Button devisButton;
+    @FXML
+    private Button homeBt;
 
 
     @FXML
@@ -256,7 +263,7 @@ public class AfficherE {
                         index++;
                 }
 
-                FileOutputStream fileOut = new FileOutputStream("C:/Users/garal/OneDrive/Bureau/integrationUser+actualiter/Django_Java-user/src/main/java/EXCEL/Evaluation.xls");
+                FileOutputStream fileOut = new FileOutputStream("C:/Users/amena/Downloads/Django_Java-userrrrrr/Django_Java-user/src/main/java/EXCEL/Evaluation.xls");
                 wb.write(fileOut);
                 fileOut.close();
                 JOptionPane.showMessageDialog(null, "Exportation 'EXCEL' effectuée avec succés");
@@ -310,7 +317,7 @@ public class AfficherE {
                         contentStream.close();
 
                         // Enregistrez le document PDF
-                        String outputPath = "C:/Users/garal/OneDrive/Bureau/integrationUser+actualiter/Django_Java-user/src/main/java/PDF/Evaluation.pdf";
+                        String outputPath = "C:/Users/amena/Downloads/Django_Java-userrrrrr/Django_Java-user/src/main/java/PDF/Evaluation.pdf";
                         File file = new File(outputPath);
                         document.save(file);
 
@@ -592,6 +599,72 @@ public class AfficherE {
             GestionDevis controller = loader.getController();
 
             // Show the scene containing the ListVoiture.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void logoutButtonOnAction(ActionEvent event) {
+        // Create a confirmation dialog
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmation");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Êtes-vous sûr de vouloir vous déconnecter?");
+
+        // Show the confirmation dialog
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // User confirmed, clear the session and navigate to the login window
+                clearSession();
+                // Close the current window
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.close();
+                // Navigate to the login window
+                navigateToLogin();
+            }
+        });
+    }
+    private void navigateToLogin() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            LoginController controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void homeButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) homeBt.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToHome();    }
+    private void navigateToHome() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            Home controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
 

@@ -19,12 +19,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.GestionContrat">
     <children>
-        <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
+        <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="1123.0" style="-fx-background-color: #fff;">
             <children>
                 <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
                     <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Home">
+                        <Button fx:id="homeBt" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Acceuil">
                             <graphic>
 
                             </graphic>
@@ -84,7 +84,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#out" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Sign Out">
+                        <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Deconnexion">
                             <graphic>
 
                             </graphic>
@@ -275,6 +275,7 @@
                               </ScrollPane>
                               <HBox layoutX="12.0" layoutY="31.0" prefHeight="54.0" prefWidth="792.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;">
                                  <children>
+
                                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="238.0" text="type de couverture" textFill="#dfdfdf">
                                        <font>
                                           <Font name="System Bold" size="12.0" />

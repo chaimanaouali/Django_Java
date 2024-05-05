@@ -35,7 +35,7 @@ public class pdfgenerator {
             PdfWriter.getInstance(document, new FileOutputStream("post.pdf"));
             document.open();
 // Ajouter l'image au document
-            Image image = Image.getInstance("C:\\Users\\garal\\IdeaProjects\\Django2\\src\\main\\resources\\image\\logo-removebg-preview.png");
+            Image image = Image.getInstance("C:\\Users\\amena\\Downloads\\Django_Java-userrrrrr\\Django_Java-user\\src\\main\\resources\\images\\logo-removebg-preview.png");
 
             image.scaleToFit(150, 150); // Redimensionner l'image à 100x100 pixels
             document.add(image);
