@@ -35,6 +35,8 @@ public class Home {
     private Button commentaireButton;
     @FXML
     private Button logoutButton;
+    @FXML
+    private Button constat;
 
 
     @FXML
@@ -246,6 +248,32 @@ public class Home {
 
 
             // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void constatButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) constat.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToConstat();    }
+    private void navigateToConstat() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichageConstat.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            AffichageConstat controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
 

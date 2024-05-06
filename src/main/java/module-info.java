@@ -23,6 +23,11 @@ module com.example.user {
     requires TrayNotification;
     requires java.persistence;
 
+    requires javafx.graphics;
+
+    requires com.google.zxing.javase;
+
+
 
 
     requires jdk.javadoc;

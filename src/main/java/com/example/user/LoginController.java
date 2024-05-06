@@ -51,8 +51,8 @@ public class LoginController implements Initializable {
 
     ServiceUser serviceUser = new ServiceUser();
 
-    public static final String ACCOUNT_SID = "ACe25a54b40232e5c53f882d6fa8837efa";
-    public static final String AUTH_TOKEN = "8404b9d07a4fcc138aecf93cd9aa389d";
+    public static final String ACCOUNT_SID = "ACa7469fb2ca6d0555b421285527faab23";
+    public static final String AUTH_TOKEN = "0b214c21c6fa664168ecc8a2b92233fe";
 
     static {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
@@ -94,13 +94,13 @@ public class LoginController implements Initializable {
                 if ("[\"ROLE_ADMIN\"]".equals(user.getRoles())) {
                     // Redirect to Admin page (ListUser)
                     redirectToAdminPage();
-                    String recipientPhoneNumber = "+21658287224";
+                    String recipientPhoneNumber = "+21655686196";
                     String messageBody = "You logged in !!";
                     sendSMS(recipientPhoneNumber, messageBody);
                     showNotification("Success", "You Logged In !!");
                 } else {
                     redirectToFrontPage();
-                    String recipientPhoneNumber = "+21658287224";
+                    String recipientPhoneNumber = "+21655686196";
                     String messageBody = "You logged in !!";
                     sendSMS(recipientPhoneNumber, messageBody);
                     showNotification("Success", "You Logged In !!");
@@ -183,7 +183,7 @@ public class LoginController implements Initializable {
     }
 
     public static void sendSMS(String recipientPhoneNumber, String messageBody) {
-        String twilioPhoneNumber = "+12512379365";
+        String twilioPhoneNumber = "+18064508587";
 
         Message message = Message.creator(
                         new PhoneNumber(recipientPhoneNumber),

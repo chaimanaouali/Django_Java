@@ -49,7 +49,7 @@ public class ModifierM {
     private ImageView ImageVmodifM;
     String filepath = null, filename = null, fn = null;
     FileChooser fc = new FileChooser();
-    String uploads = "C:/Users/Nour/IdeaProjects/DjangoAssurance/src/main/resources/";
+    String uploads = "C:/Users/amena/Downloads/Django_Java-userrrrrr/Django_Java-user/src/main/resources/images";
     private final ServiceMecanicien mecM = new ServiceMecanicien();
 
     @FXML

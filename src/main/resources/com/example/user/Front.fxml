@@ -52,12 +52,12 @@
                                 <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
 
                                 </ImageView>
-                                <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="48.0" prefWidth="187.0" style="-fx-background-color: #2A914D;" text="Supprimer" textFill="WHITE">
+                                <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="48.0" prefWidth="187.0" style="-fx-background-color: #E96151;" text="Supprimer" textFill="WHITE">
                                     <font>
                                         <Font size="22.0" />
                                     </font>
                                 </Button>
-                        <Button mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #2A914D;" text="Modifier" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #37619B;" text="Modifier" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>

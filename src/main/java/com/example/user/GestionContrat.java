@@ -225,8 +225,8 @@ public class GestionContrat implements Initializable {
     @FXML
     private Button logoutButton;
 
-    public static final String ACCOUNT_SID = "ACe25a54b40232e5c53f882d6fa8837efa";
-    public static final String AUTH_TOKEN = "8404b9d07a4fcc138aecf93cd9aa389d";
+    public static final String ACCOUNT_SID = "AC39da85bd72354e8b0a1846684abd93c9";
+    public static final String AUTH_TOKEN = "a1ba9db8d81d810255ac2cbecca9421f";
     static { Twilio.init(ACCOUNT_SID, AUTH_TOKEN); }
     public ServiceExcel excelService = new ServiceExcel();
     public ServiceContrat serviceContrat = new ServiceContrat();
@@ -950,7 +950,7 @@ public void afficherReponseDevis(){
     }
 
     public static void sendSMS(String recipientPhoneNumber, String messageBody) {
-        String twilioPhoneNumber = "+12512379365";
+        String twilioPhoneNumber = "+12679532826";
         Message message = Message.creator(
                 new PhoneNumber(recipientPhoneNumber),
                 new PhoneNumber(twilioPhoneNumber),

@@ -23,13 +23,16 @@
                             <image>
                                 <Image url="@../../../images/logo-django.png" />
                             </image></ImageView>
-                        <Button fx:id="homeBt" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE" />
-                  <Button fx:id="userButton" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="34.0" prefWidth="224.0" style="-fx-background-color: #37619B;" text="User" textFill="WHITE">
+                        <Button fx:id="homeBt" minHeight="50.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #37619B;" text="Acceuil" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="userButton" minHeight="50.0" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="34.0" prefWidth="224.0" style="-fx-background-color: #37619B;" text="User" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="voitureButton1" mnemonicParsing="false" onAction="#voitureButtonOnAction" prefHeight="34.0" prefWidth="230.0" style="-fx-background-color: #37619B;" text="Voiture" textFill="#fafafa">
+                  <Button fx:id="voitureButton1" minHeight="50.0" mnemonicParsing="false" onAction="#voitureButtonOnAction" prefHeight="34.0" prefWidth="230.0" style="-fx-background-color: #37619B;" text="Voiture" textFill="#fafafa">
                      <font>
                         <Font size="14.0" />
                      </font>

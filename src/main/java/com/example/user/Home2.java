@@ -34,6 +34,8 @@ public class Home2 {
     private Button commentaireButton;
     @FXML
     private Button logoutButton;
+    @FXML
+    private Button constat;
 
 
     @FXML
@@ -71,11 +73,11 @@ public class Home2 {
     private void navigateToMecanicien() {
         try {
             // Load the ListVoiture.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherM.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherMFRONT.fxml"));
             Parent root = loader.load();
 
             // Access the controller of the ListVoiture.fxml file
-            AfficherM controller = loader.getController();
+            AfficherMFRONT controller = loader.getController();
 
             // Show the scene containing the ListVoiture.fxml file
             Stage stage = new Stage();
@@ -245,6 +247,32 @@ public class Home2 {
 
 
             // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void constatButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) constat.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToConstat();    }
+    private void navigateToConstat() {
+        try {
+            // Load the ListVoiture.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fronthome.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller of the ListVoiture.fxml file
+            fronthome controller = loader.getController();
+
+            // Show the scene containing the ListVoiture.fxml file
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
 
