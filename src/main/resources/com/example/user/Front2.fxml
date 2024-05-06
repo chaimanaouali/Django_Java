@@ -83,11 +83,11 @@
                                         <Image url="@../../../images/home-removebg-preview.png" />
                                     </image>
                                 </ImageView>
-                                <Label layoutX="104.0" layoutY="51.0" prefHeight="47.0" prefWidth="89.0" text="Home" textFill="WHITE">
-                                    <font>
-                                        <Font name="Caladea Bold" size="19.0" />
-                                    </font>
-                                </Label>
+                        <Button fx:id="homeBt" layoutX="102.0" layoutY="50.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #37619B;" text="Home" textFill="WHITE">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
                             </children>
                             <padding>
                                 <Insets left="10.0" />

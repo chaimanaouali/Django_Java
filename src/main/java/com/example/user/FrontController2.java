@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,6 +60,8 @@ public class FrontController2 implements Initializable {
 
     @FXML
     private AnchorPane mainF;
+    @FXML
+    private Button homeBt;
 
     private List<Post> getData() throws SQLException {
         ServicePost servicePost = new ServicePost();
@@ -299,6 +302,32 @@ public class FrontController2 implements Initializable {
             // Show the chatbot popup
             stage.showAndWait();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void homeButtonOnAction(ActionEvent event){
+
+        Stage stage = (Stage) homeBt.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToHome();    }
+    private void navigateToHome() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home2.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            Home2 controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

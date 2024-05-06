@@ -21,34 +21,31 @@
     <children>
         <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="1123.0" style="-fx-background-color: #fff;">
             <children>
-                <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
+                <VBox prefHeight="743.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
                     <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="homeBt" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Acceuil">
+                        <Button fx:id="homeBt" graphicTextGap="20.0" minHeight="50.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Acceuil" textAlignment="JUSTIFY">
                             <graphic>
 
                             </graphic>
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
-                            <padding>
-                                <Insets left="35.0" />
-                            </padding>
                             <font>
-                                <Font name="System Bold" size="12.0" />
+                                <Font name="System Bold" size="14.0" />
                             </font>
                         </Button>
-                  <Button fx:id="voitureButton" mnemonicParsing="false" onAction="#voitureButtonOnAction" prefHeight="34.0" prefWidth="230.0" text="Voiture">
+                  <Button fx:id="voitureButton" minHeight="50.0" mnemonicParsing="false" onAction="#voitureButtonOnAction" prefHeight="34.0" prefWidth="230.0" text="Voiture">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="userButton" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="34.0" prefWidth="224.0" text="User">
+                  <Button fx:id="userButton" minHeight="50.0" mnemonicParsing="false" onAction="#userButtonOnAction" prefHeight="46.0" prefWidth="222.0" text="User">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Contrat/type du contrat">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" minHeight="50.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Contrat/type du contrat">
                             <graphic>
 
                             </graphic>
@@ -58,33 +55,36 @@
                             <padding>
                                 <Insets left="35.0" />
                             </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                         </Button>
-                  <Button fx:id="devisButton" mnemonicParsing="false" onAction="#devisButtonOnAction" prefHeight="32.0" prefWidth="246.0" text="Devis/Reponse">
+                  <Button fx:id="devisButton" minHeight="50.0" mnemonicParsing="false" onAction="#devisButtonOnAction" prefHeight="32.0" prefWidth="246.0" text="Devis/Reponse">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="PostButton" mnemonicParsing="false" onAction="#PostButtonOnAction" prefHeight="30.0" prefWidth="234.0" text="Post">
+                  <Button fx:id="PostButton" minHeight="50.0" mnemonicParsing="false" onAction="#PostButtonOnAction" prefHeight="30.0" prefWidth="234.0" text="Post">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="commentaireButton1" mnemonicParsing="false" onAction="#CommentaireButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Commentaire">
+                  <Button fx:id="commentaireButton1" minHeight="50.0" mnemonicParsing="false" onAction="#CommentaireButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Commentaire">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="evaluationButton" mnemonicParsing="false" onAction="#evaluationButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Evaluation">
+                  <Button fx:id="evaluationButton" minHeight="50.0" mnemonicParsing="false" onAction="#evaluationButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Evaluation">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="mecanicienButton" mnemonicParsing="false" onAction="#mecanicienButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Mecanicien">
+                  <Button fx:id="mecanicienButton" minHeight="50.0" mnemonicParsing="false" onAction="#mecanicienButtonOnAction" prefHeight="30.0" prefWidth="252.0" text="Mecanicien">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                        <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Deconnexion">
+                        <Button fx:id="logoutButton" graphicTextGap="20.0" minHeight="50.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="Deconnexion">
                             <graphic>
 
                             </graphic>
@@ -95,8 +95,11 @@
                                 <Insets left="35.0" />
                             </padding>
                      <VBox.margin>
-                        <Insets top="280.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                         </Button>
                     </children>
                 </VBox>
@@ -188,6 +191,11 @@
                                  </font>
                               </Button>
                               <Button fx:id="excelbt" layoutX="415.0" layoutY="450.0" mnemonicParsing="false" onAction="#writeToExcel" prefHeight="34.0" prefWidth="120.0" text="Excel">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="excelbt1" layoutX="544.0" layoutY="451.0" mnemonicParsing="false" onAction="#refresh" prefHeight="34.0" prefWidth="120.0" text="refresh">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -298,6 +306,11 @@
                                     </Label>
                                  </children>
                               </HBox>
+                              <Button fx:id="excelbt2" layoutX="26.0" layoutY="450.0" mnemonicParsing="false" onAction="#refresh" prefHeight="34.0" prefWidth="120.0" text="refresh">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </content></Tab>

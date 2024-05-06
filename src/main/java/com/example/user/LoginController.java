@@ -139,7 +139,7 @@ public class LoginController implements Initializable {
 
     private void redirectToFrontPage() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Home2.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Front User");
             stage.setScene(new Scene(root));

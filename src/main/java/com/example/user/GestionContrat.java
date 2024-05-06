@@ -240,6 +240,11 @@ public class GestionContrat implements Initializable {
         excelService.writeToExcel(contrats);
 
     }
+    @FXML
+    void refresh(ActionEvent event) {
+        afficherDevis();
+        afficherReponseDevis();
+    }
 
     @FXML
     public void insertOne(ActionEvent event) throws SQLException {

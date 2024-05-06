@@ -70,7 +70,8 @@ public class FrontController implements Initializable {
     private Image image;
     private MyListener myListener;
     User currentUser;
-
+    @FXML
+    private Button homeBt;
     private List<Voiture> getData() throws SQLException {
         ServiceVoiture serviceVoiture = new ServiceVoiture();
         List<Voiture> voitureList = serviceVoiture.selectVoitureByUser(SessionManager.getSession().getUser());
@@ -338,6 +339,31 @@ public class FrontController implements Initializable {
         }
     }
 
+    @FXML
+    void homeButtonOnAction(ActionEvent event){
 
+        Stage stage = (Stage) homeBt.getScene().getWindow();
+        stage.close();
+        // Navigate to the login window
+        navigateToHome();    }
+    private void navigateToHome() {
+        try {
+            // Load the UpdateUser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home2.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // Access the controller and pass the selected user to it
+            Home2 controller = loader.getController();
+
+
+            // Show the scene containing the UpdateUser.fxml file
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
