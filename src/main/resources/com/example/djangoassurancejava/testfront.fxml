@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.djangoassurancejava.GestionContratFront">
+    <children>
+        <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
+            <children>
+                <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #37619B;">
+                    <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" graphicTextGap="20.0" minHeight="50.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="              Home">
+                            <graphic>
+
+                            </graphic>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="35.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" minHeight="50.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="             Contrat">
+                            <graphic>
+
+                            </graphic>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="35.0" />
+                            </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#out" prefHeight="46.0" prefWidth="222.0" styleClass="button1" text="               Sign Out">
+                            <graphic>
+
+                            </graphic>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="35.0" />
+                            </padding>
+                            <VBox.margin>
+                                <Insets top="280.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+                <Label layoutX="248.0" layoutY="24.0" text="Tournois">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <TabPane layoutX="233.0" layoutY="103.0" prefHeight="538.0" prefWidth="866.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="consulter ">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0" style="-fx-background-color: #FFF;">
+                                    <children>
+                                        <ScrollPane hbarPolicy="NEVER" layoutX="10.0" layoutY="94.0" maxWidth="798.0" minWidth="798.0" onDragDetected="#navigateToMailling" prefHeight="354.0" prefWidth="798.0" style="-fx-background-color: #FFF;" vbarPolicy="NEVER">
+                                            <content>
+                                                <VBox fx:id="vboxDevis" spacing="5.0" style="-fx-background-color: #FFF;" />
+                                            </content></ScrollPane>
+                                        <HBox layoutX="12.0" layoutY="31.0" prefHeight="54.0" prefWidth="792.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;">
+                                            <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="131.0" text="type " textFill="#dfdfdf">
+                                                    <HBox.margin>
+                                                        <Insets left="5.0" />
+                                                    </HBox.margin>
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="134.0" text="date debut" textFill="#dfdfdf">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="54.0" prefWidth="114.0" text="date fin" textFill="#dfdfdf">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="54.0" prefWidth="113.0" text="Adresse" textFill="#dfdfdf">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="54.0" prefWidth="106.0" text="numero" textFill="#dfdfdf">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="54.0" prefWidth="98.0" text="nom" textFill="#dfdfdf">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="54.0" prefWidth="104.0" text="prenom" textFill="#dfdfdf">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="54.0" prefWidth="113.0" text="email" textFill="#dfdfdf">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="numtelCol11111" alignment="CENTER" prefHeight="54.0" prefWidth="48.0" text="Delete" textFill="#dfdfdf" visible="false">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="54.0" prefWidth="51.0" text="Del" textFill="#dfdfdf">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                        <Button layoutX="12.0" layoutY="451.0" mnemonicParsing="false" onAction="#chart" prefHeight="33.0" prefWidth="94.0" text="Stats">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="pdf" layoutX="144.0" layoutY="451.0" mnemonicParsing="false" onAction="#pdf" prefHeight="33.0" prefWidth="94.0" text="PDF">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="reclamationBt" layoutX="268.0" layoutY="451.0" mnemonicParsing="false" onAction="#navigateToMailling" prefHeight="34.0" prefWidth="120.0" text="Reclamation">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="excelbt" layoutX="415.0" layoutY="450.0" mnemonicParsing="false" onAction="#writeToExcel" prefHeight="34.0" prefWidth="120.0" text="Excel">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Ajouter">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
+                                    <children>
+                                        <Button fx:id="boutonAjouter" layoutX="730.0" layoutY="427.0" mnemonicParsing="false" onAction="#insertOne" prefHeight="33.0" prefWidth="94.0" text="Ajouter">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font></Button>
+                                        <Label layoutX="80.0" layoutY="50.0" styleClass="label" text="Nom:" textFill="#37619b">
+                                            <font>
+                                                <Font name="Arial Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="nomTextField" layoutX="258.0" layoutY="44.0" prefHeight="27.0" prefWidth="150.0" styleClass="text-field" />
+                                        <Label layoutX="80.0" layoutY="125.0" styleClass="label" text="Prenom:" textFill="#37619b">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="prenomTextField" layoutX="258.0" layoutY="122.0" styleClass="text-field" />
+                                        <Label layoutX="80.0" layoutY="275.0" styleClass="label" text="E-mail:" textFill="#37619b">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="emailTextField" layoutX="259.0" layoutY="272.0" styleClass="text-field" />
+                                        <Label layoutX="80.0" layoutY="200.0" styleClass="label" text="Numero de Telephone:" textFill="#37619b">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="numeroTextField" layoutX="258.0" layoutY="197.0" styleClass="text-field" />
+                                        <Label layoutX="80.0" layoutY="350.0" styleClass="label" text="Adresse:" textFill="#37619b">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="adresseTextField" layoutX="258.0" layoutY="347.0" styleClass="text-field" />
+                                        <Label layoutX="454.0" layoutY="94.0" styleClass="label" text="Type de couverture:" textFill="#37619b">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="454.0" layoutY="210.0" styleClass="label" text="Date de debut du contrat:" textFill="#37619b">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <DatePicker fx:id="datedebutDatePicker" layoutX="648.0" layoutY="210.0" styleClass="date-picker" />
+                                        <Label layoutX="464.0" layoutY="309.0" styleClass="label" text="Date de fin du contrat:" textFill="#37619b">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <DatePicker fx:id="datefinDatePicker" layoutX="648.0" layoutY="306.0" styleClass="date-picker" />
+                                        <ComboBox fx:id="typedecouvertureChoiceBox" layoutX="510.0" layoutY="134.0" prefHeight="26.0" prefWidth="313.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content></Tab>
+                        <Tab disable="true" />
+                        <Tab disable="true">
+                            <content>
+                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                    </content>
+                                </ScrollPane>
+                            </content></Tab>
+                    </tabs>
+                </TabPane>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="82.0" layoutX="220.0" stroke="#37619b" strokeType="INSIDE" width="717.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="880.0" layoutY="-14.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="16.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="913.0" layoutY="-24.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="42.0" />
+
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37619b" height="20.0" layoutX="210.0" layoutY="74.0" stroke="#37619b" strokeType="INSIDE" width="27.0" />
+                <Circle fill="WHITE" layoutX="236.0" layoutY="96.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" />
+                <Label layoutX="521.0" layoutY="15.0" text="Contrats" textFill="#dfdfdf">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Label layoutX="585.0" layoutY="83.0" prefHeight="36.0" prefWidth="121.0" text="contrats" textFill="#37619b">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="715.0" layoutY="83.0" prefHeight="26.0" prefWidth="127.0" text="type couverture" textFill="#37619b" visible="false">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="recherchee" layoutX="941.0" layoutY="56.0" onKeyReleased="#recherche" />
+                <Label layoutX="945.0" layoutY="28.0" text="Recherche" textFill="#37619b">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

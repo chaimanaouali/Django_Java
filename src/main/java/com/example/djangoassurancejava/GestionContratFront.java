@@ -70,7 +70,7 @@ import com.twilio.type.PhoneNumber;
  *
  * @author chaima
  */
-public class GestionContrat implements Initializable {
+public class GestionContratFront implements Initializable {
 
     @FXML
     private TextField adresseTextField;
@@ -218,10 +218,10 @@ public class GestionContrat implements Initializable {
     @FXML
     public void writeToExcel(ActionEvent event) throws SQLException{
         List<Contrat> contrats=serviceContrat.recuperer();
-        excelService.writeToExcel(contrats,"C:/Users/Lenovo/Desktop/zahra/Contrats.xlsx");
+        excelService.writeToExcel(contrats,"C:/Users/Lenovo/Desktop/zahra/Contratsfront.xlsx");
 
     }
-/////////////////////////////////////////////
+    /////////////////////////////////////////////
     @FXML
     public void insertOne(ActionEvent event) throws SQLException {
         LocalDate dated = datedebutDatePicker.getValue();
@@ -517,7 +517,7 @@ public class GestionContrat implements Initializable {
         typedecouvertureChoiceBox.getSelectionModel().selectFirst();
 
         afficherDevis();
-        afficherReponseDevis();
+        //afficherReponseDevis();
         ServiceContrat ds = new ServiceContrat();
         List<Contrat> dd = null;
         try {
@@ -530,16 +530,16 @@ public class GestionContrat implements Initializable {
         List<String> Emails = new ArrayList<>();
         for (Contrat d: dd
         ) {
-          //  Emails.add(d);
+            //  Emails.add(d);
 
         }
         System.out.println(Emails);
         for (String e: Emails
         ) {
             System.out.println("dddd");
-        //    tfEmail1.getItems().add(e);
+            //    tfEmail1.getItems().add(e);
         }
-      //  tfEmail1.getSelectionModel().selectFirst();
+        //  tfEmail1.getSelectionModel().selectFirst();
     }
 
 
@@ -610,50 +610,50 @@ public class GestionContrat implements Initializable {
             System.out.println("Suppression annulée par l'utilisateur.");
         }
     }
-public void afficherReponseDevis(){
-        vboxDevis1.getChildren().clear();
-    ServiceType sd = new ServiceType();
-    try {
-        List<Type>deviss = sd.recuperer();
-        HBox hb[]= new HBox[deviss.size()];
-        for (Type d: deviss
-        ) {
+    public void afficherReponseDevis(){
+        //vboxDevis1.getChildren().clear();
+        ServiceType sd = new ServiceType();
+        try {
+            List<Type>deviss = sd.recuperer();
+            HBox hb[]= new HBox[deviss.size()];
+            for (Type d: deviss
+            ) {
 
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("itemType.fxml"));
-                Parent root = loader.load();
-                itemType otherController = loader.getController();
-                HBox hbox = (HBox) loader.getRoot();
-                vboxDevis1.getChildren().add(hbox);
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("itemType.fxml"));
+                    Parent root = loader.load();
+                    itemType otherController = loader.getController();
+                    HBox hbox = (HBox) loader.getRoot();
+                    vboxDevis1.getChildren().add(hbox);
 
 
-                otherController.afficher(d);
-                hbox.setOnMouseClicked(mouseEvent -> {
-                    if (mouseEvent.getClickCount() == 2) { // Double-click detected
-                        Type selectedDevis = d;
-                        if (selectedDevis != null) {
-                            // Navigate to UpdateUser.fxml
-                            navigateToUpdateDevis(selectedDevis);
-                            afficherDevis();
+                    otherController.afficher(d);
+                    hbox.setOnMouseClicked(mouseEvent -> {
+                        if (mouseEvent.getClickCount() == 2) { // Double-click detected
+                            Type selectedDevis = d;
+                            if (selectedDevis != null) {
+                                // Navigate to UpdateUser.fxml
+                                navigateToUpdateDevis(selectedDevis);
+                                afficherDevis();
+                            }
                         }
-                    }
-                });
+                    });
 
-                Button deleteButton = otherController.getDeleteButton();
-                int id = otherController.getId();
-                deleteButton.setOnAction(event -> {
-                    // Remove the HBox from the VBox when the button is clicked
-                    deleteReponseDevis(id);
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
+                    Button deleteButton = otherController.getDeleteButton();
+                    int id = otherController.getId();
+                    deleteButton.setOnAction(event -> {
+                        // Remove the HBox from the VBox when the button is clicked
+                        deleteReponseDevis(id);
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    }
 
-}
+    }
 
     public void afficherDevis(){
         vboxDevis.getChildren().clear();
@@ -707,8 +707,8 @@ public void afficherReponseDevis(){
                             throw new RuntimeException(e);
                         }
                         // Remove the HBox from the VBox when the button is clicked
-                           String AllInfo = "Type Couverture: " + dee.getType_couverture() + "\nDescription:"+ dee.getDescription() ;
-                           qr(AllInfo);
+                        String AllInfo = "Type Couverture: " + dee.getType_couverture() + "\nDescription:"+ dee.getDescription() ;
+                        qr(AllInfo);
                     });
                     deleteButton.setOnAction(event -> {
                         // Remove the HBox from the VBox when the button is clicked
@@ -755,7 +755,7 @@ public void afficherReponseDevis(){
         }
 
         ImageView qr = new ImageView();
-       qr.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+        qr.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
 
         StackPane obj = new StackPane();
         obj.getChildren().add(qr);
@@ -926,9 +926,9 @@ public void afficherReponseDevis(){
     public static void sendSMS(String recipientPhoneNumber, String messageBody) {
         String twilioPhoneNumber = "+12679532826";
         Message message = Message.creator(
-                new PhoneNumber(recipientPhoneNumber),
-                new PhoneNumber(twilioPhoneNumber),
-                messageBody)
+                        new PhoneNumber(recipientPhoneNumber),
+                        new PhoneNumber(twilioPhoneNumber),
+                        messageBody)
                 .create();
         System.out.println("SMS sent successfully. SID: " + message.getSid());
     }
