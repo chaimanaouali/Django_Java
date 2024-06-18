@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="403.0" prefWidth="674.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.djangoassurancejava.Mail">
+    <children>
+        <!-- Email recipient input field -->
+        <TextField fx:id="toField" layoutX="40.0" layoutY="35.0" prefHeight="26.0" prefWidth="572.0" promptText="To: (add recipient's email)">
+            <font>
+                <Font name="System" size="12.0"/>
+            </font>
+        </TextField>
+        <!-- Subject input field -->
+        <TextField fx:id="subjectField" layoutX="40.0" layoutY="89.0" prefHeight="26.0" prefWidth="572.0" promptText="Subject: (add subject)">
+            <font>
+                <Font name="System" size="12.0"/>
+            </font>
+        </TextField>
+        <!-- Message body text area -->
+        <TextArea fx:id="messageArea" layoutX="40.0" layoutY="141.0" prefHeight="200.0" prefWidth="572.0" promptText="Write your message here...">
+        </TextArea>
+        <!-- Send email button -->
+        <Button fx:id="btn" layoutX="40.0" layoutY="351.0" mnemonicParsing="false" onAction="#sendEmail" prefHeight="26.0" prefWidth="572.0" text="Send Email" textFill="#2e4e96" style="-fx-font-weight: bold;">
+        </Button>
+    </children>
+</AnchorPane>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxWidth="796.0" minWidth="796.0" prefHeight="54.0" prefWidth="796.0" style="-fx-background-color: #4b85d1; -fx-border-radius: 15px; -fx-border-width: 5px; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.djangoassurancejava.itemType">
+   <children>
+      <Label fx:id="typeCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="168.0" text="Type Couverture" textFill="#dfdfdf">
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="descriptionCol" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="594.0" text="Description" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Button fx:id="deleteB" ellipsisString="" mnemonicParsing="false" prefHeight="40.0" prefWidth="10.0" style="-fx-background-color: red;" text="id">
+         <HBox.margin>
+            <Insets bottom="7.0" top="7.0" />
+         </HBox.margin>
+         <font>
+            <Font />
+         </font></Button>
+      <Label fx:id="idCol" alignment="CENTER" contentDisplay="CENTER" maxHeight="54.0" maxWidth="0.0" minHeight="54.0" minWidth="0.0" prefHeight="54.0" prefWidth="0.0" text="id" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="idmail" alignment="CENTER" prefHeight="54.0" prefWidth="0.0" textFill="#dfdfdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</HBox>

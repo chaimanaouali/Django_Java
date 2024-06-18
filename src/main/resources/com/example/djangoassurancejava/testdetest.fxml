@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1102.0" style="-fx-background-color: #fff;">
+            <children>
+                <VBox prefHeight="660.0" prefWidth="222.0" style="-fx-background-color: #BF3C3C;">
+                    <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1"  text="Home">
+                            <graphic>
+
+                            </graphic>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="35.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1"  text="devis/reponseDevis">
+                            <graphic>
+
+                            </graphic>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="35.0" />
+                            </padding>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" styleClass="button1"  text="Sign Out">
+                            <graphic>
+
+                            </graphic>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="35.0" />
+                            </padding>
+                     <VBox.margin>
+                        <Insets top="280.0" />
+                     </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+                <Label layoutX="248.0" layoutY="24.0" text="Tournois">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <TabPane layoutX="233.0" layoutY="103.0" prefHeight="538.0" prefWidth="866.0"  tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="consulter ">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" layoutY="7.0" prefHeight="105.0" prefWidth="778.0" spacing="60.0">
+                                            <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                    <children>
+                                                        <Label fx:id="nbt" textFill="#2a73ff">
+                                                            <font>
+                                                                <Font name="System Bold" size="26.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Devis">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+                                                <Label />
+                                            </children>
+                                            <padding>
+                                                <Insets left="40.0" />
+                                            </padding>
+                                        </HBox>
+                                        <ScrollPane layoutX="39.0" layoutY="113.0" prefHeight="363.0" prefWidth="702.0" style="-fx-background-color: #FFF;">
+                                 <content>
+                                    <TableView fx:id="devisTableView" prefHeight="358.0" prefWidth="700.0">
+                                       <columns>
+                                          <TableColumn fx:id="idCol" prefWidth="50.39999234676361" text="ID" visible="false" />
+                                          <TableColumn fx:id="nomCol" maxWidth="100.0" prefWidth="49.600006103515625" text="NOM" />
+                                          <TableColumn fx:id="prenomCol" maxWidth="154.39996337890625" prefWidth="67.20001983642578" text="PRENOM" />
+                                          <TableColumn fx:id="emailCol" maxWidth="262.4000244140625" prefWidth="81.60003662109375" text="EMAIL" />
+                                          <TableColumn fx:id="adresseCol" maxWidth="312.7999572753906" prefWidth="59.20001220703125" text="Adresse" />
+                                          <TableColumn fx:id="datenaissCol" maxWidth="342.4000549316406" prefWidth="76.0" text="Date Naissance" />
+                                          <TableColumn fx:id="modeleCol1" maxWidth="342.4000549316406" prefWidth="79.99993896484375" text="Modele" />
+                                          <TableColumn fx:id="puissanceCol11" maxWidth="342.4000549316406" prefWidth="63.199981689453125" text="Puissance" />
+                                          <TableColumn fx:id="prixCol111" maxWidth="342.4000549316406" prefWidth="66.4000244140625" text="Prix" />
+                                          <TableColumn fx:id="numtelCol1111" maxWidth="342.4000549316406" prefWidth="101.60003662109375" text="Num Tel" />
+                                       </columns>
+                                    </TableView>
+                                 </content></ScrollPane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Ajouter">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
+                           <children>
+                              <TextField id="tfNom" fx:id="tfNom" layoutX="18.0" layoutY="102.0" prefHeight="26.0" prefWidth="150.0" />
+                              <Label layoutX="18.0" layoutY="69.0" prefHeight="18.0" prefWidth="118.0" text="Nom" />
+                              <Label layoutX="17.0" layoutY="145.0" prefHeight="18.0" prefWidth="66.0" text="Prenom" />
+                              <TextField id="tfPrenom" fx:id="tfPrenom" layoutX="18.0" layoutY="179.0" prefHeight="26.0" prefWidth="150.0" />
+                              <Label layoutX="22.0" layoutY="220.0" text="Adresse" />
+                              <TextField id="tfAdresse" fx:id="tfAdresse" layoutX="21.0" layoutY="250.0" />
+                              <Label layoutX="22.0" layoutY="289.0" text="Email" />
+                              <TextField id="tfEmail" fx:id="tfEmail" layoutX="19.0" layoutY="322.0" />
+                              <Label layoutX="22.0" layoutY="363.0" text="Date de naissance" />
+                              <DatePicker id="tfDate" fx:id="tfDate" layoutX="15.0" layoutY="395.0" prefHeight="26.0" prefWidth="158.0" />
+                              <Label layoutX="331.0" layoutY="313.0" text="Numero de telephone" />
+                              <TextField id="tfNumtel" fx:id="tfNumtel" layoutX="335.0" layoutY="346.0" />
+                              <Label layoutX="335.0" layoutY="106.0" text="Modele" />
+                              <Label layoutX="335.0" layoutY="241.0" text="Prix" />
+                              <Label layoutX="335.0" layoutY="170.0" text="Puissance" />
+                              <TextField id="tfModele" fx:id="tfModele" layoutX="331.0" layoutY="141.0" />
+                              <TextField id="tfPuissance" fx:id="tfPuissance" layoutX="335.0" layoutY="207.0" />
+                              <TextField id="tfPrix" fx:id="tfPrix" layoutX="335.0" layoutY="276.0" />
+                              <Button fx:id="boutonAjouter" layoutX="663.0" layoutY="441.0" mnemonicParsing="false" onAction="#insertOne" text="Ajouter" />
+                           </children>
+                        </AnchorPane>
+                     </content></Tab>
+                        <Tab disable="true" />
+                        <Tab disable="true">
+                            <content>
+                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                    </content>
+                                </ScrollPane>
+                            </content></Tab>
+                        <Tab text="consulter">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" layoutY="7.0" prefHeight="105.0" prefWidth="778.0" spacing="60.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label fx:id="nbt1" textFill="#2a73ff">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Reponse">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <Label />
+                                 </children>
+                                 <padding>
+                                    <Insets left="40.0" />
+                                 </padding>
+                              </HBox>
+                              <ScrollPane layoutX="39.0" layoutY="113.0" prefHeight="363.0" prefWidth="702.0" style="-fx-background-color: #FFF;" />
+                              <TableView fx:id="devisTableView1" layoutX="39.0" layoutY="114.0" prefHeight="360.0" prefWidth="700.0">
+                                 <columns>
+                                    <TableColumn fx:id="idCol1" prefWidth="50.39999234676361" text="ID" visible="false" />
+                                    <TableColumn fx:id="etatCol" maxWidth="100.0" prefWidth="67.99999845027924" text="ETAT" />
+                                    <TableColumn fx:id="decisionCol" maxWidth="154.39996337890625" prefWidth="79.19995880126953" text="DECISION" />
+                                    <TableColumn fx:id="emailCol1" maxWidth="262.4000244140625" prefWidth="111.199951171875" text="EMAIL" />
+                                    <TableColumn fx:id="date_reglementCol" maxWidth="312.7999572753906" prefWidth="103.20001220703125" text="Date Reglement" />
+                                    <TableColumn fx:id="delaiCol" maxWidth="342.4000549316406" prefWidth="108.00006103515625" text="Delai Reparation" />
+                                    <TableColumn fx:id="dureeCol" maxWidth="342.4000549316406" minWidth="0.0" prefWidth="94.39993286132812" text="Duree Validite" />
+                                    <TableColumn fx:id="documentsCol" maxWidth="342.4000549316406" prefWidth="128.79998779296875" text="Documents" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content></Tab>
+                  <Tab text="Ajouter">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="936.0">
+                           <children>
+                              <Label layoutX="29.0" layoutY="57.0" prefHeight="18.0" prefWidth="118.0" text="Etat" />
+                              <TextField id="tfNom" fx:id="tfNom1" layoutX="29.0" layoutY="84.0" prefHeight="26.0" prefWidth="150.0" />
+                              <Label layoutX="28.0" layoutY="131.0" prefHeight="18.0" prefWidth="66.0" text="Decision" />
+                              <TextField id="tfPrenom" fx:id="tfPrenom1" layoutX="29.0" layoutY="158.0" prefHeight="26.0" prefWidth="150.0" />
+                              <Label layoutX="291.0" layoutY="122.0" text="Documents" />
+                              <TextField id="tfAdresse" fx:id="tfAdresse1" layoutX="291.0" layoutY="158.0" />
+                              <Label layoutX="28.0" layoutY="201.0" text="Email" />
+                              <Label layoutX="291.0" layoutY="210.0" text="Date Reglement" />
+                              <DatePicker id="tfDate" fx:id="tfDate1" layoutX="286.0" layoutY="249.0" prefHeight="26.0" prefWidth="158.0" />
+                              <Label layoutX="29.0" layoutY="375.0" text="Delai Reparation" />
+                              <Label layoutX="29.0" layoutY="291.0" text="Duree Validite" />
+                              <TextField id="tfModele" fx:id="tfModele1" layoutX="29.0" layoutY="415.0" />
+                              <TextField id="tfPuissance" fx:id="tfPuissance1" layoutX="29.0" layoutY="326.0" />
+                              <ComboBox fx:id="tfEmail1" layoutX="28.0" layoutY="237.0" prefWidth="150.0" />
+                              <Button fx:id="boutonAjouter1" layoutX="583.0" layoutY="428.0" mnemonicParsing="false" onAction="#insertOne1" text="Ajouter" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                    </tabs>
+                </TabPane>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf3c3c" height="82.0" layoutX="220.0" stroke="#bf3c3c" strokeType="INSIDE" width="717.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="880.0" layoutY="-14.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="16.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="112.0" layoutX="913.0" layoutY="-24.0" rotate="-25.6" stroke="WHITE" strokeType="INSIDE" width="42.0" />
+
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf3c3c" height="20.0" layoutX="210.0" layoutY="74.0" stroke="#bf3c3c" strokeType="INSIDE" width="27.0" />
+                <Circle fill="WHITE" layoutX="236.0" layoutY="96.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" />
+                <Label layoutX="409.0" layoutY="15.0" text="Devis /Reponse" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Label layoutX="302.0" layoutY="82.0" text="Devis" textFill="#bf3c3c">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="669.0" layoutY="83.0" text="Reponse" textFill="#bf3c3c">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
